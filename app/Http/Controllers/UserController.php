@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function RegisterForm() {
+        return view('auth.register');
+    }
+
     public function Register(Request $request){
         try {
             $field = $request->validate([
@@ -18,10 +22,12 @@ class UserController extends Controller
             ]);
 
             $user = User::create($field);
-            return response()->json([
-                'message' => 'created successfully',
-                'data' => $user
-            ]);
+            // return response()->json([
+            //     'message' => 'created successfully',
+            //     'data' => $user
+            // ]);
+
+            return redirect()->route('register.form')->with('success', 'registrasi berhasil!');
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage()
