@@ -9,8 +9,6 @@
     .min-vh-100 {
       min-height: 100vh !important;
     }
-
-    /* sisi kanan dengan overlay orange */
     .banner {
       background: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg') no-repeat center center/cover;
       position: relative;
@@ -58,8 +56,6 @@
         <p class="text-sm">Don't have an account? <a href="#" class="text-warning fw-bold">Sign up</a></p>
       </div>
     </div>
-
-    <!-- Right side banner -->
     <div class="col-md-6 d-none d-md-flex banner text-white align-items-center justify-content-center">
       <div class="banner-content text-center px-4">
         <h4 class="fw-bold">"Attention is the new currency"</h4>
