@@ -6,7 +6,7 @@
                  <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card stat-card border-0 shadow-sm">
                         <div class="stat-icon bg-gradient-dark">
-                            <i class="bi bi-currency-dollar"></i>
+                            <i class="bi bi-people"></i>
                         </div>
                         <div class="card-body">
                             <div class="text-end">

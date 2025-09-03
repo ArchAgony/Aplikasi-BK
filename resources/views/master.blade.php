@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="/Lib/bootstrap-icons-1.11.1/bootstrap-icons.min.css" rel="stylesheet">
     <link href="/Lib/DataTables/datatables.min.css" rel="stylesheet"/>
         <script src="/Lib/font-awesome-pro-5.15.4/js/all.js" crossorigin="anonymous"></script>
     
@@ -203,7 +203,7 @@
         <nav class="mt-3">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active text-primary" href="#">
+                    <a class="nav-link active text-primary" href="/dashboard">
                         <i class="bi bi-house-door me-2"></i>Dashboard
                     </a>
                 </li>
@@ -241,9 +241,21 @@
                     </ol>
                 </nav>
                 <div class="ms-auto">
-                    <button class="btn btn-outline-secondary">
-                        <i class="bi bi-person-circle"></i>
-                    </button>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="/profile"><i class="bi bi-person"></i> Profil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form method="POST" action="{{-- route('logout')--}}">
+                                    @csrf
+                                    <button class="dropdown-item" type="submit"><i class="bi bi-box-arrow-right"></i> Log Out</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
