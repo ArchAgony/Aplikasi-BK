@@ -8,6 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="/Lib/DataTables/datatables.min.css" rel="stylesheet"/>
+        <script src="/Lib/font-awesome-pro-5.15.4/js/all.js" crossorigin="anonymous"></script>
     
     <style>
         :root {
@@ -175,6 +177,19 @@
                 display: block;
             }
         }
+        /* Custom Card Header biar lebih cantik */
+        .card-header {
+        font-weight: bold;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        }
+
+        /* Styling tabel (opsional) */
+        .table thead th {
+        background-color: #f8f9fa;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -193,8 +208,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">
-                        <i class="bi bi-person me-2"></i>Users
+                    <a class="nav-link text-dark" href="/siswa">
+                        <i class="bi bi-person me-2"></i>Siswa
                     </a>
                 </li>
                 <li class="nav-item">
@@ -263,5 +278,16 @@
             }
         });
     </script>
+    <script src="/Lib/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/Lib/chart.js/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="/Lib/DataTables/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="/Lib/DataTables/datatables.min.js"></script>
+        <script src="/Lib//DataTables/datatables-simple-demo.js"></script>
+    <script src="{{ asset('js/datatables-init.js') }}"></script>
+    <script>
+  $(document).ready(function() {
+    $('#datatablesSimple').DataTable();
+  });
+</script>
 </body>
 </html>
