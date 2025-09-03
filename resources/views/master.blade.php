@@ -203,7 +203,7 @@
         <nav class="mt-3">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active text-primary" href="/dashboard">
+                    <a class="nav-link text-primary" href="/dashboard">
                         <i class="bi bi-house-door me-2"></i>Dashboard
                     </a>
                 </li>
@@ -214,12 +214,17 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="#">
-                        <i class="bi bi-folder me-2"></i>Projects
+                        <i class="bi bi-journal-bookmark me-2"></i>Buku Tamu
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="#">
-                        <i class="bi bi-graph-up me-2"></i>Analytics
+                       <i class="bi bi-house-exclamation me-2"></i>Kunjungan Rumah
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">
+                        <i class="bi bi-graph-up me-2"></i>Laporan
                     </a>
                 </li>
             </ul>

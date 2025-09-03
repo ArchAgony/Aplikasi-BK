@@ -153,10 +153,8 @@
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
                             <div>
-                                <h6 class="mb-1">Projects</h6>
+                                <h6 class="mb-1">Daftar Kasus Terbaru</h6>
                                 <p class="text-muted small mb-0">
-                                    <i class="bi bi-check-circle text-info me-1"></i>
-                                    <strong>30 done</strong> this month
                                 </p>
                             </div>
                             <div class="dropdown">
@@ -175,96 +173,52 @@
                                 <table class="table table-hover">
                                     <thead class="table-light">
                                         <tr>
-                                            <th>Company</th>
-                                            <th>Members</th>
-                                            <th class="text-center">Budget</th>
-                                            <th class="text-center">Completion</th>
+                                            <th>Nama Siswa</th>
+                                            <th>Kelas</th>
+                                            <th class="text-center">Kasus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <div class="avatar bg-primary me-3">XD</div>
-                                                    <div>
-                                                        <h6 class="mb-0 small">Material XD Version</h6>
-                                                    </div>
+                                                    <h6>Cendy Alviano Alvariazky</h6>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="d-flex">
-                                                    <div class="avatar bg-info">RT</div>
-                                                    <div class="avatar bg-success">RH</div>
-                                                    <div class="avatar bg-warning">AS</div>
-                                                    <div class="avatar bg-danger">JD</div>
-                                                </div>
+                                               XII PPLG 2
                                             </td>
                                             <td class="text-center">
-                                                <span class="badge bg-light text-dark">$14,000</span>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="progress progress-custom flex-grow-1 me-2">
-                                                        <div class="progress-bar bg-info" style="width: 60%"></div>
-                                                    </div>
-                                                    <small>60%</small>
-                                                </div>
+                                                <span class="">Menemukan Oli</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <div class="avatar bg-warning me-3">AT</div>
-                                                    <div>
-                                                        <h6 class="mb-0 small">Add Progress Track</h6>
-                                                    </div>
+                                                    <h6>Cendy Alviano Alvariazky</h6>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="d-flex">
-                                                    <div class="avatar bg-success">RH</div>
-                                                    <div class="avatar bg-danger">JD</div>
-                                                </div>
+                                               XII PPLG 2
                                             </td>
                                             <td class="text-center">
-                                                <span class="badge bg-light text-dark">$3,000</span>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="progress progress-custom flex-grow-1 me-2">
-                                                        <div class="progress-bar bg-info" style="width: 10%"></div>
-                                                    </div>
-                                                    <small>10%</small>
-                                                </div>
+                                                <span class="">Menemukan Oli</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <div class="avatar bg-info me-3">SL</div>
-                                                    <div>
-                                                        <h6 class="mb-0 small">Fix Platform Errors</h6>
-                                                    </div>
+                                                    <h6>Cendy Alviano Alvariazky</h6>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="d-flex">
-                                                    <div class="avatar bg-warning">AS</div>
-                                                    <div class="avatar bg-primary">RT</div>
-                                                </div>
+                                               XII PPLG 2
                                             </td>
                                             <td class="text-center">
-                                                <span class="badge bg-light text-muted">Not set</span>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="progress progress-custom flex-grow-1 me-2">
-                                                        <div class="progress-bar bg-success" style="width: 100%"></div>
-                                                    </div>
-                                                    <small>100%</small>
-                                                </div>
+                                                <span class="">Menemukan Oli</span>
                                             </td>
                                         </tr>
+                                       
                                     </tbody>
                                 </table>
                             </div>
