@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class BukuTamu extends Model
+class LaporanKonseling extends Model
 {
     //
     use HasFactory, Notifiable;
 
-    protected $table = 'siswas';
-    protected $id = ['id'];
+    protected $table = 'laporan_konselings';
+    protected $guarded = ['id'];
 
     public function guru()
     {
