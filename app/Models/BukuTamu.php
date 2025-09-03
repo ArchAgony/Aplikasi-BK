@@ -11,7 +11,7 @@ class BukuTamu extends Model
     //
     use HasFactory, Notifiable;
 
-    protected $table = 'siswas';
+    protected $table = 'buku_tamus';
     protected $id = ['id'];
 
     public function guru()
