@@ -120,10 +120,13 @@
                     <thead style="background-color: #f8f9fa;">
                         <tr>
                             <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">No</th>
-                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Nama Siswa</th>
                             <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Kelas</th>
-                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Kasus</th>
-                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Action</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">NIS</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Nama Siswa</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Hari / Tgl</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Tujuan</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Kesimpulan</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Laporan Kunjungan & Layanan Kunjungan Rumah</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -132,20 +135,25 @@
                                 1
                             </td>
                             <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="author-info">
-                                        <h6>Cendy Alviano </h6>
-                                    </div>
-                                </div>
+                                XII RPL 1
                             </td>
                             <td>
-                                XII PPLG 1
+                                1920304012
                             </td>
                             <td>
-                                Menemukan Oli
+                                Arifin Bachtiar Noble
                             </td>
                             <td>
-                                <button class="edit-btn">Edit</button>
+                                12/12/2025
+                            </td>
+                            <td>
+                                Melengkapi data Induk
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info">Info</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success">Tambah</button>
                             </td>
                         </tr>
                     </tbody>

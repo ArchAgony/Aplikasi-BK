@@ -15,9 +15,8 @@
         
         .authors-table {
             border-radius: 10px;
-            overflow: auto;
+            overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            max-height: 400px;
         }
         
         .table > :not(caption) > * > * {
@@ -112,7 +111,7 @@
     <div class="container-fluid">
         <div class="table-container">
             <div class="table-header">
-                Tabel Kasus Siswa
+                Tabel Tamu 
             </div>
             
             <div class="authors-table">
@@ -120,9 +119,14 @@
                     <thead style="background-color: #f8f9fa;">
                         <tr>
                             <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">No</th>
-                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Nama Siswa</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Nama Orang Tua</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Siswa</th>
                             <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Kelas</th>
-                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Kasus</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Kunjungan Ke</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">No.HP</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Alamat Orang Tua</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Tindak Lanjut</th>
+                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Tanda Tangan</th>
                             <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Action</th>
                         </tr>
                     </thead>
@@ -134,18 +138,30 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="author-info">
-                                        <h6>Cendy Alviano </h6>
+                                        <h6>Bu Anda </h6>
                                     </div>
                                 </div>
+                            </td>
+                            <td>
+                                Daniar Kelvin Halim Alfian
                             </td>
                             <td>
                                 XII PPLG 1
                             </td>
                             <td>
-                                Menemukan Oli
+                                1
                             </td>
                             <td>
-                                <button class="edit-btn">Edit</button>
+                                +6281234567890
+                            </td>
+                            <td>
+                                Popohan, Sidoarjo
+                            </td>
+                            <td>
+                                Dikeluarkan
+                            </td>
+                            <td>
+                                Dikeluarkan
                             </td>
                         </tr>
                     </tbody>

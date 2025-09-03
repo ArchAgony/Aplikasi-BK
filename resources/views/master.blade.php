@@ -213,12 +213,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">
+                    <a class="nav-link text-dark" href="/tamu">
                         <i class="bi bi-journal-bookmark me-2"></i>Buku Tamu
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">
+                    <a class="nav-link text-dark" href="/kunjungan">
                        <i class="bi bi-house-exclamation me-2"></i>Kunjungan Rumah
                     </a>
                 </li>

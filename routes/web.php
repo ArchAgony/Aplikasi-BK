@@ -4,6 +4,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BukuTamuController;
+use App\Http\Controllers\KunjunganRumahController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -14,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get("/dashboard", [DashboardController::class,"index"]);
 Route::get("/siswa", [SiswaController::class,"index"]);
+Route::get("/tamu", [BukuTamuController::class,"index"]);
+Route::get("/kunjungan", [KunjunganRumahController::class,"index"]);
 
 Route::get('/register', [UserController::class, 'RegisterForm'])->name('register.form');
 Route::post('/register', [UserController::class, 'Register'])->name('register');
