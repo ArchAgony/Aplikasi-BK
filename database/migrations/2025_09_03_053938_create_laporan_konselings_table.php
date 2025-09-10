@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('siswa_id')->nullable()->constrained('siswas')->nullOnDelete();
             $table->foreignId('guru_id')->constrained('users')->cascadeOnDelete();
+            $table->enum('evaluasi', ['efektif', 'tidak efektif']);
             $table->date('tanggal');
             $table->text('masalah');
             $table->text('penyebab')->nullable();

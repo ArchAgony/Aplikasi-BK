@@ -18,14 +18,12 @@ class SiswaSeeder extends Seeder
         //
         $faker = Faker::create('id_ID');
         $kelasIds = Kelas::pluck('id')->toArray();
-        $ortuIds = Ortu::pluck('id')->toArray();
 
         for ($i = 1; $i <= 20; $i++) {
             Siswa::create([
                 'nis' => $faker->unique()->numerify('2025###'),
                 'nama_siswa' => $faker->name,
                 'kelas_id' => $faker->randomElement($kelasIds),
-                'orang_tua_id' => $faker->randomElement($ortuIds),
                 'alamat_rumah' => $faker->address,
                 'no_hp' => $faker->phoneNumber,
                 'tempat_lahir' => $faker->city,

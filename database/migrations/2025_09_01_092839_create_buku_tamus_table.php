@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('guru_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('siswa_id')->nullable()->constrained('siswas')->nullOnDelete();
             $table->string('nama_tamu');
+            $table->string('alamat_tamu');
             $table->string('no_telp', 30)->nullable();
             $table->text('alamat')->nullable();
             $table->text('keperluan');

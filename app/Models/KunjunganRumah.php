@@ -23,9 +23,4 @@ class KunjunganRumah extends Model
     {
         return $this->belongsTo(Siswa::class, 'siswa_id');
     }
-
-    public function ortu()
-    {
-        return $this->belongsTo(Ortu::class, 'orang_tua_id');
-    }
 }

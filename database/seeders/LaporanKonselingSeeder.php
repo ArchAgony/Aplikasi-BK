@@ -25,6 +25,7 @@ class LaporanKonselingSeeder extends Seeder
                 'guru_id' => $faker->randomElement($guruIds),
                 'siswa_id' => $faker->randomElement($siswaIds),
                 'tanggal' => $faker->date(),
+                'evaluasi' => 'efektif',
                 'masalah' => $faker->sentence(3),
                 'penyebab' => $faker->sentence(4),
                 'tindak_lanjut' => $faker->sentence(5),

@@ -19,11 +19,6 @@ class Siswa extends Model
         return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 
-    public function ortu()
-    {
-        return $this->belongsTo(Ortu::class, 'orang_tua_id');
-    }
-
     public function bukuTamus()
     {
         return $this->hasMany(BukuTamu::class, 'siswa_id');
@@ -37,10 +32,5 @@ class Siswa extends Model
     public function kunjunganRumahs()
     {
         return $this->hasMany(KunjunganRumah::class, 'siswa_id');
-    }
-
-    public function evaluasis()
-    {
-        return $this->hasMany(Evaluasi::class, 'siswa_id');
     }
 }

@@ -57,9 +57,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(KunjunganRumah::class, 'guru_id');
     }
-
-    public function evaluasis()
-    {
-        return $this->hasMany(Evaluasi::class, 'guru_id');
-    }
 }
