@@ -13,4 +13,14 @@ class Kelas extends Model
 
     protected $table = 'kelas';
     protected $id = ['id'];
+
+    public function siswas()
+    {
+        return $this->hasMany(Siswa::class, 'kelas_id');
+    }
+
+    public function evaluasis()
+    {
+        return $this->hasMany(Evaluasi::class, 'kelas_id');
+    }
 }

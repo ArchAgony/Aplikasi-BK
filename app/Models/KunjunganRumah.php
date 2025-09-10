@@ -13,4 +13,19 @@ class KunjunganRumah extends Model
 
     protected $table = 'kunjungan_rumahs';
     protected $id = ['id'];
+
+    public function guru()
+    {
+        return $this->belongsTo(User::class, 'guru_id');
+    }
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id');
+    }
+
+    public function ortu()
+    {
+        return $this->belongsTo(Ortu::class, 'orang_tua_id');
+    }
 }

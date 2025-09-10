@@ -13,4 +13,14 @@ class Ortu extends Model
 
     protected $table = 'ortus';
     protected $guarded = ['id'];
+
+     public function siswas()
+    {
+        return $this->hasMany(Siswa::class, 'orang_tua_id');
+    }
+
+    public function kunjunganRumahs()
+    {
+        return $this->hasMany(KunjunganRumah::class, 'orang_tua_id');
+    }
 }

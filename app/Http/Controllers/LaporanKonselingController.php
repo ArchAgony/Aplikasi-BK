@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ortu;
+use App\Models\LaporanKonseling;
 use Illuminate\Http\Request;
 
-class OrtuController extends Controller
+class LaporanKonselingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class OrtuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ortu $ortu)
+    public function show(LaporanKonseling $laporanKonseling)
     {
         //
     }
@@ -42,7 +42,7 @@ class OrtuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ortu $ortu)
+    public function edit(LaporanKonseling $laporanKonseling)
     {
         //
     }
@@ -50,7 +50,7 @@ class OrtuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ortu $ortu)
+    public function update(Request $request, LaporanKonseling $laporanKonseling)
     {
         //
     }
@@ -58,7 +58,7 @@ class OrtuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ortu $ortu)
+    public function destroy(LaporanKonseling $laporanKonseling)
     {
         //
     }
