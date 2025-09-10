@@ -7,9 +7,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
-    <link href="/Lib/bootstrap-icons-1.11.1/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="/Lib/DataTables/datatables.min.css" rel="stylesheet"/>
-        <script src="/Lib/font-awesome-pro-5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <link href="{{ asset('/Lib/bootstrap-icons-1.11.1/bootstrap-icons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/Lib/DataTables/datatables.min.css') }}" rel="stylesheet"/>
+        <script src="{{ asset('/Lib/font-awesome-pro-5.15.4/js/all.js') }}" crossorigin="anonymous"></script>
     
     <style>
         :root {
@@ -295,11 +295,12 @@
             }
         });
     </script>
-    <script src="/Lib/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="/Lib/chart.js/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="/Lib/DataTables/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="/Lib/DataTables/datatables.min.js"></script>
-        <script src="/Lib//DataTables/datatables-simple-demo.js"></script>
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('/Lib/bootstrap/js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
+        <script src="{{ asset('/Lib/chart.js/Chart.min.js') }}" crossorigin="anonymous"></script>
+        <script src="{{ asset('/Lib/DataTables/simple-datatables.min.js') }}" crossorigin="anonymous"></script>
+        <script src="{{ asset('/Lib/DataTables/datatables.min.js') }}"></script>
+        <script src="{{ asset('/Lib//DataTables/datatables-simple-demo.js') }}"></script>
     <script src="{{ asset('js/datatables-init.js') }}"></script>
     <script>
   $(document).ready(function() {
