@@ -9,6 +9,7 @@
     <!-- Bootstrap Icons -->
     <link href="{{ asset('/Lib/bootstrap-icons-1.11.1/bootstrap-icons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/Lib/DataTables/datatables.min.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"/>
         <script src="{{ asset('/Lib/font-awesome-pro-5.15.4/js/all.js') }}" crossorigin="anonymous"></script>
     
     <style>
@@ -298,14 +299,25 @@
     <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('/Lib/bootstrap/js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
         <script src="{{ asset('/Lib/chart.js/Chart.min.js') }}" crossorigin="anonymous"></script>
-        <script src="{{ asset('/Lib/DataTables/simple-datatables.min.js') }}" crossorigin="anonymous"></script>
-        <script src="{{ asset('/Lib/DataTables/datatables.min.js') }}"></script>
-        <script src="{{ asset('/Lib//DataTables/datatables-simple-demo.js') }}"></script>
-    <script src="{{ asset('js/datatables-init.js') }}"></script>
+        
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script>
-  $(document).ready(function() {
-    $('#datatablesSimple').DataTable();
+ $(document).ready(function() {
+  $('#datatablesSimple').DataTable({
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Cari siswa...",
+      lengthMenu: "Tampilkan _MENU_ data",
+      info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+      paginate: {
+        previous: "Sebelumnya",
+        next: "Berikutnya"
+      }
+    }
   });
+});
 </script>
 </body>
 </html>
