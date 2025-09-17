@@ -12,7 +12,7 @@ class KunjunganRumah extends Model
     use HasFactory, Notifiable;
 
     protected $table = 'kunjungan_rumahs';
-    protected $id = ['id'];
+    protected $guarded = ['id'];
 
     public function guru()
     {

@@ -14,8 +14,14 @@ use App\Http\Controllers\KunjunganRumahController;
 // Route::get('/', function () {
 //     return view('dashboard/master');
 // });
+
 Route::get("/dashboard", [DashboardController::class,"index"]);
+
 Route::get("/siswa", [SiswaController::class,"index"]);
+Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
+Route::put('/siswa/{id}', [SiswaController::class, 'update'])->name('siswa.update');
+Route::delete('/siswa/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
+
 Route::get("/tamu", [BukuTamuController::class,"index"]);
 Route::get("/kunjungan", [KunjunganRumahController::class,"index"]);
 

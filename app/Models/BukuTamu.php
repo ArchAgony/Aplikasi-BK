@@ -12,7 +12,7 @@ class BukuTamu extends Model
     use HasFactory, Notifiable;
 
     protected $table = 'buku_tamus';
-    protected $id = ['id'];
+    protected $guarded = ['id'];
 
     public function guru()
     {

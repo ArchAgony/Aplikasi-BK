@@ -12,6 +12,10 @@ class SiswaController extends Controller
      */
     public function index()
     {
+        $data = Siswa::all();
+        return response()->json([
+            'data' => $data
+        ]);
         return view('dashboard.siswa');
     }
 
@@ -29,6 +33,24 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            $field = $request->validate([
+                'nama_siswa' => 'required',
+                'nis' => 'required',
+                'tingkat' => 'required',
+                'jurusan' => 'required',
+            ]);
+
+            $data = Siswa::create($field);
+            return response()->json([
+                'message' => 'data berhasil dibuat!',
+                'data' => $data,
+            ]);
+        } catch (\Exception $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+            ]);
+        }
     }
 
     /**
@@ -53,6 +75,24 @@ class SiswaController extends Controller
     public function update(Request $request, Siswa $siswa)
     {
         //
+        try {
+            $field = $request->validate([
+                'nama_siswa' => 'required',
+                'nis' => 'required',
+                'tingkat' => 'required',
+                'jurusan' => 'required',
+            ]);
+
+            $siswa->update($field);
+            return response()->json([
+                'message' => 'data berhasil diubah',
+                'data' => $siswa
+            ]);
+        } catch (\Exception $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -61,5 +101,15 @@ class SiswaController extends Controller
     public function destroy(Siswa $siswa)
     {
         //
+        try {
+            $siswa->delete();
+            return response()->json([
+                'message' => 'data berhasil dihapus'
+            ]);
+        } catch (\Exception $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 }

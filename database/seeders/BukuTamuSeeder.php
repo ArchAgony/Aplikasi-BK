@@ -20,7 +20,7 @@ class BukuTamuSeeder extends Seeder
         $guruIds = User::pluck('id')->toArray();
         $siswaIds = Siswa::pluck('id')->toArray();
 
-        for ($i = 1; $i <= 15; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             BukuTamu::create([
                 'tanggal' => $faker->date(),
                 'guru_id' => $faker->randomElement($guruIds),

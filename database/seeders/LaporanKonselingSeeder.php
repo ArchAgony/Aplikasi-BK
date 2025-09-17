@@ -20,7 +20,7 @@ class LaporanKonselingSeeder extends Seeder
         $guruIds = User::pluck('id')->toArray();
         $siswaIds = Siswa::pluck('id')->toArray();
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             LaporanKonseling::create([
                 'guru_id' => $faker->randomElement($guruIds),
                 'siswa_id' => $faker->randomElement($siswaIds),

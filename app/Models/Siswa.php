@@ -12,7 +12,7 @@ class Siswa extends Model
     use HasFactory, Notifiable;
 
     protected $table = 'siswas';
-    protected $id = ['id'];
+    protected $guarded = ['id'];
 
     public function bukuTamus()
     {

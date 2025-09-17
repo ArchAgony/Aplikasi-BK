@@ -21,7 +21,7 @@ class KunjunganRumahSeeder extends Seeder
         $guruIds = User::pluck('id')->toArray();
         $siswaIds = Siswa::pluck('id')->toArray();
 
-        for ($i = 1; $i <= 8; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             KunjunganRumah::create([
                 'guru_id' => $faker->randomElement($guruIds),
                 'siswa_id' => $faker->randomElement($siswaIds),
