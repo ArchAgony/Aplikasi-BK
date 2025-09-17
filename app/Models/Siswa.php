@@ -14,11 +14,6 @@ class Siswa extends Model
     protected $table = 'siswas';
     protected $id = ['id'];
 
-    public function kelas()
-    {
-        return $this->belongsTo(Kelas::class, 'kelas_id');
-    }
-
     public function bukuTamus()
     {
         return $this->hasMany(BukuTamu::class, 'siswa_id');
