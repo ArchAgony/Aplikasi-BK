@@ -303,20 +303,59 @@
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script>
- $(document).ready(function() {
-  $('#datatablesSimple').DataTable({
-    responsive: true,
-    language: {
-      search: "_INPUT_",
-      searchPlaceholder: "Cari siswa...",
-      lengthMenu: "Tampilkan _MENU_ data",
-      info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-      paginate: {
-        previous: "Sebelumnya",
-        next: "Berikutnya"
-      }
+$(document).ready(function() {
+
+    function format(d) {
+        return `
+            <table class="table table-sm table-bordered table-striped mb-0">
+                <tr>
+                    <td style="width:150px"><b>Salary:</b></td>
+                    <td>$162,700</td>
+                </tr>
+                <tr>
+                    <td><b>Extra info:</b></td>
+                    <td>Keterangan tambahan bisa masuk sini…</td>
+                </tr>
+            </table>
+        `;
     }
-  });
+
+    var table = $('#datatablesSimple').DataTable({
+        responsive: true,
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Cari siswa...",
+            lengthMenu: "Tampilkan _MENU_ data",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+            paginate: {
+                previous: "Sebelumnya",
+                next: "Berikutnya"
+            }
+        },
+        columnDefs: [
+            {
+                className: 'dt-control',
+                orderable: false,
+                data: null,
+                defaultContent: '',
+                targets: 0
+            }
+        ],
+        order: [[1, 'asc']]
+    });
+
+    $('#datatablesSimple tbody').on('click', 'td.dt-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+            row.child.hide();
+            tr.removeClass('shown');
+        } else {
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
+    });
 });
 </script>
 </body>
