@@ -26,7 +26,6 @@ class BukuTamuSeeder extends Seeder
                 'guru_id' => $faker->randomElement($guruIds),
                 'siswa_id' => $faker->randomElement($siswaIds),
                 'nama_tamu' => $faker->name,
-                'alamat_tamu' => 'jl. '.$faker->name,
                 'no_telp' => $faker->phoneNumber,
                 'alamat' => $faker->address,
                 'keperluan' => $faker->sentence(3),
