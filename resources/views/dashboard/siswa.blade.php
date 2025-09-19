@@ -66,10 +66,9 @@
       <button type="button" class="btn btn-light btn-sm float-end rounded-2 " data-bs-theme="dark" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">Tambah</button>
     </div>
     <div class="authors-table p-3">
-      <table id="datatablesSimple" class="table table-hover table-bordered align-middle mb-0" style="width:100%">
-       <thead>
+      <table id="datatablesSimple">
+       <thead class="text-center align-middle">
           <tr>
-            <th></th>
             <th>No</th>
             <th>Nama Siswa</th>
             <th>Kelas</th>
@@ -79,7 +78,6 @@
         </thead>
         <tbody>         
           <tr>
-            <td></td>
             <td>1</td>
             <td>
               <div class="d-flex align-items-center">
@@ -95,33 +93,16 @@
             </td>
           </tr>
           <tr>
-            <td></td>
             <td>2</td>
             <td>
               <div class="d-flex align-items-center">
                 <div class="author-info">
-                  <h6>Daoa Alviano </h6>
+                  <h6>FF Alviano </h6>
                 </div>
               </div>
             </td>
-            <td>XII PPLG 1</td>
-            <td>Merokok</td>
-            <td>
-              <button class="edit-btn btn btn-sm btn-outline-primary">Edit</button>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>3</td>
-            <td>
-              <div class="d-flex align-items-center">
-                <div class="author-info">
-                  <h6>Kelvin Alviano </h6>
-                </div>
-              </div>
-            </td>
-            <td>XII PPLG 1</td>
-            <td>Bolos</td>
+            <td>XII PPLG 2</td>
+            <td>Menemukan li</td>
             <td>
               <button class="edit-btn btn btn-sm btn-outline-primary">Edit</button>
             </td>
@@ -131,7 +112,6 @@
     </div>
   </div>
 </div>
-
 <div class="modal fade" id="modal-tambah-siswa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -180,4 +160,24 @@
       </div>
     </div>
   </div>
+  <script>
+$(document).ready(function() {
+    $('#datatablesSimple').DataTable({
+        responsive: true,
+        language: {
+            search: "",
+            searchPlaceholder: "Cari siswa...",
+            lengthMenu: "Tampilkan _MENU_ data",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+            paginate: {
+                previous: "Sebelumnya",
+                next: "Berikutnya"
+            },
+            zeroRecords: "Data tidak ditemukan"
+        },
+        dom: '<"row mb-2"<"col-md-6"l><"col-md-6 text-end"f>>rtip',
+        order: [[0, 'asc']]
+    });
+});
+</script>
 @endsection

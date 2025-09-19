@@ -8,8 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="{{ asset('/Lib/bootstrap-icons-1.11.1/bootstrap-icons.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('/Lib/DataTables/datatables.min.css') }}" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"/>
+    <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}">
         <script src="{{ asset('/Lib/font-awesome-pro-5.15.4/js/all.js') }}" crossorigin="anonymous"></script>
     
     <style>
@@ -296,30 +295,16 @@
             }
         });
     </script>
-    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('Js/jquery-3.7.1.js') }}"></script>
     <script src="{{ asset('/Lib/bootstrap/js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
         <script src="{{ asset('/Lib/chart.js/Chart.min.js') }}" crossorigin="anonymous"></script>
         
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('Js/jquery.dataTables.min.js') }}"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="{{ asset ('Js/dataTables.responsive.js') }}"></script>
+<script src="{{ asset('Js/responsive.dataTables.js') }}"></script>
     <script>
 $(document).ready(function() {
-
-    function format(d) {
-        return `
-            <table class="table table-sm table-bordered table-striped mb-0">
-                <tr>
-                    <td style="width:150px"><b>Salary:</b></td>
-                    <td>$162,700</td>
-                </tr>
-                <tr>
-                    <td><b>Extra info:</b></td>
-                    <td>Keterangan tambahan bisa masuk sini…</td>
-                </tr>
-            </table>
-        `;
-    }
-
     var table = $('#datatablesSimple').DataTable({
         responsive: true,
         language: {
@@ -332,29 +317,7 @@ $(document).ready(function() {
                 next: "Berikutnya"
             }
         },
-        columnDefs: [
-            {
-                className: 'dt-control',
-                orderable: false,
-                data: null,
-                defaultContent: '',
-                targets: 0
-            }
-        ],
         order: [[1, 'asc']]
-    });
-
-    $('#datatablesSimple tbody').on('click', 'td.dt-control', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row(tr);
-
-        if (row.child.isShown()) {
-            row.child.hide();
-            tr.removeClass('shown');
-        } else {
-            row.child(format(row.data())).show();
-            tr.addClass('shown');
-        }
     });
 });
 </script>

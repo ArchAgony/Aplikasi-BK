@@ -58,10 +58,10 @@
                     data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">Tambah</button>
             </div>
             <div class="authors-table p-3">
-                <table id="datatablesSimple" class="table table-striped" style="width:100%">
+                <table id="datatablesSimple" class="display nowarp" style="width:100%">
                     <thead>
                         <tr>
-                          <th></th> <!-- otomatis isine tombol expand -->
+                            <th></th>
                             <th>No</th>
                             <th>Tanggal</th>
                             <th>Ortu/Tamu</th>
@@ -76,7 +76,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                         <td></td>
+                            <td></td>
                             <td>1</td>
                             <td>17-09-2025</td>
                             <td>Ya Begitu</td>
@@ -144,4 +144,22 @@
             </div>
         </div>
     </div>
+    <script>
+       new DataTable('#datatablesSimple', {
+    columnDefs: [
+        {
+            className: 'dtr-control',
+            orderable: false,
+            target: 0
+        }
+    ],
+    order: [1, 'asc'],
+    responsive: {
+        details: {
+            type: 'column',
+            target: 'tr'
+        }
+    }
+});
+    </script>
 @endsection
