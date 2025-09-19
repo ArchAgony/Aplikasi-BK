@@ -61,7 +61,7 @@
                 <table id="datatablesSimple" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th></th> <!-- otomatis isine tombol expand -->
+                          <th></th> <!-- otomatis isine tombol expand -->
                             <th>No</th>
                             <th>Tanggal</th>
                             <th>Ortu/Tamu</th>
@@ -76,7 +76,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
+                         <td></td>
                             <td>1</td>
                             <td>17-09-2025</td>
                             <td>Ya Begitu</td>

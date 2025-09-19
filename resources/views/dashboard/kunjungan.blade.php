@@ -12,6 +12,33 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             margin-bottom: 20px;
         }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.2em 1em;
+    margin: 0 2px;
+    border-radius: 20px;
+    border: none !important;
+    
+    color: #fff !important;
+    transition: background 0.2s;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+
+    color: #fff !important;
+  }
+
+  .dataTables_wrapper .dataTables_filter input {
+    border-radius: 20px;
+    border: 1px solid #e91e63;
+    padding: 0.3em 1em;
+  }
+
+  .dataTables_length select {
+    border-radius: 20px;
+    border: 1px solid #e91e63;
+    padding: 0.2em 1em;
+  }
         
         .authors-table {
             border-radius: 10px;
@@ -116,9 +143,10 @@
             </div>
             
             <div class="authors-table">
-                <table class="table table-hover mb-0">
+                <table id="datatablesSimple" class="table table-hover table-bordered align-middle mb-0" style="width:100%">
                     <thead style="background-color: #f8f9fa;">
                         <tr>
+                            <th></th>
                             <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">No</th>
                             <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Kelas</th>
                             <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">NIS</th>
@@ -131,6 +159,7 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td></td>
                             <td>
                                 1
                             </td>

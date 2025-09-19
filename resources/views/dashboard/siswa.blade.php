@@ -12,6 +12,15 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     margin-bottom: 0;
   }
+  .modal-header {
+    background: linear-gradient(135deg, #e91e63, #f06292);
+    color: white;
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0;
+  }
 
   .dataTables_wrapper .dataTables_paginate .paginate_button {
     padding: 0.2em 1em;
@@ -58,8 +67,9 @@
     </div>
     <div class="authors-table p-3">
       <table id="datatablesSimple" class="table table-hover table-bordered align-middle mb-0" style="width:100%">
-        <thead>
+       <thead>
           <tr>
+            <th></th>
             <th>No</th>
             <th>Nama Siswa</th>
             <th>Kelas</th>
@@ -67,8 +77,9 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody>         
           <tr>
+            <td></td>
             <td>1</td>
             <td>
               <div class="d-flex align-items-center">
@@ -84,7 +95,8 @@
             </td>
           </tr>
           <tr>
-            <td>3</td>
+            <td></td>
+            <td>2</td>
             <td>
               <div class="d-flex align-items-center">
                 <div class="author-info">
@@ -99,7 +111,8 @@
             </td>
           </tr>
           <tr>
-            <td>2</td>
+            <td></td>
+            <td>3</td>
             <td>
               <div class="d-flex align-items-center">
                 <div class="author-info">
@@ -122,7 +135,7 @@
 <div class="modal fade" id="modal-tambah-siswa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header bg-danger text-white">
+        <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Siswa</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
