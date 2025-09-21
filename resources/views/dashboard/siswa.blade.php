@@ -1,156 +1,183 @@
 @extends('master')
 @section('content')
 
-   <style>
-        .table-header {
-            background: linear-gradient(135deg, #e91e63, #f06292);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        
-        .authors-table {
-            border-radius: 10px;
-            overflow: auto;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            max-height: 400px;
-        }
-        
-        .table > :not(caption) > * > * {
-            padding: 1rem 1.25rem;
-            border-color: #f8f9fa;
-        }
-        
-        .profile-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 12px;
-        }
-        
-        .author-info h6 {
-            margin: 0;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .author-info small {
-            color: #6c757d;
-        }
-        
-        .function-title {
-            font-weight: 600;
-            color: #2c3e50;
-            margin: 0;
-        }
-        
-        .function-subtitle {
-            color: #6c757d;
-            font-size: 0.875rem;
-            margin: 0;
-        }
-        
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .status-online {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        
-        .status-offline {
-            background-color: #d1ecf1;
-            color: #0c5460;
-        }
-        
-        .employed-date {
-            color: #6c757d;
-            font-weight: 500;
-        }
-        
-        .edit-btn {
-            background: none;
-            border: none;
-            color: #6c757d;
-            font-weight: 500;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        
-        .edit-btn:hover {
-            color: #e91e63;
-        }
-        
-        tbody tr {
-            transition: background-color 0.3s;
-        }
-        
-        tbody tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .table-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            background: white;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body style="background-color: #f5f7fa;">
-    <div class="container-fluid">
-        <div class="table-container">
-            <div class="table-header">
-                Tabel Kasus Siswa
+<style>
+  .table-header {
+    background: linear-gradient(135deg, #e91e63, #f06292);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0;
+  }
+  .modal-header {
+    background: linear-gradient(135deg, #e91e63, #f06292);
+    color: white;
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.2em 1em;
+    margin: 0 2px;
+    border-radius: 20px;
+    border: none !important;
+    
+    color: #fff !important;
+    transition: background 0.2s;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+
+    color: #fff !important;
+  }
+
+  .dataTables_wrapper .dataTables_filter input {
+    border-radius: 20px;
+    border: 1px solid #e91e63;
+    padding: 0.3em 1em;
+  }
+
+  .dataTables_length select {
+    border-radius: 20px;
+    border: 1px solid #e91e63;
+    padding: 0.2em 1em;
+  }
+
+  .table-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+  }
+</style>
+
+<div class="container-fluid">
+  <div class="table-container">
+    <div class="table-header">
+      Tabel Kasus Siswa
+      <button type="button" class="btn btn-light btn-sm float-end rounded-2 " data-bs-theme="dark" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">Tambah</button>
+    </div>
+    <div class="authors-table p-3">
+      <table id="datatablesSimple">
+       <thead class="text-center align-middle">
+          <tr>
+            <th>No</th>
+            <th>Nama Siswa</th>
+            <th>Kelas</th>
+            <th>Kasus</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>         
+          <tr>
+            <td>1</td>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="author-info">
+                  <h6>Cendy Alviano </h6>
+                </div>
+              </div>
+            </td>
+            <td>XII PPLG 1</td>
+            <td>Menemukan Oli</td>
+            <td>
+              <button class="edit-btn btn btn-sm btn-outline-primary">Edit</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="author-info">
+                  <h6>FF Alviano </h6>
+                </div>
+              </div>
+            </td>
+            <td>XII PPLG 2</td>
+            <td>Menemukan li</td>
+            <td>
+              <button class="edit-btn btn btn-sm btn-outline-primary">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modal-tambah-siswa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Siswa</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row mb-3">
+              <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Siswa</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="nama-tambah" onkeyup="tambahSiswaJq()" placeholder="Masukan Nama Lengkap">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Kelas</label>
+              <div class="col-sm-10">
+                <div class="col-12">
+                  <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                  <select class="form-select" id="inlineFormSelectPref">
+                    <option selected>Pilih Kelas</option>
+                    <option value="10 RPL 1">X RPL 1</option>
+                    <option value="10 RPL 2">X RPL 2</option>
+                    <option value="11 RPL 1">XI RPL 1</option>
+                    <option value="11 RPL 2">XI RPL 2</option>
+                    <option value="12 RPL 1">XII RPL 1</option>
+                    <option value="12 RPL 2">XII RPL 2</option>
+                  </select>
+                </div>
+              </div>
             </div>
             
-            <div class="authors-table">
-                <table class="table table-hover mb-0">
-                    <thead style="background-color: #f8f9fa;">
-                        <tr>
-                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">No</th>
-                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Nama Siswa</th>
-                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Kelas</th>
-                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Kasus</th>
-                            <th scope="col" style="color: #6c757d; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="author-info">
-                                        <h6>Cendy Alviano </h6>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                XII PPLG 1
-                            </td>
-                            <td>
-                                Menemukan Oli
-                            </td>
-                            <td>
-                                <button class="edit-btn">Edit</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="row mb-3">
+              <label for="inputEmail3" class="col-sm-2 col-form-label">Kasus</label>
+              <div class="col-sm-10">
+                <textarea type="email" class="form-control" id="inputEmail3" placeholder="Masukan Alamat"></textarea>
+              </div>
             </div>
+          </form>
         </div>
-    </div>  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="button" onclick="btnTambah()" class="btn btn-primary">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+$(document).ready(function() {
+    $('#datatablesSimple').DataTable({
+        responsive: true,
+        language: {
+            search: "",
+            searchPlaceholder: "Cari siswa...",
+            lengthMenu: "Tampilkan _MENU_ data",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+            paginate: {
+                previous: "Sebelumnya",
+                next: "Berikutnya"
+            },
+            zeroRecords: "Data tidak ditemukan"
+        },
+        dom: '<"row mb-2"<"col-md-6"l><"col-md-6 text-end"f>>rtip',
+        order: [[0, 'asc']]
+    });
+});
+</script>
 @endsection
