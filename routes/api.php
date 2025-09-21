@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BukuTamuController;
+use App\Http\Controllers\KunjunganRumahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -25,3 +26,8 @@ Route::get('/bukuTamu', [BukuTamuController::class,'index']);
 Route::post('/bukuTamu', [BukuTamuController::class, 'store']);
 Route::put('/bukuTamu/{bukuTamu}', [BukuTamuController::class, 'update']);
 Route::delete('/bukuTamu/{bukuTamu}', [BukuTamuController::class, 'destroy']);
+
+Route::get('/kunjunganRumah', [KunjunganRumahController::class,'index']);
+Route::post('/kunjunganRumah', [KunjunganRumahController::class, 'store']);
+Route::put('/kunjunganRumah/{kunjunganRumah}', [KunjunganRumahController::class, 'update']);
+Route::delete('/kunjunganRumah/{kunjunganRumah}', [KunjunganRumahController::class, 'destroy']);
