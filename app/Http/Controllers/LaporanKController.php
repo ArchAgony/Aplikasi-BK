@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BukuTamu;
 use Illuminate\Http\Request;
 
-class BukuTamuController extends Controller
+class LaporanKController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       return view('dashboard.bktamu.tamu');
+        return view('dashboard.laporankons.laporan');
     }
 
     /**
@@ -20,7 +19,7 @@ class BukuTamuController extends Controller
      */
     public function create()
     {
-        return view('dashboard.bktamu.form_tamu');
+         return view('dashboard.laporankons.form_laporank');
     }
 
     /**
@@ -34,7 +33,7 @@ class BukuTamuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BukuTamu $bukuTamu)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +41,7 @@ class BukuTamuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BukuTamu $bukuTamu)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +49,7 @@ class BukuTamuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BukuTamu $bukuTamu)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +57,7 @@ class BukuTamuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BukuTamu $bukuTamu)
+    public function destroy(string $id)
     {
         //
     }

@@ -54,8 +54,7 @@
         <div class="table-container">
             <div class="table-header">
                 Tabel Buku Tamu
-                <button type="button" class="btn btn-light btn-sm float-end rounded-2 " data-bs-theme="dark"
-                    data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">Tambah</button>
+                <a href="/tamu/create" type="button" class="btn btn-light btn-sm float-end rounded-2 " data-bs-theme="dark">Tambah</a>
             </div>
             <div class="authors-table p-3">
                 <table id="datatablesSimple" class="display nowarp" style="width:100%">
