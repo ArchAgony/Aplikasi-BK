@@ -54,10 +54,12 @@
         <div class="table-container">
             <div class="table-header">
                 Tabel Buku Tamu
-                <a href="/tamu/create" type="button" class="btn btn-light btn-sm float-end rounded-2 " data-bs-theme="dark">Tambah</a>
+                <a href="/tamu/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
+        <i class="fas fa-plus me-1"></i> Tambah
+      </button></a>
             </div>
             <div class="authors-table p-3">
-                <table id="datatablesSimple" class="display nowarp" style="width:100%">
+                <table id="datatablesSimple" class="table table-hover w-100">
                     <thead>
                         <tr>
                             <th></th>
