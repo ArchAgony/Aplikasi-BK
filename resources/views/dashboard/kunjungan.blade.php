@@ -139,7 +139,7 @@
     <div class="container-fluid">
         <div class="table-container">
             <div class="table-header">
-                Tabel Kasus Siswa
+                Tabel Kunjungan
             </div>
             
             <div class="authors-table">
