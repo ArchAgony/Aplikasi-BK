@@ -21,34 +21,114 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     margin-bottom: 0;
   }
-
-  .dataTables_wrapper .dataTables_paginate .paginate_button {
-    padding: 0.2em 1em;
-    margin: 0 2px;
-    border-radius: 20px;
+  #datatablesSimple {
+    width: 100% !important;
+    background: white;
+    border-collapse: collapse;
+  }
+  #datatablesSimple th,
+  #datatablesSimple td {
     border: none !important;
-    
-    color: #fff !important;
-    transition: background 0.2s;
   }
-
-  .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-
-    color: #fff !important;
+  
+  /* ✅ FIX SEARCH BOX POSITION */
+  .dataTables_wrapper .dataTables_filter {
+    float: right !important;
+    text-align: right !important;
+    margin-bottom: 10px;
   }
-
+  
+  .dataTables_wrapper .dataTables_filter label {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+  
   .dataTables_wrapper .dataTables_filter input {
     border-radius: 20px;
     border: 1px solid #e91e63;
-    padding: 0.3em 1em;
+    padding: 0.4em 1em;
+    width: 250px;
+    transition: all 0.3s ease;
   }
-
+  
+  .dataTables_wrapper .dataTables_filter input:focus {
+    outline: none;
+    border-color: #e91e63;
+    box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
+  }
+  
+  /* ✅ FIX LENGTH MENU POSITION */
+  .dataTables_wrapper .dataTables_length {
+    float: left !important;
+    margin-bottom: 10px;
+  }
+  
+  .dataTables_wrapper .dataTables_length label {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+  
   .dataTables_length select {
     border-radius: 20px;
     border: 1px solid #e91e63;
-    padding: 0.2em 1em;
+    padding: 0.3em 1em;
+    min-width: 70px;
   }
-
+  
+  /* ✅ INFO & PAGINATION STYLING */
+  .dataTables_wrapper .dataTables_info {
+    float: left !important;
+    padding-top: 10px;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .dataTables_wrapper .dataTables_paginate {
+    float: right !important;
+    padding-top: 10px;
+  }
+  
+  .dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 5px 12px;
+    margin: 0 2px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background: white;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #f06292;
+    color: white;
+    border-color: #f06292;
+  }
+  
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #e91e63;
+    color: white;
+    border-color: #e91e63;
+  }
+  
+  .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* ✅ CLEAR FLOATS */
+  .dataTables_wrapper::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
   .table-container {
     max-width: 1200px;
     margin: 2rem auto;
@@ -57,17 +137,41 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
     overflow: hidden;
   }
+  
+  /* ✅ RESPONSIVE TABLE */
+  @media (max-width: 768px) {
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_length {
+      float: none !important;
+      text-align: center !important;
+      margin-bottom: 15px;
+    }
+    
+    .dataTables_wrapper .dataTables_filter input {
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate {
+      float: none !important;
+      text-align: center !important;
+      margin-top: 10px;
+    }
+  }
 </style>
 
 <div class="container-fluid">
   <div class="table-container">
     <div class="table-header">
       Tabel Kasus Siswa
-      <button type="button" class="btn btn-light btn-sm float-end rounded-2 " data-bs-theme="dark" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">Tambah</button>
+      <button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
+        <i class="fas fa-plus me-1"></i> Tambah
+      </button>
     </div>
     <div class="authors-table p-3">
-      <table id="datatablesSimple">
-       <thead class="text-center align-middle">
+      <table id="datatablesSimple" class="table table-hover w-100">
+        <thead class="text-center align-middle">
           <tr>
             <th>No</th>
             <th>Nama Siswa</th>
@@ -76,35 +180,33 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>         
+        <tbody>
           <tr>
-            <td>1</td>
-            <td>
-              <div class="d-flex align-items-center">
-                <div class="author-info">
-                  <h6>Cendy Alviano </h6>
-                </div>
-              </div>
-            </td>
-            <td>XII PPLG 1</td>
+            <td class="text-center">1</td>
+            <td>Cendy Alviano</td>
+            <td class="text-center">XII PPLG 1</td>
             <td>Menemukan Oli</td>
-            <td>
-              <button class="edit-btn btn btn-sm btn-outline-primary">Edit</button>
+            <td class="text-center">
+              <button class="btn btn-sm btn-outline-primary me-1">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button class="btn btn-sm btn-outline-danger">
+                <i class="fas fa-trash"></i> Hapus
+              </button>
             </td>
           </tr>
           <tr>
-            <td>2</td>
-            <td>
-              <div class="d-flex align-items-center">
-                <div class="author-info">
-                  <h6>FF Alviano </h6>
-                </div>
-              </div>
-            </td>
-            <td>XII PPLG 2</td>
+            <td class="text-center">2</td>
+            <td>FF Alviano</td>
+            <td class="text-center">XII PPLG 2</td>
             <td>Menemukan li</td>
-            <td>
-              <button class="edit-btn btn btn-sm btn-outline-primary">Edit</button>
+            <td class="text-center">
+              <button class="btn btn-sm btn-outline-primary me-1">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button class="btn btn-sm btn-outline-danger">
+                <i class="fas fa-trash"></i> Hapus
+              </button>
             </td>
           </tr>
         </tbody>
@@ -112,72 +214,88 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="modal-tambah-siswa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Siswa</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Siswa</label>
-              <div class="col-sm-10">
-                <input type="email" class="form-control" id="nama-tambah" onkeyup="tambahSiswaJq()" placeholder="Masukan Nama Lengkap">
-              </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-tambah-siswa" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Tambah Data Siswa</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Nama Siswa</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="nama-tambah" placeholder="Masukkan Nama Lengkap">
             </div>
-            <div class="row mb-3">
-              <label for="inputPassword3" class="col-sm-2 col-form-label">Kelas</label>
-              <div class="col-sm-10">
-                <div class="col-12">
-                  <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                  <select class="form-select" id="inlineFormSelectPref">
-                    <option selected>Pilih Kelas</option>
-                    <option value="10 RPL 1">X RPL 1</option>
-                    <option value="10 RPL 2">X RPL 2</option>
-                    <option value="11 RPL 1">XI RPL 1</option>
-                    <option value="11 RPL 2">XI RPL 2</option>
-                    <option value="12 RPL 1">XII RPL 1</option>
-                    <option value="12 RPL 2">XII RPL 2</option>
-                  </select>
-                </div>
-              </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Kelas</label>
+            <div class="col-sm-9">
+              <select class="form-select" id="kelas-select">
+                <option selected>Pilih Kelas</option>
+                <option value="X RPL 1">X RPL 1</option>
+                <option value="X RPL 2">X RPL 2</option>
+                <option value="XI RPL 1">XI RPL 1</option>
+                <option value="XI RPL 2">XI RPL 2</option>
+                <option value="XII RPL 1">XII RPL 1</option>
+                <option value="XII RPL 2">XII RPL 2</option>
+              </select>
             </div>
-            
-            <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label">Kasus</label>
-              <div class="col-sm-10">
-                <textarea type="email" class="form-control" id="inputEmail3" placeholder="Masukan Alamat"></textarea>
-              </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Kasus</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" id="kasus-input" rows="3" placeholder="Masukkan Kasus"></textarea>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="button" onclick="btnTambah()" class="btn btn-primary">Simpan</button>
-        </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer border-0">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <button class="btn btn-primary" style="background: #e91e63; border-color: #e91e63;" onclick="btnTambah()">Simpan</button>
       </div>
     </div>
   </div>
-  <script>
-$(document).ready(function() {
-    $('#datatablesSimple').DataTable({
-        responsive: true,
-        language: {
-            search: "",
-            searchPlaceholder: "Cari siswa...",
-            lengthMenu: "Tampilkan _MENU_ data",
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-            paginate: {
-                previous: "Sebelumnya",
-                next: "Berikutnya"
-            },
-            zeroRecords: "Data tidak ditemukan"
-        },
-        dom: '<"row mb-2"<"col-md-6"l><"col-md-6 text-end"f>>rtip',
-        order: [[0, 'asc']]
-    });
+</div>
+
+<script>
+$(document).ready(function () {
+  $('#datatablesSimple').DataTable({
+      responsive: true,
+      language: {
+          search: "Cari:",
+          searchPlaceholder: "Cari siswa...",
+          lengthMenu: "Tampilkan _MENU_ data",
+          info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+          infoEmpty: "Tidak ada data",
+          infoFiltered: "(disaring dari _MAX_ total data)",
+          zeroRecords: "Tidak ada data yang cocok",
+          emptyTable: "Tidak ada data dalam tabel",
+          paginate: {
+              first: "Pertama",
+              previous: "Sebelumnya",
+              next: "Berikutnya",
+              last: "Terakhir"
+          }
+      },
+      order: [[0, 'asc']],
+      pageLength: 10,
+      lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Semua"]],
+      columnDefs: [
+          { className: "text-center", targets: [0, 2, 4] }
+      ]
+  });
 });
+
+function btnTambah() {
+    // Add your save logic here
+    console.log('Simpan data siswa');
+    $('#modal-tambah-siswa').modal('hide');
+}
 </script>
+
 @endsection
+```
