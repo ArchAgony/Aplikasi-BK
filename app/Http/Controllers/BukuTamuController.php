@@ -16,6 +16,7 @@ class BukuTamuController extends Controller
         return response()->json([
             'data' => $data
         ]);
+        
         return view('dashboard.tamu');
     }
 
@@ -24,7 +25,7 @@ class BukuTamuController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.bktamu.form_tamu');
     }
 
     /**

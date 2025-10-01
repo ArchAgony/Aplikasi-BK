@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuTamuController;
 use App\Http\Controllers\KunjunganRumahController;
+use App\Http\Controllers\LaporanKController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -23,6 +24,9 @@ Route::put('/siswa/{id}', [SiswaController::class, 'update'])->name('siswa.updat
 Route::delete('/siswa/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
 
 Route::get("/tamu", [BukuTamuController::class,"index"]);
+Route::get("/tamu/create", [BukuTamuController::class,"create"]);
+Route::get("/laporan", [LaporanKController::class, "index"]);
+Route::get("/laporan/create", [LaporanKController::class, "create"]);
 Route::get("/kunjungan", [KunjunganRumahController::class,"index"]);
 
 Route::get('/register', [UserController::class, 'RegisterForm'])->name('register.form');

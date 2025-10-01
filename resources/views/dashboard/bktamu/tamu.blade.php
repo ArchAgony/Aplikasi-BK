@@ -164,99 +164,42 @@
 <div class="container-fluid">
   <div class="table-container">
     <div class="table-header">
-      Tabel Kasus Siswa
-      <button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
+      Laporan
+      <a href="/tamu/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
         <i class="fas fa-plus me-1"></i> Tambah
-      </button>
+      </button></a>
     </div>
     <div class="authors-table p-3">
       <table id="datatablesSimple" class="table table-hover w-100">
         <thead class="text-center align-middle">
           <tr>
             <th>No</th>
+            <th>Tanggal</th>
+            <th>Ortu/Tamu</th>
             <th>Nama Siswa</th>
             <th>Kelas</th>
-            <th>Kasus</th>
+            <th>Kunjungan</th>
+            <th>No.HP</th>
+            <th>Alamat Tamu</th>
+            <th>Tindak Lanjut</th>
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td class="text-center">1</td>
-            <td>Cendy Alviano</td>
-            <td class="text-center">XII PPLG 1</td>
-            <td>Menemukan Oli</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-primary me-1">
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button class="btn btn-sm btn-outline-danger">
-                <i class="fas fa-trash"></i> Hapus
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center">2</td>
-            <td>FF Alviano</td>
-            <td class="text-center">XII PPLG 2</td>
-            <td>Menemukan li</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-primary me-1">
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button class="btn btn-sm btn-outline-danger">
-                <i class="fas fa-trash"></i> Hapus
-              </button>
-            </td>
-          </tr>
-        </tbody>
+           <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>17-09-2025</td>
+                            <td>daoa</td>
+                            <td>XII PPLG 1</td>
+                            <td>Gatau</td>
+                            <td>Gatau</td>
+                            <td>Gatau</td>
+                            <td>Gatau</td>
+                            <td>Ngono</td>
+                            <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                        </tr>
+                    </tbody>
       </table>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="modal-tambah-siswa" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header border-0">
-        <h5 class="modal-title">Tambah Data Siswa</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Nama Siswa</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="nama-tambah" placeholder="Masukkan Nama Lengkap">
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Kelas</label>
-            <div class="col-sm-9">
-              <select class="form-select" id="kelas-select">
-                <option selected>Pilih Kelas</option>
-                <option value="X RPL 1">X RPL 1</option>
-                <option value="X RPL 2">X RPL 2</option>
-                <option value="XI RPL 1">XI RPL 1</option>
-                <option value="XI RPL 2">XI RPL 2</option>
-                <option value="XII RPL 1">XII RPL 1</option>
-                <option value="XII RPL 2">XII RPL 2</option>
-              </select>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Kasus</label>
-            <div class="col-sm-9">
-              <textarea class="form-control" id="kasus-input" rows="3" placeholder="Masukkan Kasus"></textarea>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer border-0">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-        <button class="btn btn-primary" style="background: #e91e63; border-color: #e91e63;" onclick="btnTambah()">Simpan</button>
-      </div>
     </div>
   </div>
 </div>
@@ -298,4 +241,3 @@ function btnTambah() {
 </script>
 
 @endsection
-```
