@@ -80,7 +80,7 @@
                 </div>
             <!-- Charts Row -->
             <div class="row mb-4">
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-8 mb-4">
                     <div class="card border-0 shadow-sm">
                         <div class="card-body p-0">
                             <div class="chart-placeholder">
@@ -100,30 +100,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-4 mb-4">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-0">
-                            <div class="chart-placeholder chart-success">
-                                <div class="text-center">
-                                    <i class="bi bi-graph-up mb-2" style="font-size: 2rem;"></i>
-                                    <div>Daily Sales</div>
-                                    <small>Line Chart</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body pt-0">
-                            <h6 class="mb-1">Daily Sales</h6>
-                            <p class="text-muted small">(<strong>+15%</strong>) increase in today sales</p>
-                            <div class="d-flex align-items-center text-muted">
-                                <i class="bi bi-clock me-1"></i>
-                                <small>Updated 4 min ago</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                </div>            
                 <div class="col-lg-4 mb-4">
                     <div class="card border-0 shadow-sm">
                         <div class="card-body p-0">
@@ -148,8 +125,8 @@
             </div>
 
             <!-- Projects and Timeline -->
-            <div class="row">
-                <div class="col-lg-8 mb-4">
+            
+                
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
                             <div>
@@ -224,84 +201,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                
 
-                <div class="col-lg-4 mb-4">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-header bg-white border-0">
-                            <h6 class="mb-1">Orders Overview</h6>
-                            <p class="text-muted small mb-0">
-                                <i class="bi bi-arrow-up text-success"></i>
-                                <strong>24%</strong> this month
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <div class="timeline-icon bg-success text-white">
-                                        <i class="bi bi-bell"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-1 small">$2400, Design changes</h6>
-                                        <small class="text-muted">22 DEC 7:20 PM</small>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="timeline-icon bg-danger text-white">
-                                        <i class="bi bi-code"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-1 small">New order #1832412</h6>
-                                        <small class="text-muted">21 DEC 11 PM</small>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="timeline-icon bg-info text-white">
-                                        <i class="bi bi-cart"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-1 small">Server payments for April</h6>
-                                        <small class="text-muted">21 DEC 9:34 PM</small>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="timeline-icon bg-warning text-white">
-                                        <i class="bi bi-credit-card"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-1 small">New card added for order #4395133</h6>
-                                        <small class="text-muted">20 DEC 2:20 AM</small>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="timeline-icon bg-primary text-white">
-                                        <i class="bi bi-key"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-1 small">Unlock packages for development</h6>
-                                        <small class="text-muted">18 DEC 4:54 AM</small>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="timeline-icon bg-dark text-white">
-                                        <i class="bi bi-wallet2"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-1 small">New order #9583120</h6>
-                                        <small class="text-muted">17 DEC</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                
+            
+        
     </div>
 @endsection
 
