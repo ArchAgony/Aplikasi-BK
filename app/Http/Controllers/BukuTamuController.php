@@ -13,11 +13,11 @@ class BukuTamuController extends Controller
     public function index()
     {
         $data = BukuTamu::all();
+        return view('dashboard.bktamu.tamu');
         return response()->json([
             'data' => $data
         ]);
         
-        return view('dashboard.tamu');
     }
 
     /**

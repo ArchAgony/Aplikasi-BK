@@ -13,10 +13,10 @@ class SiswaController extends Controller
     public function index()
     {
         $data = Siswa::all();
+        return view('dashboard.siswa');
         return response()->json([
             'data' => $data
         ]);
-        return view('dashboard.siswa');
     }
 
     /**
