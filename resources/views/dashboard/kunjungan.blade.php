@@ -164,52 +164,45 @@
 <div class="container-fluid">
   <div class="table-container">
     <div class="table-header">
-      Tabel Kasus Siswa
-      <button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
+      Kunjungan Rumah
+      <a href="/laporan/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
         <i class="fas fa-plus me-1"></i> Tambah
-      </button>
+      </button></a>
     </div>
     <div class="authors-table p-3">
       <table id="datatablesSimple" class="table table-hover w-100">
         <thead class="text-center align-middle">
           <tr>
             <th>No</th>
+            <th>Tanggal</th>
+            <th>Nama Guru</th>
+            <th>Jabatan</th>
             <th>Nama Siswa</th>
             <th>Kelas</th>
-            <th>Kasus</th>
-            <th>Action</th>
+            <th>Alamat</th>
+            
+            <th>Laporan Kunjungan & <br> Layanan Kunjungan Rumah</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td class="text-center">1</td>
-            <td>Cendy Alviano</td>
-            <td class="text-center">XII PPLG 1</td>
-            <td>Menemukan Oli</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-primary me-1">
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button class="btn btn-sm btn-outline-danger">
-                <i class="fas fa-trash"></i> Hapus
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center">2</td>
-            <td>FF Alviano</td>
-            <td class="text-center">XII PPLG 2</td>
-            <td>Menemukan li</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-primary me-1">
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button class="btn btn-sm btn-outline-danger">
-                <i class="fas fa-trash"></i> Hapus
-              </button>
-            </td>
-          </tr>
-        </tbody>
+           <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>17-09-2025</td>
+                            <td>daoa</td>
+                            <td>XII PPLG 1</td>
+                            <td>Gatau</td>
+                            <td>Gatau</td>
+                            <td>Gatau</td>
+                            
+                            <td>
+                              <center>
+
+                                <button class="btn btn-sm btn-primary">Laporan</button>
+                                <button class="btn btn-sm btn-primary">Layanan</button>
+                              </center>
+                            </td>
+                        </tr>
+                    </tbody>
       </table>
     </div>
   </div>
