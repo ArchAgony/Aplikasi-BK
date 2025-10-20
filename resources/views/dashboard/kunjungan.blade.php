@@ -164,52 +164,41 @@
 <div class="container-fluid">
   <div class="table-container">
     <div class="table-header">
-      Tabel Kasus Siswa
-      <button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
+      Kunjungan Rumah
+      <a href="/laporan/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
         <i class="fas fa-plus me-1"></i> Tambah
-      </button>
+      </button></a>
     </div>
     <div class="authors-table p-3">
       <table id="datatablesSimple" class="table table-hover w-100">
         <thead class="text-center align-middle">
           <tr>
             <th>No</th>
-            <th>Nama Siswa</th>
-            <th>Kelas</th>
-            <th>Kasus</th>
+            <th>Tanggal</th>
+            <th>Nama Guru</th>
+            <th>Jabatan</th>
+            <th>Masalah</th>
+            <th>Penyebab</th>
+            <th>Kesimpulan</th>
+            <th>Penyelesaian</th>
+            <th>Evaluasi</th>
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td class="text-center">1</td>
-            <td>Cendy Alviano</td>
-            <td class="text-center">XII PPLG 1</td>
-            <td>Menemukan Oli</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-primary me-1">
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button class="btn btn-sm btn-outline-danger">
-                <i class="fas fa-trash"></i> Hapus
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center">2</td>
-            <td>FF Alviano</td>
-            <td class="text-center">XII PPLG 2</td>
-            <td>Menemukan li</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-primary me-1">
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button class="btn btn-sm btn-outline-danger">
-                <i class="fas fa-trash"></i> Hapus
-              </button>
-            </td>
-          </tr>
-        </tbody>
+           <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>17-09-2025</td>
+                            <td>daoa</td>
+                            <td>XII PPLG 1</td>
+                            <td>Gatau</td>
+                            <td>Gatau</td>
+                            <td>Gatau</td>
+                            <td>Gatau</td>
+                            <td>Ngono</td>
+                            <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                        </tr>
+                    </tbody>
       </table>
     </div>
   </div>
