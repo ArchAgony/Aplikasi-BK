@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evaluasi;
+use App\Models\LaporanKonseling;
 use Illuminate\Http\Request;
 
-class EvaluasiController extends Controller
+class LaporanKonselingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,6 +13,7 @@ class EvaluasiController extends Controller
     public function index()
     {
         //
+        return view('dashboard.laporankons.laporan');
     }
 
     /**
@@ -21,6 +22,7 @@ class EvaluasiController extends Controller
     public function create()
     {
         //
+        return view('dashboard.laporankons.form_laporank');
     }
 
     /**
@@ -34,7 +36,7 @@ class EvaluasiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Evaluasi $evaluasi)
+    public function show(LaporanKonseling $laporanKonseling)
     {
         //
     }
@@ -42,7 +44,7 @@ class EvaluasiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Evaluasi $evaluasi)
+    public function edit(LaporanKonseling $laporanKonseling)
     {
         //
     }
@@ -50,7 +52,7 @@ class EvaluasiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Evaluasi $evaluasi)
+    public function update(Request $request, LaporanKonseling $laporanKonseling)
     {
         //
     }
@@ -58,7 +60,7 @@ class EvaluasiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Evaluasi $evaluasi)
+    public function destroy(LaporanKonseling $laporanKonseling)
     {
         //
     }

@@ -12,7 +12,11 @@ class KunjunganRumahController extends Controller
      */
     public function index()
     {
+        $data = KunjunganRumah::all();
         return view('dashboard.kunjungan');
+        return response()->json([
+            'data' => $data
+        ]);
     }
 
     /**
@@ -29,6 +33,35 @@ class KunjunganRumahController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            $field = $request->validate([
+                'guru_id' => 'required',
+                'siswa_id' => 'nullable',
+                'tujuan' => 'nullable',
+                'hasil_wawancara' => 'nullable',
+                'kesimpulan_tindak_lanjut' => 'nullable',
+                'ttd_path' => 'nullable',
+            ]);
+
+            $data = KunjunganRumah::create([
+                'guru_id' => $request->guru_id,
+                'siswa_id' => $request->siswa_id,
+                'tujuan' => $request->tujuan,
+                'hasil_wawancara' => $request->hasil_wawancara,
+                'kesimpulan_tindak_lanjut' => $request->kesimpulan_tindak_lanjut,
+                'ttd_path' => $request->ttd_path,
+                'tanggal' => now()->toDateString(),
+            ]);
+
+            return response()->json([
+                'message' => 'berhasil ditambahkan',
+                'data' => $data
+            ]);
+        } catch (\Exception $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -53,6 +86,27 @@ class KunjunganRumahController extends Controller
     public function update(Request $request, KunjunganRumah $kunjunganRumah)
     {
         //
+        try {
+            $field = $request->validate([
+                'guru_id' => 'required',
+                'siswa_id' => 'nullable',
+                'tujuan' => 'nullable',
+                'hasil_wawancara' => 'nullable',
+                'kesimpulan_tindak_lanjut' => 'nullable',
+                'ttd_path' => 'nullable',
+            ]);
+
+            $kunjunganRumah->update($field);
+
+            return response()->json([
+                'message' => 'berhasil diupdate',
+                'data' => $kunjunganRumah
+            ]);
+        } catch (\Exception $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -61,5 +115,15 @@ class KunjunganRumahController extends Controller
     public function destroy(KunjunganRumah $kunjunganRumah)
     {
         //
+        try {
+            $kunjunganRumah->delete();
+            return response()->json([
+                'message' => 'berhasil dihapus'
+            ]);
+        } catch (\Exception $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 }

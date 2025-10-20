@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('evaluasis', function (Blueprint $table) {
+        Schema::create('laporan_konselings', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal');
             $table->foreignId('siswa_id')->nullable()->constrained('siswas')->nullOnDelete();
             $table->foreignId('guru_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('kelas_id')->nullable()->constrained('kelas')->nullOnDelete();
-            $table->text('masalah')->nullable();
+            $table->enum('evaluasi', ['efektif', 'tidak efektif']);
+            $table->date('tanggal');
+            $table->text('masalah');
             $table->text('penyebab')->nullable();
-            $table->text('penyelesaian')->nullable();
-            $table->text('hasil_laporan_konseling')->nullable();
-            $table->text('tindak_lanjut')->nullable();
-            $table->string('ttd_path')->nullable();
+            $table->text('tindak_lanjut');
+            $table->text('kesimpulan_tindak_lanjut')->nullable();
+            $table->text('hasil_wawancara')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('evaluasis');
+        Schema::dropIfExists('laporan_konselings');
     }
 };

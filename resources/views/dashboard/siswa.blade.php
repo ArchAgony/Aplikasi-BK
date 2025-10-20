@@ -31,7 +31,6 @@
     border: none !important;
   }
   
-  /* ✅ FIX SEARCH BOX POSITION */
   .dataTables_wrapper .dataTables_filter {
     float: right !important;
     text-align: right !important;
@@ -60,7 +59,6 @@
     box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
   }
   
-  /* ✅ FIX LENGTH MENU POSITION */
   .dataTables_wrapper .dataTables_length {
     float: left !important;
     margin-bottom: 10px;
@@ -81,7 +79,6 @@
     min-width: 70px;
   }
   
-  /* ✅ INFO & PAGINATION STYLING */
   .dataTables_wrapper .dataTables_info {
     float: left !important;
     padding-top: 10px;
@@ -122,7 +119,6 @@
     cursor: not-allowed;
   }
   
-  /* ✅ CLEAR FLOATS */
   .dataTables_wrapper::after {
     content: "";
     display: table;
@@ -130,7 +126,7 @@
   }
   
   .table-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 2rem auto;
     background: white;
     border-radius: 10px;
@@ -138,7 +134,6 @@
     overflow: hidden;
   }
   
-  /* ✅ RESPONSIVE TABLE */
   @media (max-width: 768px) {
     .dataTables_wrapper .dataTables_filter,
     .dataTables_wrapper .dataTables_length {
@@ -164,7 +159,7 @@
 <div class="container-fluid">
   <div class="table-container">
     <div class="table-header">
-      Tabel Kasus Siswa
+      Tabel Data Siswa
       <button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
         <i class="fas fa-plus me-1"></i> Tambah
       </button>
@@ -174,81 +169,74 @@
         <thead class="text-center align-middle">
           <tr>
             <th>No</th>
+            <th>NIS</th>
             <th>Nama Siswa</th>
             <th>Kelas</th>
-            <th>Kasus</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
+          @foreach($siswa as $key => $s)
           <tr>
-            <td class="text-center">1</td>
-            <td>Cendy Alviano</td>
-            <td class="text-center">XII PPLG 1</td>
-            <td>Menemukan Oli</td>
+            <td class="text-center">{{ $key + 1 }}</td>
+            <td class="text-center">{{ $s->nis }}</td>
+            <td>{{ $s->nama_siswa }}</td>
+            <td class="text-center">{{ $s->tingkat }} {{ $s->jurusan }}</td>
             <td class="text-center">
-              <button class="btn btn-sm btn-outline-primary me-1">
-                <i class="fas fa-edit"></i> Edit
+              <button class="btn btn-sm btn-outline-primary me-1" onclick="editSiswa({{ $s->id }})">
+                <i class="fas fa-edit"></i>
               </button>
-              <button class="btn btn-sm btn-outline-danger">
-                <i class="fas fa-trash"></i> Hapus
-              </button>
+              <a href="/siswa/{{ $s->id }}">
+                <button class="btn btn-sm btn-outline-danger">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </a>
             </td>
           </tr>
-          <tr>
-            <td class="text-center">2</td>
-            <td>FF Alviano</td>
-            <td class="text-center">XII PPLG 2</td>
-            <td>Menemukan li</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-primary me-1">
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button class="btn btn-sm btn-outline-danger">
-                <i class="fas fa-trash"></i> Hapus
-              </button>
-            </td>
-          </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Tambah -->
 <div class="modal fade" id="modal-tambah-siswa" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header border-0">
         <h5 class="modal-title">Tambah Data Siswa</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="form-tambah">
           <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Nama Siswa</label>
+            <label class="col-sm-3 col-form-label">NIS <span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="nama-tambah" placeholder="Masukkan Nama Lengkap">
+              <input type="text" class="form-control" id="nis-tambah" placeholder="Masukkan NIS" required>
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Kelas</label>
+            <label class="col-sm-3 col-form-label">Nama Siswa <span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <select class="form-select" id="kelas-select">
-                <option selected>Pilih Kelas</option>
-                <option value="X RPL 1">X RPL 1</option>
-                <option value="X RPL 2">X RPL 2</option>
-                <option value="XI RPL 1">XI RPL 1</option>
-                <option value="XI RPL 2">XI RPL 2</option>
-                <option value="XII RPL 1">XII RPL 1</option>
-                <option value="XII RPL 2">XII RPL 2</option>
+              <input type="text" class="form-control" id="nama-tambah" placeholder="Masukkan Nama Lengkap" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Tingkat <span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <select class="form-select" id="tingkat-tambah" required>
+                <option value="">Pilih Tingkat</option>
+                <option value="X">X</option>
+                <option value="XI">XI</option>
+                <option value="XII">XII</option>
               </select>
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Kasus</label>
+            <label class="col-sm-3 col-form-label">Jurusan <span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <textarea class="form-control" id="kasus-input" rows="3" placeholder="Masukkan Kasus"></textarea>
+              <input type="text" class="form-control" id="jurusan-tambah" placeholder="Contoh: PPLG 1, TKJ 2" required>
             </div>
           </div>
         </form>
@@ -261,41 +249,78 @@
   </div>
 </div>
 
-<script>
-$(document).ready(function () {
-  $('#datatablesSimple').DataTable({
-      responsive: true,
-      language: {
-          search: "Cari:",
-          searchPlaceholder: "Cari siswa...",
-          lengthMenu: "Tampilkan _MENU_ data",
-          info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-          infoEmpty: "Tidak ada data",
-          infoFiltered: "(disaring dari _MAX_ total data)",
-          zeroRecords: "Tidak ada data yang cocok",
-          emptyTable: "Tidak ada data dalam tabel",
-          paginate: {
-              first: "Pertama",
-              previous: "Sebelumnya",
-              next: "Berikutnya",
-              last: "Terakhir"
-          }
-      },
-      order: [[0, 'asc']],
-      pageLength: 10,
-      lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Semua"]],
-      columnDefs: [
-          { className: "text-center", targets: [0, 2, 4] }
-      ]
-  });
-});
-
-function btnTambah() {
-    // Add your save logic here
-    console.log('Simpan data siswa');
-    $('#modal-tambah-siswa').modal('hide');
-}
-</script>
+<!-- Modal Edit -->
+<div class="modal fade" id="modal-edit-siswa" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Edit Data Siswa</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-edit">
+          <input type="hidden" id="id-edit">
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">NIS <span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="nis-edit" placeholder="Masukkan NIS" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Nama Siswa <span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="nama-edit" placeholder="Masukkan Nama Lengkap" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Tingkat <span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <select class="form-select" id="tingkat-edit" required>
+                <option value="">Pilih Tingkat</option>
+                <option value="X">X</option>
+                <option value="XI">XI</option>
+                <option value="XII">XII</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Jurusan <span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="jurusan-edit" placeholder="Contoh: PPLG 1, TKJ 2" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Tempat Lahir</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="tempat-lahir-edit" placeholder="Masukkan Tempat Lahir">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Tanggal Lahir</label>
+            <div class="col-sm-9">
+              <input type="date" class="form-control" id="tanggal-lahir-edit">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Alamat Rumah</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" id="alamat-edit" rows="2" placeholder="Masukkan Alamat Lengkap"></textarea>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">No HP</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="no-hp-edit" placeholder="Contoh: 08123456789">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer border-0">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <button class="btn btn-primary" style="background: #e91e63; border-color: #e91e63;" onclick="btnUpdate()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection
-```

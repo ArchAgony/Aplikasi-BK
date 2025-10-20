@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuTamuController;
 use App\Http\Controllers\KunjunganRumahController;
-use App\Http\Controllers\LaporanKController;
+use App\Http\Controllers\LaporanKonselingController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -15,12 +15,18 @@ use App\Http\Controllers\LaporanKController;
 // Route::get('/', function () {
 //     return view('dashboard/master');
 // });
+
 Route::get("/dashboard", [DashboardController::class,"index"]);
+
 Route::get("/siswa", [SiswaController::class,"index"]);
+Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
+Route::put('/siswa/{id}', [SiswaController::class, 'update'])->name('siswa.update');
+Route::get('/siswa/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
+
 Route::get("/tamu", [BukuTamuController::class,"index"]);
 Route::get("/tamu/create", [BukuTamuController::class,"create"]);
-Route::get("/laporan", [LaporanKController::class, "index"]);
-Route::get("/laporan/create", [LaporanKController::class, "create"]);
+Route::get("/laporan", [LaporanKonselingController::class, "index"]);
+Route::get("/laporan/create", [LaporanKonselingController::class, "create"]);
 Route::get("/kunjungan", [KunjunganRumahController::class,"index"]);
 
 Route::get('/register', [UserController::class, 'RegisterForm'])->name('register.form');

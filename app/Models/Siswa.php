@@ -12,5 +12,20 @@ class Siswa extends Model
     use HasFactory, Notifiable;
 
     protected $table = 'siswas';
-    protected $id = ['id'];
+    protected $guarded = ['id'];
+
+    public function bukuTamus()
+    {
+        return $this->hasMany(BukuTamu::class, 'siswa_id');
+    }
+
+    public function laporanKonselings()
+    {
+        return $this->hasMany(LaporanKonseling::class, 'siswa_id');
+    }
+
+    public function kunjunganRumahs()
+    {
+        return $this->hasMany(KunjunganRumah::class, 'siswa_id');
+    }
 }

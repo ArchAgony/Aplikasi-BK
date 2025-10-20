@@ -177,12 +177,11 @@
             <th>Tanggal</th>
             <th>Nama Guru</th>
             <th>Jabatan</th>
-            <th>Masalah</th>
-            <th>Penyebab</th>
-            <th>Kesimpulan</th>
-            <th>Penyelesaian</th>
-            <th>Evaluasi</th>
-            <th>Action</th>
+            <th>Nama Siswa</th>
+            <th>Kelas</th>
+            <th>Alamat</th>
+            
+            <th>Laporan Kunjungan & <br> Layanan Kunjungan Rumah</th>
           </tr>
         </thead>
            <tbody>
@@ -194,9 +193,14 @@
                             <td>Gatau</td>
                             <td>Gatau</td>
                             <td>Gatau</td>
-                            <td>Gatau</td>
-                            <td>Ngono</td>
-                            <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                            
+                            <td>
+                              <center>
+
+                                <button class="btn btn-sm btn-primary">Laporan</button>
+                                <button class="btn btn-sm btn-primary">Layanan</button>
+                              </center>
+                            </td>
                         </tr>
                     </tbody>
       </table>
