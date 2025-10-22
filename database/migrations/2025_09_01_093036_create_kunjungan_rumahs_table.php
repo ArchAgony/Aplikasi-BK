@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('guru_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('siswa_id')->nullable()->constrained('siswas')->nullOnDelete();
-            $table->foreignId('orang_tua_id')->nullable()->constrained('ortus')->nullOnDelete();
             $table->dateTime('tanggal');
             $table->string('tujuan')->nullable();
             $table->text('hasil_wawancara')->nullable();

@@ -12,7 +12,12 @@ class BukuTamuController extends Controller
      */
     public function index()
     {
-        //
+        $data = BukuTamu::all();
+        return view('bktamu.index');
+        return response()->json([
+            'data' => $data
+        ]);
+
     }
 
     /**
@@ -20,7 +25,7 @@ class BukuTamuController extends Controller
      */
     public function create()
     {
-        //
+        return view('bktamu.form_tamu');
     }
 
     /**
@@ -29,6 +34,39 @@ class BukuTamuController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            $field = $request->validate([
+                'guru_id' => 'required',
+                'siswa_id' => 'nullable',
+                'nama_tamu' => 'required',
+                'no_telp' => 'nullable',
+                'alamat' => 'nullable',
+                'keperluan' => 'required',
+                'tindak_lanjut' => 'nullable',
+                'ttd_path' => 'nullable',
+            ]);
+
+            $data = BukuTamu::create([
+                'guru_id' => $request->guru_id,
+                'siswa_id' => $request->siswa_id,
+                'nama_tamu' => $request->nama_tamu,
+                'no_telp' => $request->no_telp,
+                'alamat' => $request->alamat,
+                'keperluan' => $request->keperluan,
+                'tindak_lanjut' => $request->tindak_lanjut,
+                'ttd_path' => $request->ttd_path,
+                'tanggal' => now()->toDateString(),
+            ]);
+
+            return response()->json([
+                'message' => 'berhasil ditambah',
+                'data' => $data
+            ]);
+        } catch (\Exception $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -53,6 +91,29 @@ class BukuTamuController extends Controller
     public function update(Request $request, BukuTamu $bukuTamu)
     {
         //
+        try {
+            $field = $request->validate([
+                'guru_id' => 'required',
+                'siswa_id' => 'nullable',
+                'nama_tamu' => 'required',
+                'no_telp' => 'nullable',
+                'alamat' => 'nullable',
+                'keperluan' => 'required',
+                'tindak_lanjut' => 'nullable',
+                'ttd_path' => 'nullable',
+            ]);
+
+            $bukuTamu->update($field);
+
+            return response()->json([
+                'message' => 'Berhasil mengubah data',
+                'data' => $bukuTamu
+            ]);
+        } catch (\Exception $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -61,5 +122,15 @@ class BukuTamuController extends Controller
     public function destroy(BukuTamu $bukuTamu)
     {
         //
+        try {
+            $bukuTamu->delete();
+            return response()->json([
+                'message' => 'berhasil dihapus'
+            ]);
+        } catch (\Exception $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 }
