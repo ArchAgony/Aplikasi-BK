@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\BukuTamu;
 use Illuminate\Database\Seeder;
 use App\Models\KunjunganRumah;
 use App\Models\Siswa;
@@ -20,11 +21,13 @@ class KunjunganRumahSeeder extends Seeder
         $faker = Faker::create('id_ID');
         $guruIds = User::pluck('id')->toArray();
         $siswaIds = Siswa::pluck('id')->toArray();
+        $bukutamuIds = BukuTamu::pluck('id')->toArray();
 
         for ($i = 1; $i <= 5; $i++) {
             KunjunganRumah::create([
                 'guru_id' => $faker->randomElement($guruIds),
                 'siswa_id' => $faker->randomElement($siswaIds),
+                'alamat_id' => $faker->randomElement($bukutamuIds),
                 'tanggal' => $faker->date(),
                 'tujuan' => $faker->sentence(3),
                 'hasil_wawancara' => $faker->paragraph,

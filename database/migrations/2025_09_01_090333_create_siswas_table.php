@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('nama_siswa');
             $table->enum('tingkat', ['X', 'XI', 'XII']);
             $table->string('jurusan');
+            $table->integer('total_kunjungan')->default(1);
+            $table->timestamps();
         });
     }
 

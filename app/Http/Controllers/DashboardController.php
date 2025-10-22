@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,8 +12,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.home');
-        
+        $jumlahsiswa = Siswa::count();
+        return view('dashboard.home', compact('jumlahsiswa'));
     }
 
     /**
