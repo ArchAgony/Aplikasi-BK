@@ -24,7 +24,7 @@ class KunjunganRumahController extends Controller
      */
     public function create()
     {
-        //
+        return view('kunjungan.form_kunj');
     }
 
     /**

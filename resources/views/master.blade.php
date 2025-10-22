@@ -9,9 +9,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
-    <link href="{{ secure_asset('/Lib/bootstrap-icons-1.11.1/bootstrap-icons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/Lib/bootstrap-icons-1.11.1/bootstrap-icons.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}">
-    <script src="{{ secure_asset('/Lib/font-awesome-pro-5.15.4/js/all.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ asset('/Lib/font-awesome-pro-5.15.4/js/all.js') }}" crossorigin="anonymous"></script>
 
     <style>
         :root {
@@ -223,7 +223,7 @@
         <nav class="mt-3">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('/') ? 'active-link' : 'text-dark' }}" href="/">
+                    <a class="nav-link {{ Request::is('dashboard*') ? 'active-link' : 'text-dark' }}" href="dashboard">
                         <i class="bi bi-house-door me-2"></i>Dashboard
                     </a>
                 </li>
@@ -254,8 +254,8 @@
     <!-- Main Content -->
     <div class="main-content">
         <!-- Top Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
-            <div class="container-fluid">
+       <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+            <div class="container-fluid d-flex align-items-center">
                 <button class="btn btn-outline-primary sidebar-toggle me-3" type="button" onclick="toggleSidebar()">
                     <i class="bi bi-list"></i>
                 </button>
@@ -319,7 +319,7 @@
                 }
             });
         </script>
-        <script src="{{ secure_asset('Js/jquery-3.7.1.js') }}"></script>
+        <script src="{{ asset('Js/jquery-3.7.1.js') }}"></script>
         <script src="{{ asset('/Lib/bootstrap/js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
         <script src="{{ asset('/Lib/chart.js/Chart.min.js') }}" crossorigin="anonymous"></script>
 
@@ -343,6 +343,41 @@
                     },
                     order: [[1, 'asc']]
                 });
+            });
+
+
+        </script>
+         <script>
+            $(document).ready(function () {
+                // datatablesSimple (siswa page)
+                $('#datatablesSimple').DataTable({
+                    responsive: true,
+                    language: {
+                        search: "_INPUT_",
+                        searchPlaceholder: "Cari siswa...",
+                        lengthMenu: "Tampilkan _MENU_ data",
+                        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                        paginate: { previous: "Sebelumnya", next: "Berikutnya" }
+                    },
+                    order: [[1, 'asc']]
+                });
+
+                // datatablesHome (home page)
+                if ($('#datatablesHome').length) {
+                    $('#datatablesHome').DataTable({
+                        responsive: true,
+                        dom: '<"row mb-2"<"col-md-6"l><"col-md-6 text-end"f>>rtip',
+                        language: {
+                            search: "_INPUT_",
+                            searchPlaceholder: "Cari...",
+                            lengthMenu: "Tampilkan _MENU_ data",
+                            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                            paginate: { previous: "Sebelumnya", next: "Berikutnya" },
+                            zeroRecords: "Data tidak ditemukan"
+                        },
+                        order: [[0, 'asc']]
+                    });
+                }
             });
         </script>
 </body>

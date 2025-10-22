@@ -2,16 +2,16 @@
 @section('content')
 
 <style>
-  .table-header {
-    background: linear-gradient(135deg, #84c4e2, #fff3f7);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 10px 10px 0 0;
-    font-weight: 600;
-    font-size: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 0;
-  }
+        .table-header {
+            background: linear-gradient(135deg, #84c4e2, #fff3f7);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px 10px 0 0;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0;
+        }
   .modal-header {
     background: linear-gradient(135deg, #e91e63, #f06292);
     color: white;
@@ -161,11 +161,12 @@
   }
 </style>
 
+
 <div class="container-fluid">
   <div class="table-container">
     <div class="table-header">
       Kunjungan Rumah
-      <a href="/laporan/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
+      <a href="/kunjungan/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
         <i class="fas fa-plus me-1"></i> Tambah
       </button></a>
     </div>
@@ -245,4 +246,3 @@ function btnTambah() {
 </script>
 
 @endsection
-```
