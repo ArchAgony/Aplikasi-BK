@@ -328,57 +328,41 @@
         <script src="{{ asset('Js/dataTables.responsive.js') }}"></script>
         <script src="{{ asset('Js/responsive.dataTables.js') }}"></script>
         <script>
-            $(document).ready(function () {
-                var table = $('#datatablesSimple').DataTable({
-                    responsive: true,
-                    language: {
-                        search: "_INPUT_",
-                        searchPlaceholder: "Cari siswa...",
-                        lengthMenu: "Tampilkan _MENU_ data",
-                        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                        paginate: {
-                            previous: "Sebelumnya",
-                            next: "Berikutnya"
-                        }
-                    },
-                    order: [[1, 'asc']]
-                });
-            });
+           $(document).ready(function () {
 
+  // Inisialisasi datatablesSimple (halaman siswa)
+  if ($('#datatablesSimple').length && !$.fn.DataTable.isDataTable('#datatablesSimple')) {
+    $('#datatablesSimple').DataTable({
+      responsive: true,
+      language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Cari siswa...",
+        lengthMenu: "Tampilkan _MENU_ data",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        paginate: { previous: "Sebelumnya", next: "Berikutnya" }
+      },
+      order: [[1, 'asc']]
+    });
+  }
 
-        </script>
-         <script>
-            $(document).ready(function () {
-                // datatablesSimple (siswa page)
-                $('#datatablesSimple').DataTable({
-                    responsive: true,
-                    language: {
-                        search: "_INPUT_",
-                        searchPlaceholder: "Cari siswa...",
-                        lengthMenu: "Tampilkan _MENU_ data",
-                        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                        paginate: { previous: "Sebelumnya", next: "Berikutnya" }
-                    },
-                    order: [[1, 'asc']]
-                });
+  // Inisialisasi datatablesHome (halaman dashboard)
+  if ($('#datatablesHome').length && !$.fn.DataTable.isDataTable('#datatablesHome')) {
+    $('#datatablesHome').DataTable({
+      responsive: true,
+      dom: '<"row mb-2"<"col-md-6"l><"col-md-6 text-end"f>>rtip',
+      language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Cari...",
+        lengthMenu: "Tampilkan _MENU_ data",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        paginate: { previous: "Sebelumnya", next: "Berikutnya" },
+        zeroRecords: "Data tidak ditemukan"
+      },
+      order: [[0, 'asc']]
+    });
+  }
 
-                // datatablesHome (home page)
-                if ($('#datatablesHome').length) {
-                    $('#datatablesHome').DataTable({
-                        responsive: true,
-                        dom: '<"row mb-2"<"col-md-6"l><"col-md-6 text-end"f>>rtip',
-                        language: {
-                            search: "_INPUT_",
-                            searchPlaceholder: "Cari...",
-                            lengthMenu: "Tampilkan _MENU_ data",
-                            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                            paginate: { previous: "Sebelumnya", next: "Berikutnya" },
-                            zeroRecords: "Data tidak ditemukan"
-                        },
-                        order: [[0, 'asc']]
-                    });
-                }
-            });
+});
         </script>
 </body>
 </html>

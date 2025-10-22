@@ -186,18 +186,26 @@
           </tr>
         </thead>
            <tbody>
+            @foreach ($data as $i => $item )
                         <tr>
-                            <td>1</td>
-                            <td>17-09-2025</td>
-                            <td>daoa</td>
-                            <td>XII PPLG 1</td>
-                            <td>Gatau</td>
-                            <td>Gatau</td>
-                            <td>Gatau</td>
-                            <td>Gatau</td>
-                            <td>Ngono</td>
-                            <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                            <td class="text-center">{{ $i + 1 }}</td>
+                            <td>{{ $item->tanggal ?? optional($item->created_at)->format('d-m-Y') }}</td>
+                            <td>{{ $item->nama_tamu }}</td>
+                            <td>{{ optional($item->siswa)->nama ?? '-' }}</td>
+                            <td>{{ optional($item->siswa)->kelas ?? '-' }}</td>
+                            <td>{{ $item->keperluan ?? '-' }}</td>
+                            <td>{{ $item->no_telp ?? '-' }}</td>
+                            <td>{{ $item->alamat ?? '-' }}</td>
+                            <td>{{ $item->tindak_lanjut ?? '-' }}</td>
+                            <td><a href="{{ url('/tamu/'.$item->id. '/edit')}}" class="btn btn-sm btn-primary">Edit</a>
+                           <form action="{{ url('/tamu/'.$item->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">Delete</button>
+                           </form>
+                          </td>
                         </tr>
+                         @endforeach
                     </tbody>
       </table>
     </div>
