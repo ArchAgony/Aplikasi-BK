@@ -13,7 +13,7 @@ class KunjunganRumahController extends Controller
     public function index()
     {
         $data = KunjunganRumah::all();
-        return view('dashboard.kunjungan');
+        return view('kunjungan.index');
         return response()->json([
             'data' => $data
         ]);

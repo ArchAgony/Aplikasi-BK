@@ -13,7 +13,7 @@ class SiswaController extends Controller
     public function index()
     {
         $siswa = Siswa::all();
-        return view('dashboard.siswa', compact('siswa'));
+        return view('siswa.index', compact('siswa'));
         return response()->json([
             'siswa' => $siswa
         ]);

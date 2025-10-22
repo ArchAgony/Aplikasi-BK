@@ -13,11 +13,11 @@ class BukuTamuController extends Controller
     public function index()
     {
         $data = BukuTamu::all();
-        return view('dashboard.bktamu.tamu');
+        return view('bktamu.index');
         return response()->json([
             'data' => $data
         ]);
-        
+
     }
 
     /**
@@ -25,7 +25,7 @@ class BukuTamuController extends Controller
      */
     public function create()
     {
-        return view('dashboard.bktamu.form_tamu');
+        return view('bktamu.form_tamu');
     }
 
     /**

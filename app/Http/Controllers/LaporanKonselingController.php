@@ -13,7 +13,7 @@ class LaporanKonselingController extends Controller
     public function index()
     {
         //
-        return view('dashboard.laporankons.laporan');
+        return view('laporankons.index');
     }
 
     /**
@@ -22,7 +22,7 @@ class LaporanKonselingController extends Controller
     public function create()
     {
         //
-        return view('dashboard.laporankons.form_laporank');
+        return view('laporankons.form_laporank');
     }
 
     /**

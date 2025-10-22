@@ -24,10 +24,6 @@ class SiswaSeeder extends Seeder
                 'nama_siswa' => $faker->name,
                 'tingkat' => 'X',
                 'jurusan' => 'RPL-1',
-                'alamat_rumah' => $faker->address,
-                'no_hp' => $faker->phoneNumber,
-                'tempat_lahir' => $faker->city,
-                'tanggal_lahir' => $faker->date('Y-m-d', '-15 years'),
             ]);
         }
     }
