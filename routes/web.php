@@ -8,14 +8,6 @@ use App\Http\Controllers\BukuTamuController;
 use App\Http\Controllers\KunjunganRumahController;
 use App\Http\Controllers\LaporanKonselingController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/', function () {
-//     return view('dashboard/master');
-// });
-
 Route::get("/", [DashboardController::class,"index"]);
 
 Route::get("/siswa", [SiswaController::class,"index"]);
