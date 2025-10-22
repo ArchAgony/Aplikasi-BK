@@ -12,10 +12,10 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $data = Siswa::all();
-        return view('dashboard.siswa');
+        $siswa = Siswa::all();
+        return view('dashboard.siswa', compact('siswa'));
         return response()->json([
-            'data' => $data
+            'siswa' => $siswa
         ]);
     }
 
@@ -103,9 +103,7 @@ class SiswaController extends Controller
         //
         try {
             $siswa->delete();
-            return response()->json([
-                'message' => 'data berhasil dihapus'
-            ]);
+            return redirect('siswa')->with('success', 'Data berhasil dihapus');
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage()

@@ -17,11 +17,6 @@ return new class extends Migration
             $table->string('nama_siswa');
             $table->enum('tingkat', ['X', 'XI', 'XII']);
             $table->string('jurusan');
-            $table->string('alamat_rumah')->nullable();
-            $table->string('no_hp', 30)->nullable();
-            $table->string('tempat_lahir')->nullable();
-            $table->date('tanggal_lahir')->nullable();
-            $table->timestamps();
         });
     }
 
