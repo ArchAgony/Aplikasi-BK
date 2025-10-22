@@ -96,17 +96,17 @@
             font-weight: bold;
         }
 
-        
+
         .nav-link {
             color: #212529;
-            
+
             font-weight: normal;
         }
 
-        
+
         .active-link {
             color: #0d6efd !important;
-           
+
             font-weight: bold !important;
         }
 
@@ -223,7 +223,7 @@
         <nav class="mt-3">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('dashboard') ? 'active-link' : 'text-dark' }}" href="/dashboard">
+                    <a class="nav-link {{ Request::is('/') ? 'active-link' : 'text-dark' }}" href="/">
                         <i class="bi bi-house-door me-2"></i>Dashboard
                     </a>
                 </li>
