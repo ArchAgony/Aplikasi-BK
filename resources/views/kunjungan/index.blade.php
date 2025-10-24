@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 
-<style>
+    <style>
         .table-header {
             background: linear-gradient(135deg, #84c4e2, #fff3f7);
             color: white;
@@ -12,24 +12,27 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 0;
         }
-  .modal-header {
-    background: linear-gradient(135deg, #e91e63, #f06292);
-    color: white;
-    padding: 15px 20px;
-    font-weight: 600;
-    font-size: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 0;
-  }
-  #datatablesSimple {
-    width: 100% !important;
-    background: white;
-    border-collapse: collapse;
-  }
-  #datatablesSimple th,
-  #datatablesSimple td {
-    border: none !important;
-  }
+
+        .modal-header {
+            background: linear-gradient(135deg, #e91e63, #f06292);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0;
+        }
+
+        #datatablesSimple {
+            width: 100% !important;
+            background: white;
+            border-collapse: collapse;
+        }
+
+        #datatablesSimple th,
+        #datatablesSimple td {
+            border: none !important;
+        }
 
         #datatablesSimple {
             width: 100% !important;
@@ -170,7 +173,7 @@
         <div class="table-container">
             <div class="table-header">
                 Kunjungan Rumah
-                <a href="/laporan/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2"
+                <a href="/kunjungan/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2"
                         data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
                         <i class="fas fa-plus me-1"></i> Tambah
                     </button></a>
@@ -202,9 +205,12 @@
                                 <td>{{ $item->bukutamu->alamat }}</td>
                                 <td>
                                     <center>
-
-                                        <button class="btn btn-sm btn-primary">Laporan</button>
-                                        <button class="btn btn-sm btn-primary">Layanan</button>
+                                        <a href="{{ route('kunjungan.laporan', $item->id) }}" class="btn btn-sm btn-primary">
+                                            Laporan
+                                        </a>
+                                        <a href="{{ route('kunjungan.layanan', $item->id) }}" class="btn btn-sm btn-success">
+                                            Layanan
+                                        </a>
                                     </center>
                                 </td>
                             </tr>
@@ -214,9 +220,9 @@
             </div>
         </div>
     </div>
-        
+
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#datatablesSimple').DataTable({
                 responsive: true,
                 language: {
@@ -249,5 +255,5 @@
                 }]
             });
         });
-</script>
+    </script>
 @endsection

@@ -23,6 +23,14 @@ class KunjunganRumahController extends Controller
     {
         return view('kunjungan.form_kunj');
     }
+    public function laporan()
+    {
+        return view('kunjungan.form_lpor_kunj');
+    }
+    public function layanan()
+    {
+        return view('kunjungan.form_lay_kunj');
+    }
 
     /**
      * Store a newly created resource in storage.

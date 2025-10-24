@@ -227,9 +227,9 @@
                         <i class="bi bi-house-door me-2"></i>Dashboard
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('siswa*') ? 'active-link' : 'text-dark' }}" href="/siswa">
-                        <i class="bi bi-person me-2"></i>Siswa
+               <li class="nav-item">
+                    <a class="nav-link {{ Request::is('laporan*') ? 'active-link' : 'text-dark' }}" href="/laporan">
+                        <i class="bi bi-graph-up me-2"></i>Buku Kasus
                     </a>
                 </li>
                 <li class="nav-item">
@@ -242,9 +242,10 @@
                         <i class="bi bi-house-exclamation me-2"></i>Kunjungan Rumah
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('laporan*') ? 'active-link' : 'text-dark' }}" href="/laporan">
-                        <i class="bi bi-graph-up me-2"></i>Laporan
+                
+                 <li class="nav-item">
+                    <a class="nav-link {{ Request::is('siswa*') ? 'active-link' : 'text-dark' }}" href="/siswa">
+                        <i class="bi bi-person me-2"></i>Siswa
                     </a>
                 </li>
             </ul>
