@@ -243,6 +243,11 @@
             </div>
 
             <!-- Projects and Timeline -->
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 7d431bfb2a321626f092ba4593fb5d9d5032ff71
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
                             <div>
@@ -273,12 +278,62 @@
                                     </thead>
                                     
                                     <tbody>
+<<<<<<< HEAD
+=======
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <h6>Cendy Alviano Alvariazky</h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                               XII PPLG 2
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="">Menemukan Oli</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <h6>Cendy Alviano Alvariazky</h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                               XII PPLG 2
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="">Menemukan Oli</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <h6>Cendy Alviano Alvariazky</h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                               XII PPLG 2
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="">Menemukan Oli</span>
+                                            </td>
+                                        </tr>
+>>>>>>> 7d431bfb2a321626f092ba4593fb5d9d5032ff71
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 7d431bfb2a321626f092ba4593fb5d9d5032ff71
     </div>
 
 @endsection
