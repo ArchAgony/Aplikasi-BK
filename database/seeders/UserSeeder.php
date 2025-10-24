@@ -14,6 +14,7 @@ class UserSeeder extends Seeder
             'nip' => '12345',
             'email' => 'guru@example.com',
             'password' => 'guru123',
+            'jabatan' => 'Guru BK'
         ]);
     }
 }
