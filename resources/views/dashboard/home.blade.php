@@ -152,7 +152,7 @@
                         <div class="card-body">
                             <div class="text-end">
                                 <p class="text-muted small mb-1">Jumlah Siswa</p>
-                                <h4 class="mb-0">{{-- Jumlah --}} 2000</h4>
+                                <h4 class="mb-0">{{ $jumlahsiswa }}</h4>
                             </div>
                         </div>
                         <div class="card-footer bg-transparent border-0">
@@ -160,7 +160,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card stat-card border-0 shadow-sm">
                         <div class="stat-icon bg-gradient-primary">
@@ -177,7 +177,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card stat-card border-0 shadow-sm">
                         <div class="stat-icon bg-gradient-success">
@@ -194,7 +194,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card stat-card border-0 shadow-sm">
                         <div class="stat-icon bg-gradient-info">
@@ -225,7 +225,7 @@
                             </div>
                         </div>
                     </div>
-                </div>            
+                </div>
                 <div class="col-lg-4 mb-4">
                     <div class="card border-0 shadow-sm">
                         <div class="card-body p-0">
@@ -243,6 +243,11 @@
             </div>
 
             <!-- Projects and Timeline -->
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 2cc3af225b471e5e38db06b628234c76ae6830d9
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
                             <div>
@@ -273,12 +278,62 @@
                                     </thead>
                                     
                                     <tbody>
+<<<<<<< HEAD
+=======
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <h6>Cendy Alviano Alvariazky</h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                               XII PPLG 2
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="">Menemukan Oli</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <h6>Cendy Alviano Alvariazky</h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                               XII PPLG 2
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="">Menemukan Oli</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <h6>Cendy Alviano Alvariazky</h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                               XII PPLG 2
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="">Menemukan Oli</span>
+                                            </td>
+                                        </tr>
+>>>>>>> 2cc3af225b471e5e38db06b628234c76ae6830d9
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 2cc3af225b471e5e38db06b628234c76ae6830d9
     </div>
 
 @endsection

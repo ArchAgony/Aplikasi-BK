@@ -12,11 +12,8 @@ class KunjunganRumahController extends Controller
      */
     public function index()
     {
-        $data = KunjunganRumah::all();
-        return view('kunjungan.index');
-        return response()->json([
-            'data' => $data
-        ]);
+        $data = KunjunganRumah::with('guru', 'siswa', 'bukutamu')->get();
+        return view('kunjungan.index', compact('data'));
     }
 
     /**
