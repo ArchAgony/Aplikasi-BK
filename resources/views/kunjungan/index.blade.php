@@ -12,6 +12,12 @@
             margin-bottom: 0;
         }
 
+<style>
+        .table-header {
+            background: linear-gradient(135deg, #84c4e2, #fff3f7);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px 10px 0 0;
         .modal-header {
             background: linear-gradient(135deg, #e91e63, #f06292);
             color: white;
@@ -213,6 +219,7 @@
         </div>
     </div>
 
+@endsection
     <script>
         $(document).ready(function() {
             $('#datatablesSimple').DataTable({

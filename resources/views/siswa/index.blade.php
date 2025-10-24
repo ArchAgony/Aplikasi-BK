@@ -13,7 +13,7 @@
         }
 
         .modal-header {
-            background: linear-gradient(135deg, #e91e63, #f06292);
+            background: linear-gradient(135deg, #5f6deeff, #ffffffff);
             color: white;
             padding: 15px 20px;
             font-weight: 600;
@@ -259,7 +259,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary" style="background: #e91e63; border-color: #e91e63;"
+                    <button class="btn btn-primary" style="background: #8d5bbcff; border-color: #63dfe3ff;"
                         onclick="btnTambah()">Simpan</button>
                 </div>
             </div>

@@ -223,7 +223,7 @@
         <nav class="mt-3">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('/') ? 'active-link' : 'text-dark' }}" href="/">
+                    <a class="nav-link {{ Request::is('dashboard*') ? 'active-link' : 'text-dark' }}" href="dashboard">
                         <i class="bi bi-house-door me-2"></i>Dashboard
                     </a>
                 </li>
@@ -254,8 +254,8 @@
     <!-- Main Content -->
     <div class="main-content">
         <!-- Top Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
-            <div class="container-fluid">
+       <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+            <div class="container-fluid d-flex align-items-center">
                 <button class="btn btn-outline-primary sidebar-toggle me-3" type="button" onclick="toggleSidebar()">
                     <i class="bi bi-list"></i>
                 </button>
@@ -328,22 +328,41 @@
         <script src="{{ asset('Js/dataTables.responsive.js') }}"></script>
         <script src="{{ asset('Js/responsive.dataTables.js') }}"></script>
         <script>
-            $(document).ready(function () {
-                var table = $('#datatablesSimple').DataTable({
-                    responsive: true,
-                    language: {
-                        search: "_INPUT_",
-                        searchPlaceholder: "Cari siswa...",
-                        lengthMenu: "Tampilkan _MENU_ data",
-                        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                        paginate: {
-                            previous: "Sebelumnya",
-                            next: "Berikutnya"
-                        }
-                    },
-                    order: [[1, 'asc']]
-                });
-            });
+           $(document).ready(function () {
+
+  // Inisialisasi datatablesSimple (halaman siswa)
+  if ($('#datatablesSimple').length && !$.fn.DataTable.isDataTable('#datatablesSimple')) {
+    $('#datatablesSimple').DataTable({
+      responsive: true,
+      language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Cari siswa...",
+        lengthMenu: "Tampilkan _MENU_ data",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        paginate: { previous: "Sebelumnya", next: "Berikutnya" }
+      },
+      order: [[1, 'asc']]
+    });
+  }
+
+  // Inisialisasi datatablesHome (halaman dashboard)
+  if ($('#datatablesHome').length && !$.fn.DataTable.isDataTable('#datatablesHome')) {
+    $('#datatablesHome').DataTable({
+      responsive: true,
+      dom: '<"row mb-2"<"col-md-6"l><"col-md-6 text-end"f>>rtip',
+      language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Cari...",
+        lengthMenu: "Tampilkan _MENU_ data",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        paginate: { previous: "Sebelumnya", next: "Berikutnya" },
+        zeroRecords: "Data tidak ditemukan"
+      },
+      order: [[0, 'asc']]
+    });
+  }
+
+});
         </script>
 </body>
 </html>
