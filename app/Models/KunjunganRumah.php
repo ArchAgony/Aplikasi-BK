@@ -23,4 +23,9 @@ class KunjunganRumah extends Model
     {
         return $this->belongsTo(Siswa::class, 'siswa_id');
     }
+
+    public function bukutamu()
+    {
+        return $this->belongsTo(BukuTamu::class, 'alamat_id');
+    }
 }
