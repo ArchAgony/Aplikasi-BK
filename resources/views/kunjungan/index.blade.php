@@ -1,36 +1,17 @@
 @extends('master')
 @section('content')
-    <style>
-        .table-header {
-            background: linear-gradient(135deg, #84c4e2, #fff3f7);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px 10px 0 0;
-            font-weight: 600;
-            font-size: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 0;
-        }
 
-<<<<<<< HEAD
 <style>
         .table-header {
             background: linear-gradient(135deg, #84c4e2, #fff3f7);
             color: white;
             padding: 15px 20px;
             border-radius: 10px 10px 0 0;
-=======
-        .modal-header {
-            background: linear-gradient(135deg, #e91e63, #f06292);
-            color: white;
-            padding: 15px 20px;
->>>>>>> 2cc3af225b471e5e38db06b628234c76ae6830d9
             font-weight: 600;
             font-size: 16px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 0;
         }
-<<<<<<< HEAD
   .modal-header {
     background: linear-gradient(135deg, #e91e63, #f06292);
     color: white;
@@ -49,8 +30,6 @@
   #datatablesSimple td {
     border: none !important;
   }
-=======
->>>>>>> 2cc3af225b471e5e38db06b628234c76ae6830d9
 
         #datatablesSimple {
             width: 100% !important;
@@ -173,36 +152,6 @@
         /* ✅ RESPONSIVE TABLE */
         @media (max-width: 768px) {
 
-<<<<<<< HEAD
-
-<div class="container-fluid">
-  <div class="table-container">
-    <div class="table-header">
-      Kunjungan Rumah
-      <a href="/kunjungan/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
-        <i class="fas fa-plus me-1"></i> Tambah
-      </button></a>
-    </div>
-    <div class="authors-table p-3">
-      <table id="datatablesSimple" class="table table-hover w-100">
-        <thead class="text-center align-middle">
-          <tr>
-            <th>No</th>
-            <th>Tanggal</th>
-            <th>Nama Guru</th>
-            <th>Jabatan</th>
-            <th>Nama Siswa</th>
-            <th>Kelas</th>
-            <th>Alamat</th>
-=======
-            .dataTables_wrapper .dataTables_filter,
-            .dataTables_wrapper .dataTables_length {
-                float: none !important;
-                text-align: center !important;
-                margin-bottom: 15px;
-            }
->>>>>>> 2cc3af225b471e5e38db06b628234c76ae6830d9
-
             .dataTables_wrapper .dataTables_filter input {
                 width: 100%;
                 max-width: 300px;
@@ -265,7 +214,7 @@
             </div>
         </div>
     </div>
-
+        
     <script>
         $(document).ready(function() {
             $('#datatablesSimple').DataTable({
@@ -300,16 +249,5 @@
                 }]
             });
         });
-
-<<<<<<< HEAD
+</script>
 @endsection
-=======
-        function btnTambah() {
-            // Add your save logic here
-            console.log('Simpan data siswa');
-            $('#modal-tambah-siswa').modal('hide');
-        }
-    </script>
-@endsection
-```
->>>>>>> 2cc3af225b471e5e38db06b628234c76ae6830d9

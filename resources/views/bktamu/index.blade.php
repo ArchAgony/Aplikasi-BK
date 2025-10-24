@@ -143,53 +143,6 @@
         /* ✅ RESPONSIVE TABLE */
         @media (max-width: 768px) {
 
-<<<<<<< HEAD
-<div class="container-fluid">
-  <div class="table-container">
-    <div class="table-header">
-      Laporan
-      <a href="/tamu/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
-        <i class="fas fa-plus me-1"></i> Tambah
-      </button></a>
-    </div>
-    <div class="authors-table p-3">
-      <table id="datatablesSimple" class="table table-hover w-100">
-        <thead class="text-center align-middle">
-          <tr>
-            <th>No</th>
-            <th>Tanggal</th>
-            <th>Ortu/Tamu</th>
-            <th>Nama Siswa</th>
-            <th>Kelas</th>
-            <th>Kunjungan</th>
-            <th>No.HP</th>
-            <th>Alamat Tamu</th>
-            <th>Tindak Lanjut</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-           <tbody>
-            @foreach ($data as $i => $item )
-                        <tr>
-                            <td class="text-center">{{ $i + 1 }}</td>
-                            <td>{{ $item->tanggal ?? optional($item->created_at)->format('d-m-Y') }}</td>
-                            <td>{{ $item->nama_tamu }}</td>
-                            <td>{{ optional($item->siswa)->nama ?? '-' }}</td>
-                            <td>{{ optional($item->siswa)->kelas ?? '-' }}</td>
-                            <td>{{ $item->keperluan ?? '-' }}</td>
-                            <td>{{ $item->no_telp ?? '-' }}</td>
-                            <td>{{ $item->alamat ?? '-' }}</td>
-                            <td>{{ $item->tindak_lanjut ?? '-' }}</td>
-                            <td><a href="{{ url('/tamu/'.$item->id. '/edit')}}" class="btn btn-sm btn-primary">Edit</a>
-                           <form action="{{ url('/tamu/'.$item->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">Delete</button>
-                           </form>
-                          </td>
-                        </tr>
-                         @endforeach
-=======
             .dataTables_wrapper .dataTables_filter,
             .dataTables_wrapper .dataTables_length {
                 float: none !important;
@@ -254,7 +207,6 @@
                                 </td>
                             </tr>
                         @endforeach
->>>>>>> 2cc3af225b471e5e38db06b628234c76ae6830d9
                     </tbody>
                 </table>
             </div>
