@@ -12,7 +12,7 @@ Route::get("/", [DashboardController::class,"index"]);
 
 Route::get("/siswa", [SiswaController::class,"index"]);
 Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
-Route::put('/siswa/{id}', [SiswaController::class, 'update'])->name('siswa.update');
+Route::post('/siswa/{id}', [SiswaController::class, 'update'])->name('siswa.update');
 Route::get('/siswa/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
 
 Route::get("/tamu", [BukuTamuController::class,"index"]);

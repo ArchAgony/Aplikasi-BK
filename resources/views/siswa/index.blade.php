@@ -187,8 +187,8 @@
                                 <td class="text-center">{{ $s->tingkat }} {{ $s->jurusan }}</td>
                                 <td>{{ $s->kasus }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-primary me-1"
-                                        onclick="editSiswa({{ $s->id }})">
+                                    <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
+                                        data-bs-target="#modal-edit-siswa-{{ $s->id }}">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                     <a href="/siswa/{{ $s->id }}">
@@ -198,6 +198,75 @@
                                     </a>
                                 </td>
                             </tr>
+
+                            <div class="modal fade" id="modal-edit-siswa-{{ $s->id }}" tabindex="-1"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title">Tambah Data Siswa</h5>
+                                            <button type="button" class="btn-close btn-close-white"
+                                                data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="form-tambah" action="/siswa/{{ $s->id }}" method="POST">
+                                                @csrf
+                                                <div class="row mb-3">
+                                                    <label class="col-sm-3 col-form-label">NIS <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="nis-tambah"
+                                                            placeholder="Masukkan NIS" required name="nis"
+                                                            value="{{ $s->nis }}">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label class="col-sm-3 col-form-label">Nama Siswa <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="nama-tambah"
+                                                            placeholder="Masukkan Nama Lengkap" required name="nama"
+                                                            value="{{ $s->nama_siswa }}">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label class="col-sm-3 col-form-label">Tingkat <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-select" required name="tingkat">
+                                                            <option value="">Pilih Tingkat</option>
+                                                            <option value="X"
+                                                                {{ $s->tingkat == 'X' ? 'selected' : '' }}>X</option>
+                                                            <option value="XI"
+                                                                {{ $s->tingkat == 'XI' ? 'selected' : '' }}>XI</option>
+                                                            <option value="XII"
+                                                                {{ $s->tingkat == 'XII' ? 'selected' : '' }}>XII</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label class="col-sm-3 col-form-label">Jurusan <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" class="form-control"
+                                                                aria-label="Text input with dropdown button"
+                                                                id="customInput" placeholder="masukkan jurusan"
+                                                                name="jurusan" value="{{ $s->jurusan }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer border-0">
+                                                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                    <button class="btn btn-primary"
+                                                        style="background: #8d5bbcff; border-color: #63dfe3ff;"
+                                                        onclick="btnTambah()">Simpan</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
                     </tbody>
                 </table>
@@ -214,25 +283,26 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-tambah">
+                    <form id="form-tambah" action="/siswa" method="POST">
+                        @csrf
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">NIS <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="nis-tambah" placeholder="Masukkan NIS"
-                                    required>
+                                    required name="nis">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Nama Siswa <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="nama-tambah"
-                                    placeholder="Masukkan Nama Lengkap" required>
+                                    placeholder="Masukkan Nama Lengkap" required name="nama">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Tingkat <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
-                                <select class="form-select" id="tingkat-tambah" required>
+                                <select class="form-select" id="tingkat-tambah" required name="tingkat">
                                     <option value="">Pilih Tingkat</option>
                                     <option value="X">X</option>
                                     <option value="XI">XI</option>
@@ -244,103 +314,18 @@
                             <label class="col-sm-3 col-form-label">Jurusan <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <div class="input-group mb-3">
-                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">Jurusan</button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                    <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="-ke">
+                                    <input type="text" class="form-control"
+                                        aria-label="Text input with dropdown button" id="customInput"
+                                        placeholder="masukkan jurusan" name="jurusan">
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer border-0">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary" style="background: #8d5bbcff; border-color: #63dfe3ff;"
-                        onclick="btnTambah()">Simpan</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Edit -->
-    <div class="modal fade" id="modal-edit-siswa" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title">Edit Data Siswa</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="form-edit">
-                        <input type="hidden" id="id-edit">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">NIS <span class="text-danger">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nis-edit" placeholder="Masukkan NIS"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Nama Siswa <span class="text-danger">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nama-edit"
-                                    placeholder="Masukkan Nama Lengkap" required>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Tingkat <span class="text-danger">*</span></label>
-                            <div class="col-sm-9">
-                                <select class="form-select" id="tingkat-edit" required>
-                                    <option value="">Pilih Tingkat</option>
-                                    <option value="X">X</option>
-                                    <option value="XI">XI</option>
-                                    <option value="XII">XII</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Jurusan <span class="text-danger">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="jurusan-edit"
-                                    placeholder="Contoh: PPLG 1, TKJ 2" required>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Tempat Lahir</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="tempat-lahir-edit"
-                                    placeholder="Masukkan Tempat Lahir">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Tanggal Lahir</label>
-                            <div class="col-sm-9">
-                                <input type="date" class="form-control" id="tanggal-lahir-edit">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Alamat Rumah</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" id="alamat-edit" rows="2" placeholder="Masukkan Alamat Lengkap"></textarea>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">No HP</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="no-hp-edit"
-                                    placeholder="Contoh: 08123456789">
-                            </div>
+                        <div class="modal-footer border-0">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button class="btn btn-primary" style="background: #8d5bbcff; border-color: #63dfe3ff;"
+                                onclick="btnTambah()">Simpan</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer border-0">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary" style="background: #e91e63; border-color: #e91e63;"
-                        onclick="btnUpdate()">Update</button>
                 </div>
             </div>
         </div>
