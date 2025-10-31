@@ -13,7 +13,8 @@ class DashboardController extends Controller
     public function index()
     {
         $jumlahsiswa = Siswa::count();
-        return view('dashboard.home', compact('jumlahsiswa'));
+        $siswa = Siswa::all();
+        return view('dashboard.home', compact('jumlahsiswa','siswa'));
     }
 
     /**

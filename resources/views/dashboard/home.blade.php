@@ -266,14 +266,22 @@
                                <table id="datatablesHome" class="table table-hover w-100">
                                     <thead class="table-light text-center align-middle">
                                         <tr>
+                                            <th class="text-center">No</th>
                                             <th>Nama Siswa</th>
                                             <th>Kelas</th>
                                             <th class="text-center">Kasus</th>
                                         </tr>
                                     </thead>
-                                    
+                                    @csrf
                                     <tbody>
-
+                                        @foreach ($siswa as $key => $s)
+                                            <tr>
+                                                <td class="text-center">{{ $key + 1 }}</td>
+                                                <td>{{ $s->nama_siswa }}</td>
+                                                <td class="text-center">{{ $s->tingkat }} {{ $s->jurusan }}</td>
+                                                <td>{{ $s->kasus }}</td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
