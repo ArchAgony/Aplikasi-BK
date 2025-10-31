@@ -8,12 +8,12 @@ use App\Http\Controllers\BukuTamuController;
 use App\Http\Controllers\KunjunganRumahController;
 use App\Http\Controllers\LaporanKonselingController;
 
-Route::get("/dashboard", [DashboardController::class,"index"]);
+Route::get("/", [DashboardController::class,"index"]);
 
 Route::get("/siswa", [SiswaController::class,"index"]);
 Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
-Route::put('/siswa/edit/{id}', [SiswaController::class, 'update'])->name('siswa.update');
-Route::delete('/siswa/delete/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
+Route::post('/siswa/{id}', [SiswaController::class, 'update'])->name('siswa.update');
+Route::get('/siswa/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
 
 Route::get("/tamu", [BukuTamuController::class,"index"]);
 Route::get("/tamu/create", [BukuTamuController::class,"create"]);

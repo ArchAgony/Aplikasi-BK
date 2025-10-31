@@ -34,18 +34,14 @@ class SiswaController extends Controller
     {
         //
         try {
-            $field = $request->validate([
-                'nama_siswa' => 'required',
-                'nis' => 'required',
-                'tingkat' => 'required',
-                'jurusan' => 'required',
+            Siswa::create([
+                'nama_siswa' => $request->nama,
+                'nis' => $request->nis,
+                'tingkat' => $request->tingkat,
+                'jurusan' => $request->jurusan
             ]);
 
-            $data = Siswa::create($field);
-            return response()->json([
-                'message' => 'data berhasil dibuat!',
-                'data' => $data,
-            ]);
+            return redirect('/siswa');
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage(),
@@ -72,22 +68,19 @@ class SiswaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Siswa $siswa)
+    public function update(Request $request, string $id)
     {
         //
         try {
-            $field = $request->validate([
-                'nama_siswa' => 'required',
-                'nis' => 'required',
-                'tingkat' => 'required',
-                'jurusan' => 'required',
+            $siswa = Siswa::findOrFail($id);
+            $siswa->update([
+                'nis' => $request->nis,
+                'nama_siswa' => $request->nama,
+                'tingkat' => $request->tingkat,
+                'jurusan' => $request->jurusan,
             ]);
 
-            $siswa->update($field);
-            return response()->json([
-                'message' => 'data berhasil diubah',
-                'data' => $siswa
-            ]);
+            return redirect()->back()->with('success', 'Data siswa berhasil diupdate');
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage()
@@ -98,11 +91,11 @@ class SiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Siswa $siswa)
+    public function destroy(string $id)
     {
         //
         try {
-            $siswa->delete();
+            Siswa::where('id', $id)->delete();
             return redirect('siswa')->with('success', 'Data berhasil dihapus');
         } catch (\Exception $th) {
             return response()->json([

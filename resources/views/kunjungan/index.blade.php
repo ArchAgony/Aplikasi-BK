@@ -34,30 +34,11 @@
             border: none !important;
         }
 
-        #datatablesSimple {
-            width: 100% !important;
-            background: white;
-            border-collapse: collapse;
-        }
-
-        #datatablesSimple th,
-        #datatablesSimple td {
-            border: none !important;
-        }
-
         /* ✅ FIX SEARCH BOX POSITION */
         .dataTables_wrapper .dataTables_filter {
             float: right !important;
             text-align: right !important;
             margin-bottom: 10px;
-        }
-
-        .dataTables_wrapper .dataTables_filter label {
-            display: flex !important;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 0;
-            font-weight: normal;
         }
 
         .dataTables_wrapper .dataTables_filter input {
@@ -154,6 +135,12 @@
 
         /* ✅ RESPONSIVE TABLE */
         @media (max-width: 768px) {
+            .dataTables_wrapper .dataTables_filter,
+            .dataTables_wrapper .dataTables_length {
+                float: none !important;
+                text-align: center !important;
+                margin-bottom: 15px;
+            }
 
             .dataTables_wrapper .dataTables_filter input {
                 width: 100%;
@@ -173,10 +160,11 @@
         <div class="table-container">
             <div class="table-header">
                 Kunjungan Rumah
-                <a href="/kunjungan/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2"
-                        data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
+                <a href="/kunjungan/create">
+                    <button type="button" class="btn btn-light btn-sm float-end rounded-2">
                         <i class="fas fa-plus me-1"></i> Tambah
-                    </button></a>
+                    </button>
+                </a>
             </div>
             <div class="authors-table p-3">
                 <table id="datatablesSimple" class="table table-hover w-100">
@@ -189,7 +177,6 @@
                             <th>Nama Siswa</th>
                             <th>Kelas</th>
                             <th>Alamat</th>
-
                             <th>Laporan Kunjungan & <br> Layanan Kunjungan Rumah</th>
                         </tr>
                     </thead>
@@ -241,9 +228,7 @@
                         last: "Terakhir"
                     }
                 },
-                order: [
-                    [0, 'asc']
-                ],
+                order: [[0, 'asc']],
                 pageLength: 10,
                 lengthMenu: [
                     [5, 10, 25, 50, -1],
