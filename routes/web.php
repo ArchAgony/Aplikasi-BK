@@ -23,6 +23,10 @@ Route::get("/laporan/create", [LaporanKonselingController::class, "create"]);
 
 Route::get("/kunjungan", [KunjunganRumahController::class,"index"]);
 Route::get('/kunjungan/create', [KunjunganRumahController::class, 'create']);
+Route::get('/kunjungan/{id}/laporan', [KunjunganRumahController::class, 'laporan'])->name('kunjungan.laporan');
+Route::get('/kunjungan/{id}/layanan', [KunjunganRumahController::class, 'layanan'])->name('kunjungan.layanan');
+
+
 route::post('/kunjungan', [KunjunganRumahController::class, 'store'])->name('kunjungan.store');
 
 Route::get('/register', [UserController::class, 'RegisterForm'])->name('register.form');
