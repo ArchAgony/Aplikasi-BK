@@ -244,8 +244,6 @@
             </div>
 
             <!-- Projects and Timeline -->
-
-
             <div class="card border-0 shadow-sm">
                 <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
                     <div>
@@ -276,45 +274,6 @@
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <h6>Cendy Alviano Alvariazky</h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        XII PPLG 2
-                                    </td>
-                                    <td class="text-center">
-                                        <span class="">Menemukan Oli</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <h6>Cendy Alviano Alvariazky</h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        XII PPLG 2
-                                    </td>
-                                    <td class="text-center">
-                                        <span class="">Menemukan Oli</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <h6>Cendy Alviano Alvariazky</h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        XII PPLG 2
-                                    </td>
-                                    <td class="text-center">
-                                        <span class="">Menemukan Oli</span>
-                                    </td>
-                                </tr>
 
                             </tbody>
                         </table>
