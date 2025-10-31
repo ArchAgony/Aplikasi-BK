@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -14,7 +15,12 @@ class DashboardController extends Controller
     {
         $jumlahsiswa = Siswa::count();
         $siswa = Siswa::all();
-        return view('dashboard.home', compact('jumlahsiswa','siswa'));
+
+        $kasusPerkelas = DB::table('siswas')
+    ->select('jurusan', DB::raw('COUNT(*) as total'))
+    ->groupBy('jurusan')
+    ->get();
+        return view('dashboard.home', compact('jumlahsiswa','siswa','kasusPerkelas'));
     }
 
     /**

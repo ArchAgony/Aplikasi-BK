@@ -1,8 +1,8 @@
 @extends('master')
-@section( 'content')
+@section('content')
 
 <style>
-      #datatablesSimple {
+  #datatablesSimple {
     width: 100% !important;
     background: white;
     border-collapse: collapse;
@@ -12,7 +12,6 @@
     border: none !important;
   }
 
-  /* ✅ FIX SEARCH BOX POSITION */
   .dataTables_wrapper .dataTables_filter {
     float: right !important;
     text-align: right !important;
@@ -41,7 +40,6 @@
     box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
   }
 
-  /* ✅ FIX LENGTH MENU POSITION */
   .dataTables_wrapper .dataTables_length {
     float: left !important;
     margin-bottom: 10px;
@@ -62,7 +60,6 @@
     min-width: 70px;
   }
 
-  /* ✅ INFO & PAGINATION STYLING */
   .dataTables_wrapper .dataTables_info {
     float: left !important;
     padding-top: 10px;
@@ -103,7 +100,6 @@
     cursor: not-allowed;
   }
 
-  /* ✅ CLEAR FLOATS */
   .dataTables_wrapper::after {
     content: "";
     display: table;
@@ -119,7 +115,6 @@
     overflow: hidden;
   }
 
-  /* ✅ RESPONSIVE TABLE */
   @media (max-width: 768px) {
     .dataTables_wrapper .dataTables_filter,
     .dataTables_wrapper .dataTables_length {
@@ -141,153 +136,218 @@
     }
   }
 </style>
+
 <div class="container-fluid">
-            <!-- Stats Cards -->
-            <div class="row mb-4">
-                 <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card stat-card border-0 shadow-sm">
-                        <div class="stat-icon bg-gradient-dark">
-                            <i class="bi bi-people"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="text-end">
-                                <p class="text-muted small mb-1">Jumlah Siswa</p>
-                                <h4 class="mb-0">{{ $jumlahsiswa }}</h4>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-transparent border-0">
-                            
-                        </div>
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card border-0 shadow-sm">
+                <div class="stat-icon bg-gradient-dark">
+                    <i class="bi bi-people"></i>
+                </div>
+                <div class="card-body">
+                    <div class="text-end">
+                        <p class="text-muted small mb-1">Jumlah Siswa</p>
+                        <h4 class="mb-0">{{ $jumlahsiswa }}</h4>
                     </div>
                 </div>
+                <div class="card-footer bg-transparent border-0"></div>
+            </div>
+        </div>
 
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card stat-card border-0 shadow-sm">
-                        <div class="stat-icon bg-gradient-primary">
-                            <i class="bi bi-people"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="text-end">
-                                <p class="text-muted small mb-1">Jumlah Kasus</p>
-                                <h4 class="mb-0">{{-- Sum Kasus --}} 319</h4>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-transparent border-0">
-                            
-                        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card border-0 shadow-sm">
+                <div class="stat-icon bg-gradient-primary">
+                    <i class="bi bi-people"></i>
+                </div>
+                <div class="card-body">
+                    <div class="text-end">
+                        <p class="text-muted small mb-1">Jumlah Kasus</p>
+                        <h4 class="mb-0">319</h4>
                     </div>
                 </div>
+                <div class="card-footer bg-transparent border-0"></div>
+            </div>
+        </div>
 
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card stat-card border-0 shadow-sm">
-                        <div class="stat-icon bg-gradient-success">
-                            <i class="bi bi-person-plus"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="text-end">
-                                <p class="text-muted small mb-1">Kasus Tuntas</p>
-                                <h4 class="mb-0">{{-- SumKasusTuntas --}} 215</h4>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-transparent border-0">
-                            
-                        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card border-0 shadow-sm">
+                <div class="stat-icon bg-gradient-success">
+                    <i class="bi bi-person-plus"></i>
+                </div>
+                <div class="card-body">
+                    <div class="text-end">
+                        <p class="text-muted small mb-1">Kasus Tuntas</p>
+                        <h4 class="mb-0">215</h4>
                     </div>
                 </div>
+                <div class="card-footer bg-transparent border-0"></div>
+            </div>
+        </div>
 
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card stat-card border-0 shadow-sm">
-                        <div class="stat-icon bg-gradient-info">
-                            <i class="bi bi-cart"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="text-end">
-                                <p class="text-muted small mb-1">Kasus Sedang Berjalan</p>
-                                <h4 class="mb-0">20</h4>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-transparent border-0">
-                            
-                        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card border-0 shadow-sm">
+                <div class="stat-icon bg-gradient-info">
+                    <i class="bi bi-cart"></i>
+                </div>
+                <div class="card-body">
+                    <div class="text-end">
+                        <p class="text-muted small mb-1">Kasus Sedang Berjalan</p>
+                        <h4 class="mb-0">20</h4>
                     </div>
                 </div>
-            <!-- Charts Row -->
-            <div class="row mb-4">
-                <div class="col-lg-8 mb-4">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-0">
-                            <div class="chart-placeholder">
-                                <div class="text-center">
-                                    <i class="bi bi-bar-chart-fill mb-2" style="font-size: 2rem;"></i>
-                                    <div>Daftar Kasus Berdasarkan Kelas</div>
-                                    <small>Bar Chart</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card-footer bg-transparent border-0"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row mb-4">
+        <div class="col-lg-8 mb-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="mb-0">Daftar Kasus Berdasarkan Kelas</h6>
                 </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-0">
-                            <div class="chart-placeholder chart-dark">
-                                <div class="text-center">
-                                    <i class="bi bi-check-circle-fill mb-2" style="font-size: 2rem;"></i>
-                                    <div>Chart Donut</div>
-                                    <small>Informasi Kasus</small>
-                                </div>
-                            </div>
-                        </div>
-                        
+                <div class="card-body">
+                    <div style="position: relative; height: 300px;">
+                        <canvas id="barChart"></canvas>
                     </div>
                 </div>
             </div>
-
-            <!-- Projects and Timeline -->
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="mb-1">Daftar Kasus Terbaru</h6>
-                                <p class="text-muted small mb-0">
-                                </p>
-                            </div>
-                            <div class="dropdown">
-                                <button class="btn btn-link text-muted" type="button" data-bs-toggle="dropdown">
-                                    <i class="bi bi-three-dots-vertical"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                               <table id="datatablesHome" class="table table-hover w-100">
-                                    <thead class="table-light text-center align-middle">
-                                        <tr>
-                                            <th class="text-center">No</th>
-                                            <th>Nama Siswa</th>
-                                            <th>Kelas</th>
-                                            <th class="text-center">Kasus</th>
-                                        </tr>
-                                    </thead>
-                                    @csrf
-                                    <tbody>
-                                        @foreach ($siswa as $key => $s)
-                                            <tr>
-                                                <td class="text-center">{{ $key + 1 }}</td>
-                                                <td>{{ $s->nama_siswa }}</td>
-                                                <td class="text-center">{{ $s->tingkat }} {{ $s->jurusan }}</td>
-                                                <td>{{ $s->kasus }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <div class="chart-placeholder chart-dark">
+                        <div class="text-center">
+                            <i class="bi bi-check-circle-fill mb-2" style="font-size: 2rem;"></i>
+                            <div>Chart Donut</div>
+                            <small>Informasi Kasus</small>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Table -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+            <div>
+                <h6 class="mb-1">Daftar Kasus Terbaru</h6>
+                <p class="text-muted small mb-0"></p>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-link text-muted" type="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="datatablesHome" class="table table-hover w-100">
+                    <thead class="table-light text-center align-middle">
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th>Nama Siswa</th>
+                            <th>Kelas</th>
+                            <th class="text-center">Kasus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($siswa as $key => $s)
+                            <tr>
+                                <td class="text-center">{{ $key + 1 }}</td>
+                                <td>{{ $s->nama_siswa }}</td>
+                                <td class="text-center">{{ $s->tingkat }} {{ $s->jurusan }}</td>
+                                <td>{{ $s->kasus }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
+@section('scripts')
+<script>
+$(document).ready(function() {
+    $('#datatablesHome').DataTable();
+});
+</script>
+
+<script>
+    // Data dari controller
+    var chartLabels = {!! json_encode($kasusPerkelas->pluck('jurusan')) !!};
+    var chartData = {!! json_encode($kasusPerkelas->pluck('total')) !!};
+
+    // Debug
+    console.log('Chart Labels:', chartLabels);
+    console.log('Chart Data:', chartData);
+
+    // Tunggu DOM ready
+    document.addEventListener('DOMContentLoaded', function() {
+        var canvas = document.getElementById('barChart');
+        
+        if (!canvas) {
+            console.error('Canvas element tidak ditemukan');
+            return;
+        }
+
+        var ctx = canvas.getContext('2d');
+        
+        // Destroy chart lama jika ada
+        if (window.barChartInstance) {
+            window.barChartInstance.destroy();
+        }
+
+        // Buat chart baru
+        window.barChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartLabels,
+                datasets: [{
+                    label: 'Jumlah Kasus',
+                    data: chartData,
+                    backgroundColor: 'rgba(95, 109, 238, 0.7)',
+                    borderColor: 'rgba(95, 109, 238, 1)',
+                    borderWidth: 2,
+                    borderRadius: 4,
+                    minBarLength: 5  // Minimal tinggi bar 5px
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1,
+                            precision: 0,
+                            callback: function(value) {
+                                if (Number.isInteger(value)) {
+                                    return value;
+                                }
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                }
+            }
+        });
+    });
+</script>
+@endsection

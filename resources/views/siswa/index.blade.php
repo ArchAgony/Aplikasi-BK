@@ -187,10 +187,11 @@
                                 <td class="text-center">{{ $s->tingkat }} {{ $s->jurusan }}</td>
                                 <td>{{ $s->kasus }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-primary me-1"
-                                        onclick="editSiswa({{ $s->id }})">
+                                    <a href="/siswa/{{ $s->id }}">
+                                    <button class="btn btn-sm btn-outline-primary me-1">
                                         <i class="fas fa-edit"></i>
                                     </button>
+                                    </a>
                                     <a href="/siswa/{{ $s->id }}">
                                         <button class="btn btn-sm btn-outline-danger">
                                             <i class="fas fa-trash"></i>
