@@ -17,20 +17,17 @@ class LaporanKonselingSeeder extends Seeder
     {
         //
         $faker = Faker::create('id_ID');
-        $guruIds = User::pluck('id')->toArray();
         $siswaIds = Siswa::pluck('id')->toArray();
 
         for ($i = 1; $i <= 5; $i++) {
             LaporanKonseling::create([
-                'guru_id' => $faker->randomElement($guruIds),
-                'siswa_id' => $faker->randomElement($siswaIds),
                 'tanggal' => $faker->date(),
-                'evaluasi' => 'efektif',
+                'siswa_id' => $faker->randomElement($siswaIds),
                 'masalah' => $faker->sentence(3),
                 'penyebab' => $faker->sentence(4),
-                'tindak_lanjut' => $faker->sentence(5),
-                'kesimpulan_tindak_lanjut' => $faker->sentence(6),
-                'hasil_wawancara' => $faker->paragraph,
+                'kesimpulan_masalah' => $faker->sentence(6),
+                'penyelesaian' => $faker->paragraph,
+                'evaluasi' => 'efektif',
             ]);
         }
     }

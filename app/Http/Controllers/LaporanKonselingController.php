@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\LaporanKonseling;
+use App\Models\Siswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LaporanKonselingController extends Controller
@@ -13,7 +15,8 @@ class LaporanKonselingController extends Controller
     public function index()
     {
         //
-        return view('laporankons.index');
+        $laporan = LaporanKonseling::with('guru', 'siswa')->get();
+        return view('laporankons.index', compact('laporan'));
     }
 
     /**
@@ -22,7 +25,8 @@ class LaporanKonselingController extends Controller
     public function create()
     {
         //
-        return view('laporankons.form_laporank');
+        $siswa = Siswa::all();
+        return view('laporankons.form_laporank', compact('siswa'));
     }
 
     /**
@@ -31,6 +35,16 @@ class LaporanKonselingController extends Controller
     public function store(Request $request)
     {
         //
+        LaporanKonseling::create([
+            'siswa_id' => $request->nama,
+            'masalah' => $request->masalah,
+            'kesimpulan_masalah' => $request->kesimpulan,
+            'penyelesaian' => $request->penyelesaian,
+            'penyebab' => $request->penyebab,
+            'evaluasi' => $request->evaluasi,
+            'tanggal' => Carbon::now()
+        ]);
+        return redirect('/laporan')->with('success', 'data berhasil dibuat');
     }
 
     /**

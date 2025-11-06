@@ -20,6 +20,7 @@ Route::get("/tamu/create", [BukuTamuController::class,"create"]);
 
 Route::get("/laporan", [LaporanKonselingController::class, "index"]);
 Route::get("/laporan/create", [LaporanKonselingController::class, "create"]);
+Route::post("/laporan", [LaporanKonselingController::class, "store"]);
 
 Route::get("/kunjungan", [KunjunganRumahController::class,"index"]);
 Route::get('/kunjungan/create', [KunjunganRumahController::class, 'create']);
