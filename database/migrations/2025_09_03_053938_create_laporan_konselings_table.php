@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('laporan_konselings', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal');
-            $table->foreignId('siswa_id')->nullable()->constrained('siswas')->nullOnDelete();
+            $table->foreignId('siswa_id')->nullable()->constrained('siswas')->onDelete('restrict');
             $table->text('masalah');
             $table->text('penyebab')->nullable();
             $table->text('kesimpulan_masalah');

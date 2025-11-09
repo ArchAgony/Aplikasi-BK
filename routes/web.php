@@ -17,10 +17,14 @@ Route::get('/siswa/{id}', [SiswaController::class, 'destroy'])->name('siswa.dest
 
 Route::get("/tamu", [BukuTamuController::class,"index"]);
 Route::get("/tamu/create", [BukuTamuController::class,"create"]);
+// Route::get("/tamu/{id}/edit", [BukuTamuController::class,"edit"]);
 
 Route::get("/laporan", [LaporanKonselingController::class, "index"]);
 Route::get("/laporan/create", [LaporanKonselingController::class, "create"]);
 Route::post("/laporan", [LaporanKonselingController::class, "store"]);
+Route::get("/laporan/{id}/edit", [LaporanKonselingController::class, "edit"]);
+Route::post("/laporan/{id}", [LaporanKonselingController::class, "update"]);
+Route::get("/laporan/{id}", [LaporanKonselingController::class, "destroy"]);
 
 Route::get("/kunjungan", [KunjunganRumahController::class,"index"]);
 Route::get('/kunjungan/create', [KunjunganRumahController::class, 'create']);

@@ -169,7 +169,7 @@
             <div class="table-header">
                 Laporan
                 <a href="/laporan/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2"
-                        data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
+                        {{-- data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa" --}}>
                         <i class="fas fa-plus me-1"></i> Tambah
                     </button></a>
             </div>
@@ -186,7 +186,7 @@
                             <th>Kesimpulan</th>
                             <th>Penyelesaian</th>
                             <th>Evaluasi</th>
-                            <th>Action</th>
+                            <th>aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -195,8 +195,10 @@
                                 <td class="text-center align-middle">{{ $key + 1 }}</td>
                                 <td class="text-center align-middle">
                                     {{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
-                                <td class="text-center align-middle">{{ $item->siswa->nama_siswa }}</td>
-                                <td class="text-center align-middle">{{ $item->siswa->tingkat }} {{ $item->siswa->jurusan }}
+                                <td class="text-center align-middle">
+                                    {{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}
+                                </td>
+                                <td class="text-center align-middle">{{ $item->siswa->tingkat ?? '-' }} {{ $item->siswa->jurusan ?? '-' }}
                                 </td>
                                 <td class="text-center align-middle">{{ $item->masalah }}</td>
                                 <td class="text-center align-middle">{{ $item->penyebab }}</td>
@@ -204,8 +206,19 @@
                                 <td class="text-center align-middle">{{ $item->penyelesaian }}</td>
                                 <td class="text-center align-middle">{{ $item->evaluasi }}</td>
                                 <td class="text-center align-middle">
-                                    <a href="/tamu/{{ $item->id }}/edit"><button
-                                            class="btn btn-sm btn-primary">Edit</button></a>
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="/laporan/{{ $item->id }}/edit"
+                                                class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></a>
+                                        </div>
+                                        <div class="col">
+                                            <a onclick="confirmDelete({{ $item->id }})"
+                                                class="btn btn-sm btn-outline-danger me-1"><i class="fas fa-trash"></i></a>
+                                            <form id="delete-form-{{ $item->id }}"
+                                                action="/laporan/{{ $item->id }}" method="GET" style="display:none;">
+                                            </form>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -215,7 +228,7 @@
         </div>
     </div>
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#datatablesSimple').DataTable({
                 responsive: true,
@@ -255,5 +268,5 @@
             console.log('Simpan data siswa');
             $('#modal-tambah-siswa').modal('hide');
         }
-    </script>
+    </script> --}}
 @endsection

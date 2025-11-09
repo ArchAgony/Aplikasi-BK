@@ -91,16 +91,27 @@ class SiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
-        try {
-            Siswa::where('id', $id)->delete();
-            return redirect('siswa')->with('success', 'Data berhasil dihapus');
-        } catch (\Exception $th) {
-            return response()->json([
-                'message' => $th->getMessage()
-            ]);
+        $siswa = Siswa::findOrFail($id);
+
+        // Cek apakah siswa punya relasi
+        $bukuTamuCount = $siswa->bukuTamus()->count();
+        $laporanCount = $siswa->laporanKonselings()->count();
+        $kunjunganCount = $siswa->kunjunganRumahs()->count();
+
+        if ($bukuTamuCount > 0 || $laporanCount > 0 || $kunjunganCount > 0) {
+            return redirect()->back()->with(
+                'error',
+                'Siswa tidak bisa dihapus! Masih memiliki: ' .
+                    ($bukuTamuCount > 0 ? "$bukuTamuCount Buku Tamu, " : '') .
+                    ($laporanCount > 0 ? "$laporanCount Laporan Konseling, " : '') .
+                    ($kunjunganCount > 0 ? "$kunjunganCount Kunjungan Rumah" : '')
+            );
         }
+
+        $siswa->delete();
+
+        return redirect()->back()->with('success', 'Data siswa berhasil dihapus');
     }
 }

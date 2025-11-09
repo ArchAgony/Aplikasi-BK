@@ -176,7 +176,7 @@
                             <th>Nama Siswa</th>
                             <th>Kelas</th>
                             <th>Kasus</th>
-                            <th>Action</th>
+                            <th>aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -192,11 +192,11 @@
                                         <i class="fas fa-edit"></i>
                                     </button>
                                     </a>
-                                    <a href="/siswa/{{ $s->id }}">
-                                        <button class="btn btn-sm btn-outline-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </a>
+                                    <a onclick="confirmDelete({{ $s->id }})"
+                                        class="btn btn-sm btn-outline-danger me-1"><i class="fas fa-trash"></i></a>
+                                    <form id="delete-form-{{ $s->id }}" action="/siswa/{{ $s->id }}"
+                                        method="GET" style="display:none;">
+                                    </form>
                                 </td>
                             </tr>
 

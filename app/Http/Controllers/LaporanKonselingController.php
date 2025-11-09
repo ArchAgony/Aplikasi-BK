@@ -26,7 +26,7 @@ class LaporanKonselingController extends Controller
     {
         //
         $siswa = Siswa::all();
-        return view('laporankons.form_laporank', compact('siswa'));
+        return view('laporankons.create', compact('siswa'));
     }
 
     /**
@@ -58,24 +58,39 @@ class LaporanKonselingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(LaporanKonseling $laporanKonseling)
+    public function edit(string $id)
     {
-        //
+        $laporan = LaporanKonseling::with('guru', 'siswa')->findOrFail($id);
+        $siswa = Siswa::all();
+
+        return view('laporankons.edit', compact('laporan', 'siswa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LaporanKonseling $laporanKonseling)
+    public function update(Request $request, string $id)
     {
-        //
+        $laporan = LaporanKonseling::find($id);
+
+        $laporan->siswa_id = $request->nama;
+        $laporan->masalah = $request->masalah;
+        $laporan->kesimpulan_masalah = $request->kesimpulan;
+        $laporan->penyelesaian = $request->penyelesaian;
+        $laporan->penyebab = $request->penyebab;
+        $laporan->evaluasi = $request->evaluasi;
+
+        $laporan->save();
+
+        return redirect('/laporan')->with('success', 'Data berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LaporanKonseling $laporanKonseling)
+    public function destroy(string $id)
     {
-        //
+        LaporanKonseling::where('id', $id)->delete();
+        return redirect('/laporan')->with('success', 'Data berhasil dihapus');
     }
 }

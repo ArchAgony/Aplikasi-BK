@@ -193,11 +193,15 @@
                         @foreach ($data as $key => $item)
                             <tr>
                                 <td class="text-center align-middle">{{ $key + 1 }}</td>
-                                <td class="text-center align-middle">{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
+                                <td class="text-center align-middle">
+                                    {{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                 <td class="text-center align-middle">{{ $item->nama_tamu }}</td>
-                                <td class="text-center align-middle">{{ $item->siswa->nama_siswa }}</td>
-                                <td class="text-center align-middle">{{ $item->siswa->tingkat }} {{ $item->siswa->jurusan }}</td>
-                                <td class="text-center align-middle">{{ $item->siswa->total_kunjungan }}</td>
+                                <td class="text-center align-middle">
+                                    {{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}
+                                </td>
+                                <td class="text-center align-middle">{{ $item->siswa->tingkat ?? '-' }} {{ $item->siswa->jurusan ?? '-' }}
+                                </td>
+                                <td class="text-center align-middle">{{ $item->siswa->total_kunjungan ?? '-' }}</td>
                                 <td class="text-center align-middle">{{ $item->no_telp }}</td>
                                 <td class="text-center align-middle">{{ $item->alamat }}</td>
                                 <td class="text-center align-middle">{{ $item->tindak_lanjut }}</td>
