@@ -331,10 +331,8 @@
         <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
         <script src="{{ asset('Js/dataTables.responsive.js') }}"></script>
         <script src="{{ asset('Js/responsive.dataTables.js') }}"></script>
-        <script src="
-                                        {{ asset('Js/sweetalert2.all.min.js') }}
-                                        "></script>
-
+        <script src="{{ asset('Js/sweetalert2.all.min.js') }}"></script>
+        <script src="{{ asset('Js/signature_pad.umd.min.js') }}"></script>
         @if (session('success'))
             <script>
                 Swal.fire({

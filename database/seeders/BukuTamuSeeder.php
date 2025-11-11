@@ -17,18 +17,18 @@ class BukuTamuSeeder extends Seeder
     {
         //
         $faker = Faker::create('id_ID');
-        $guruIds = User::pluck('id')->toArray();
+        // $guruIds = User::pluck('id')->toArray();
         $siswaIds = Siswa::pluck('id')->toArray();
 
         for ($i = 1; $i <= 5; $i++) {
             BukuTamu::create([
                 'tanggal' => $faker->date(),
-                'guru_id' => $faker->randomElement($guruIds),
+                // 'guru_id' => $faker->randomElement($guruIds),
                 'siswa_id' => $faker->randomElement($siswaIds),
                 'nama_tamu' => $faker->name,
                 'no_telp' => $faker->phoneNumber,
                 'alamat' => $faker->address,
-                'keperluan' => $faker->sentence(3),
+                // 'keperluan' => $faker->sentence(3),
                 'tindak_lanjut' => $faker->sentence(6),
                 'ttd_path' => 'signature.png',
             ]);

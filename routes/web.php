@@ -17,6 +17,7 @@ Route::get('/siswa/{id}', [SiswaController::class, 'destroy'])->name('siswa.dest
 
 Route::get("/tamu", [BukuTamuController::class,"index"]);
 Route::get("/tamu/create", [BukuTamuController::class,"create"]);
+Route::post("/tamu", [BukuTamuController::class,"store"]);
 // Route::get("/tamu/{id}/edit", [BukuTamuController::class,"edit"]);
 
 Route::get("/laporan", [LaporanKonselingController::class, "index"]);

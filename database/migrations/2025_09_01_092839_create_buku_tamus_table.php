@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('buku_tamus', function (Blueprint $table) {
             $table->id();
             $table->dateTime('tanggal');
-            $table->foreignId('guru_id')->constrained('users')->cascadeOnDelete();
+            // $table->foreignId('guru_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('siswa_id')->nullable()->constrained('siswas')->onDelete('restrict');;
             $table->string('nama_tamu');
             $table->string('no_telp', 30)->nullable();
             $table->text('alamat')->nullable();
-            $table->text('keperluan');
+            // $table->text('keperluan');
             $table->text('tindak_lanjut')->nullable();
             $table->string('ttd_path')->nullable();
             $table->timestamps();
