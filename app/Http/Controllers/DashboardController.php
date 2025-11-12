@@ -13,14 +13,25 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $jumlahsiswa = Siswa::count();
-        $siswa = Siswa::all();
+            $jumlahsiswa = Siswa::count();
+            $siswa = Siswa::all();
 
-        $kasusPerkelas = DB::table('siswas')
-    ->select('jurusan', DB::raw('COUNT(*) as total'))
-    ->groupBy('jurusan')
-    ->get();
-        return view('dashboard.home', compact('jumlahsiswa','siswa','kasusPerkelas'));
+        // Ambil jumlah kasus berdasarkan kelas dari tabel laporan_konselings
+        // Menggabungkan tingkat + jurusan sebagai label kelas
+        $kasusPerkelas = DB::table('laporan_konselings')
+            ->join('siswas', 'laporan_konselings.siswa_id', '=', 'siswas.id')
+            ->select(DB::raw("CONCAT(siswas.tingkat, ' ', siswas.jurusan) as kelas"), DB::raw('COUNT(laporan_konselings.id) as total'))
+            ->groupBy('siswas.tingkat', 'siswas.jurusan')
+            ->orderByDesc('total')
+            ->get();
+
+        // Ambil jumlah kasus berdasarkan jenis masalah dari laporan_konselings
+        $kasusPerMasalah = DB::table('laporan_konselings')
+            ->select('masalah', DB::raw('COUNT(id) as total'))
+            ->groupBy('masalah')
+            ->orderByDesc('total')
+            ->get();
+        return view('dashboard.home', compact('jumlahsiswa','siswa','kasusPerkelas','kasusPerMasalah'));
     }
 
     /**

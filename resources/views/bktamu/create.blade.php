@@ -60,8 +60,8 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Nama Siswa</label>
-                                <select class="form-select" name="nama">
-                                    <option selected disabled>Nama Siswa</option>
+                                <select class="form-select" name="nama" required>
+                                    <option value="" selected disabled>Nama Siswa</option>
                                     @foreach ($siswa as $item)
                                         <option value="{{ $item->id }}">
                                             {{ $item->nama_siswa }}
