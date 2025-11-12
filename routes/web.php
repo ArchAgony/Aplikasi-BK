@@ -33,4 +33,4 @@ Route::get('/register', [UserController::class, 'RegisterForm'])->name('register
 Route::post('/register', [UserController::class, 'Register'])->name('register');
 Route::get('/login', function () {
     return view('/auth/login');
-});
+})->name('login');
