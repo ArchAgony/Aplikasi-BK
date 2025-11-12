@@ -32,7 +32,7 @@
                     <div class="mb-3">
                         <label class="form-label">Nama Siswa</label>
                         <select class="form-select" name="nama" required>
-                            <option selected disabled>Nama Siswa</option>
+                            <option value="" selected disabled>-- Pilih Nama Siswa --</option>
                             @foreach ($siswa as $item)
                                 <option value="{{ $item->id }}">
                                     {{ $item->nama_siswa }}
@@ -59,7 +59,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Evaluasi</label>
                                 <select class="form-select" name="evaluasi" required>
-                                    <option selected disabled>Pilih kategori...</option>
+                                    <option value="" selected disabled>Pilih kategori...</option>
                                     <option value="efektif">Efektif</option>
                                     <option value="tidak efektif">Tidak Efektif</option>
                                 </select>
