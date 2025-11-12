@@ -31,9 +31,10 @@ Route::get("/laporan/{id}", [LaporanKonselingController::class, "destroy"]);
 
 Route::get("/kunjungan", [KunjunganRumahController::class,"index"]);
 Route::get('/kunjungan/create', [KunjunganRumahController::class, 'create']);
+Route::get('kunjungan/laporan/{id}/edit', [KunjunganRumahController::class, 'edit'])->name('kunjungan.edit');
 Route::get('/kunjungan/{id}/laporan', [KunjunganRumahController::class, 'laporan'])->name('kunjungan.laporan');
 Route::get('/kunjungan/{id}/layanan', [KunjunganRumahController::class, 'layanan'])->name('kunjungan.layanan');
-
+Route::get('/kunjungan/{id}', [KunjunganRumahController::class, 'destroy'])->name('kunjungan.destroy');
 
 route::post('/kunjungan', [KunjunganRumahController::class, 'store'])->name('kunjungan.store');
 

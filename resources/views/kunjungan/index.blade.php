@@ -12,16 +12,6 @@
             margin-bottom: 0;
         }
 
-        .modal-header {
-            background: linear-gradient(135deg, #e91e63, #f06292);
-            color: white;
-            padding: 15px 20px;
-            font-weight: 600;
-            font-size: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 0;
-        }
-
         #datatablesSimple {
             width: 100% !important;
             background: white;
@@ -33,7 +23,6 @@
             border: none !important;
         }
 
-        /* ✅ FIX SEARCH BOX POSITION */
         .dataTables_wrapper .dataTables_filter {
             float: right !important;
             text-align: right !important;
@@ -54,7 +43,6 @@
             box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
         }
 
-        /* ✅ FIX LENGTH MENU POSITION */
         .dataTables_wrapper .dataTables_length {
             float: left !important;
             margin-bottom: 10px;
@@ -75,7 +63,6 @@
             min-width: 70px;
         }
 
-        /* ✅ INFO & PAGINATION STYLING */
         .dataTables_wrapper .dataTables_info {
             float: left !important;
             padding-top: 10px;
@@ -116,7 +103,6 @@
             cursor: not-allowed;
         }
 
-        /* ✅ CLEAR FLOATS */
         .dataTables_wrapper::after {
             content: "";
             display: table;
@@ -129,12 +115,36 @@
             background: white;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-            overflow: hidden;
+            overflow: visible !important; /* FIX DROPDOWN */
         }
 
-        /* ✅ RESPONSIVE TABLE */
-        @media (max-width: 768px) {
+        /* ✅ FIX DROPDOWN Z-INDEX */
+        .dataTables_wrapper {
+            position: relative;
+            z-index: 1;
+            overflow: visible !important;
+        }
 
+        .authors-table {
+            overflow: visible !important;
+        }
+
+        .dropdown-menu {
+            z-index: 9999 !important;
+            position: absolute !important;
+        }
+
+        .table td {
+            position: relative;
+        }
+
+        /* Nonaktifkan scroll yang memotong dropdown */
+        .dataTables_wrapper .dataTables_scroll,
+        .dataTables_scrollBody {
+            overflow: visible !important;
+        }
+
+        @media (max-width: 768px) {
             .dataTables_wrapper .dataTables_filter,
             .dataTables_wrapper .dataTables_length {
                 float: none !important;
@@ -177,7 +187,7 @@
                             <th>Nama Siswa</th>
                             <th>Kelas</th>
                             <th>Alamat</th>
-                            <th>Laporan Kunjungan & <br> Layanan Kunjungan Rumah</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -194,14 +204,32 @@
                                 <td>{{ $item->bukutamu->alamat }}</td>
                                 <td>
                                     <center>
-                                        <a href="{{ route('kunjungan.laporan', $item->id) }}"
-                                            class="btn btn-sm btn-primary">
-                                            Laporan
-                                        </a>
-                                        <a href="{{ route('kunjungan.layanan', $item->id) }}"
-                                            class="btn btn-sm btn-success">
-                                            Layanan
-                                        </a>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-secondary dropdown-toggle" 
+                                                    type="button" 
+                                                    data-bs-toggle="dropdown"
+                                                    data-bs-boundary="window" 
+                                                    aria-expanded="false">
+                                                Aksi
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="{{ route('kunjungan.laporan', $item->id) }}">
+                                                    <i class="fas fa-file-alt me-2"></i>Laporan
+                                                </a></li>
+                                                <li><a class="dropdown-item" href="{{ route('kunjungan.layanan', $item->id) }}">
+                                                    <i class="fas fa-hands-helping me-2"></i>Layanan
+                                                </a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item" href="{{ route('kunjungan.edit', $item->id) }}">
+                                                    <i class="fas fa-edit me-2"></i>Edit
+                                                </a></li>
+                                                <li><a class="dropdown-item text-danger" 
+                                                       href="{{ route('kunjungan.destroy', $item->id) }}" 
+                                                       onclick="return confirm('Yakin ingin menghapus?')">
+                                                    <i class="fas fa-trash me-2"></i>Delete
+                                                </a></li>
+                                            </ul>
+                                        </div>
                                     </center>
                                 </td>
                             </tr>
@@ -214,11 +242,13 @@
 
     <script>
         $(document).ready(function() {
-            $('#datatablesSimple').DataTable({
-                responsive: true,
+            var table = $('#datatablesSimple').DataTable({
+                responsive: false, // Nonaktifkan responsive untuk fix dropdown
+                scrollX: false,
+                scrollCollapse: false,
                 language: {
                     search: "Cari:",
-                    searchPlaceholder: "Cari siswa...",
+                    searchPlaceholder: "Cari data...",
                     lengthMenu: "Tampilkan _MENU_ data",
                     info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
                     infoEmpty: "Tidak ada data",
@@ -232,9 +262,7 @@
                         last: "Terakhir"
                     }
                 },
-                order: [
-                    [0, 'asc']
-                ],
+                order: [[0, 'asc']],
                 pageLength: 10,
                 lengthMenu: [
                     [5, 10, 25, 50, -1],
@@ -242,8 +270,19 @@
                 ],
                 columnDefs: [{
                     className: "text-center",
-                    targets: [0, 2, 4]
+                    targets: [0, 1, 4, 7],
+                    orderable: false,
+                    targets: [7] // Kolom aksi tidak bisa disort
                 }]
+            });
+
+            // Fix overflow saat dropdown dibuka
+            $('#datatablesSimple').on('shown.bs.dropdown', function () {
+                $('.dataTables_wrapper').css('overflow', 'visible');
+            });
+
+            $('#datatablesSimple').on('hidden.bs.dropdown', function () {
+                $('.dataTables_wrapper').css('overflow', 'visible');
             });
         });
     </script>
