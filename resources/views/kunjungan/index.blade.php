@@ -1,6 +1,5 @@
 @extends('master')
 @section('content')
-
     <style>
         .table-header {
             background: linear-gradient(135deg, #84c4e2, #fff3f7);
@@ -135,6 +134,7 @@
 
         /* ✅ RESPONSIVE TABLE */
         @media (max-width: 768px) {
+
             .dataTables_wrapper .dataTables_filter,
             .dataTables_wrapper .dataTables_length {
                 float: none !important;
@@ -187,15 +187,19 @@
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                 <td>{{ $item->guru->nama_guru }}</td>
                                 <td>{{ $item->guru->jabatan }}</td>
-                                <td>{{ $item->siswa->nama_siswa }}</td>
-                                <td>{{ $item->siswa->tingkat }} {{ $item->siswa->jurusan }}</td>
+                                <td class="text-center align-middle">
+                                    {{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}
+                                </td>
+                                <td>{{ $item->siswa->tingkat ?? '-' }} {{ $item->siswa->jurusan ?? '-' }}</td>
                                 <td>{{ $item->bukutamu->alamat }}</td>
                                 <td>
                                     <center>
-                                        <a href="{{ route('kunjungan.laporan', $item->id) }}" class="btn btn-sm btn-primary">
+                                        <a href="{{ route('kunjungan.laporan', $item->id) }}"
+                                            class="btn btn-sm btn-primary">
                                             Laporan
                                         </a>
-                                        <a href="{{ route('kunjungan.layanan', $item->id) }}" class="btn btn-sm btn-success">
+                                        <a href="{{ route('kunjungan.layanan', $item->id) }}"
+                                            class="btn btn-sm btn-success">
                                             Layanan
                                         </a>
                                     </center>
@@ -209,7 +213,7 @@
     </div>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#datatablesSimple').DataTable({
                 responsive: true,
                 language: {
@@ -228,7 +232,9 @@
                         last: "Terakhir"
                     }
                 },
-                order: [[0, 'asc']],
+                order: [
+                    [0, 'asc']
+                ],
                 pageLength: 10,
                 lengthMenu: [
                     [5, 10, 25, 50, -1],

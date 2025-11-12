@@ -11,6 +11,9 @@
     <!-- Bootstrap Icons -->
     <link href="{{ asset('/Lib/bootstrap-icons-1.11.1/bootstrap-icons.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}">
+    <link href="
+{{ asset('Css/sweetalert2.min.css') }}
+" rel="stylesheet">
     <script src="{{ asset('/Lib/font-awesome-pro-5.15.4/js/all.js') }}" crossorigin="anonymous"></script>
 
     <style>
@@ -328,6 +331,30 @@
         <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
         <script src="{{ asset('Js/dataTables.responsive.js') }}"></script>
         <script src="{{ asset('Js/responsive.dataTables.js') }}"></script>
+        <script src="{{ asset('Js/sweetalert2.all.min.js') }}"></script>
+        <script src="{{ asset('Js/signature_pad.umd.min.js') }}"></script>
+        @if (session('success'))
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            </script>
+        @endif
+
+        @if (session('error'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: '{{ session('error') }}'
+                });
+            </script>
+        @endif
+
         <script>
             $(document).ready(function() {
 
@@ -386,6 +413,23 @@
                 // Set nilai yang sudah diubah
                 e.target.value = value;
             });
+
+            function confirmDelete(id) {
+                Swal.fire({
+                    title: 'Yakin ingin menghapus?',
+                    text: "Data yang dihapus tidak bisa dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-form-' + id).submit();
+                    }
+                })
+            }
         </script>
 </body>
 

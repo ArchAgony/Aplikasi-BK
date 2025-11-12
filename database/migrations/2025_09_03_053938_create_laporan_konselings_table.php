@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('laporan_konselings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('siswa_id')->nullable()->constrained('siswas')->nullOnDelete();
-            $table->foreignId('guru_id')->constrained('users')->cascadeOnDelete();
-            $table->enum('evaluasi', ['efektif', 'tidak efektif']);
             $table->date('tanggal');
+            $table->foreignId('siswa_id')->nullable()->constrained('siswas')->onDelete('restrict');
             $table->text('masalah');
             $table->text('penyebab')->nullable();
-            $table->text('tindak_lanjut');
-            $table->text('kesimpulan_tindak_lanjut')->nullable();
-            $table->text('hasil_wawancara')->nullable();
+            $table->text('kesimpulan_masalah');
+            $table->text('penyelesaian');
+            $table->enum('evaluasi', ['efektif', 'tidak efektif']);
             $table->timestamps();
         });
     }

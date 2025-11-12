@@ -193,17 +193,33 @@
                         @foreach ($data as $key => $item)
                             <tr>
                                 <td class="text-center align-middle">{{ $key + 1 }}</td>
-                                <td class="text-center align-middle">{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
+                                <td class="text-center align-middle">
+                                    {{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                 <td class="text-center align-middle">{{ $item->nama_tamu }}</td>
-                                <td class="text-center align-middle">{{ $item->siswa->nama_siswa }}</td>
-                                <td class="text-center align-middle">{{ $item->siswa->tingkat }} {{ $item->siswa->jurusan }}</td>
-                                <td class="text-center align-middle">{{ $item->siswa->total_kunjungan }}</td>
+                                <td class="text-center align-middle">
+                                    {{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}
+                                </td>
+                                <td class="text-center align-middle">{{ $item->siswa->tingkat ?? '-' }}
+                                    {{ $item->siswa->jurusan ?? '-' }}
+                                </td>
+                                <td class="text-center align-middle">{{ $item->siswa->total_kunjungan ?? '-' }}</td>
                                 <td class="text-center align-middle">{{ $item->no_telp }}</td>
                                 <td class="text-center align-middle">{{ $item->alamat }}</td>
                                 <td class="text-center align-middle">{{ $item->tindak_lanjut }}</td>
                                 <td class="text-center align-middle">
-                                    <a href="/tamu/{{ $item->id }}/edit"><button
-                                            class="btn btn-sm btn-primary">Edit</button></a>
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="/tamu/{{ $item->id }}/edit"
+                                                class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></a>
+                                        </div>
+                                        <div class="col">
+                                            <a onclick="confirmDelete({{ $item->id }})"
+                                                class="btn btn-sm btn-outline-danger me-1"><i class="fas fa-trash"></i></a>
+                                            <form id="delete-form-{{ $item->id }}"
+                                                action="/tamu/{{ $item->id }}" method="GET" style="display:none;">
+                                            </form>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
