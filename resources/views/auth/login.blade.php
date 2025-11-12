@@ -10,7 +10,7 @@
       min-height: 100vh !important;
     }
     .banner {
-      background: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg') no-repeat center center/cover;
+      background: url("{{ asset('Images/BlueAbs.jpg') }}") no-repeat center center/cover;
       position: relative;
     }
     .banner::after {
@@ -18,11 +18,21 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(255, 102, 0, 0.7); /* overlay orange */
+      background: rgba(116, 139, 230, 0.7); /* overlay orange */
     }
     .banner-content {
       position: relative;
       z-index: 2;
+    }
+    .btn{
+       background: rgba(116, 139, 230, 0.7);
+    }
+    .hv{
+      color: rgba(116, 139, 230, 0.7);
+    }
+    .btn:hover,
+    .btn:focus {
+        background: rgba(116, 139, 230, 1);
     }
   </style>
 </head>
@@ -34,7 +44,7 @@
     <div class="col-md-6 d-flex align-items-center justify-content-center">
       <div class="w-75">
         <h3 class="fw-bold mb-3">Sign In</h3>
-        <p class="mb-4">Enter your email and password to sign in</p>
+        <p class="mb-4">Masukkan Email Dan Password Untuk Login</p>
         <form>
           <div class="mb-3">
             <input type="email" class="form-control" placeholder="Email" required>
@@ -44,23 +54,23 @@
           </div>
           <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" id="rememberMe">
-            <label class="form-check-label" for="rememberMe">Remember me</label>
+            <label class="form-check-label" for="rememberMe">Ingat Saya</label>
           </div>
           <div class="d-grid">
-            <button class="btn btn-warning text-white fw-bold">Sign in</button>
+            <button class="btn text-white fw-bold">Sign in</button>
           </div>
         </form>
         <p class="mt-3 mb-1 text-sm">
-          Forgot your password? Reset it <a href="#" class="text-danger fw-bold">here</a>
+          Lupa Password ? Reset Di <a href="#" class="text-danger fw-bold">Sini</a>
         </p>
-        <p class="text-sm">Don't have an account? <a href="#" class="text-warning fw-bold">Sign up</a></p>
+        <p class="text-sm">Tidak Punya Akun ? <a href="{{ route('register') }}" class="hv fw-bold">Sign up</a></p>
       </div>
     </div>
     <div class="col-md-6 d-none d-md-flex banner text-white align-items-center justify-content-center">
       <div class="banner-content text-center px-4">
-        <h4 class="fw-bold">"Attention is the new currency"</h4>
-        <p>The more effortless the writing looks, the more effort the writer actually put into the process.</p>
-      </div>
+                    <h4 class="fw-bold">"Pendidikan adalah kunci masa depan"</h4>
+                    <p>Bergabunglah dengan kami untuk memberikan pendidikan terbaik bagi generasi penerus bangsa.</p>
+                </div>
     </div>
   </div>
 </div>
