@@ -89,35 +89,31 @@ class BukuTamuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BukuTamu $bukuTamu)
+    public function edit(string $id)
     {
         //
+        $data = BukuTamu::with('siswa')->findOrFail($id);
+        $siswa = Siswa::all();
+        return view('bktamu.edit', compact('data', 'siswa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BukuTamu $bukuTamu)
+    public function update(Request $request, string $id)
     {
         //
         try {
-            $field = $request->validate([
-                'guru_id' => 'required',
-                'siswa_id' => 'nullable',
-                'nama_tamu' => 'required',
-                'no_telp' => 'nullable',
-                'alamat' => 'nullable',
-                'keperluan' => 'required',
-                'tindak_lanjut' => 'nullable',
-                'ttd_path' => 'nullable',
-            ]);
+            $data = BukuTamu::find($id);
 
-            $bukuTamu->update($field);
+            $data->siswa_id = $request->nama;
+            $data->nama_tamu = $request->ortu;
+            $data->no_telp = $request->no;
+            $data->alamat = $request->alamat;
+            $data->tindak_lanjut = $request->tindak;
 
-            return response()->json([
-                'message' => 'Berhasil mengubah data',
-                'data' => $bukuTamu
-            ]);
+            $data->save();
+            return redirect('/tamu')->with('success', 'Data tamu berhasil diupdate');
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage()
@@ -128,14 +124,12 @@ class BukuTamuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BukuTamu $bukuTamu)
+    public function destroy(string $id)
     {
         //
         try {
-            $bukuTamu->delete();
-            return response()->json([
-                'message' => 'berhasil dihapus'
-            ]);
+            BukuTamu::where('id', $id)->delete();
+            return redirect('/tamu')->with('success', 'Data tamu berhasil dihapus');
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage()
