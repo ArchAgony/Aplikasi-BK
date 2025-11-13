@@ -43,11 +43,11 @@ class BukuTamuController extends Controller
         $image = str_replace('data:image/png;base64,', '', $base64String);
         $image = str_replace(' ', '+', $image);
         $imageData = base64_decode($image);
-        
+
         $imageName = 'ttd_' . date('YmdHis') . '.png';
         $path = 'ttd/' . $imageName;
         Storage::disk('public')->put($path, $imageData);
-        
+
         return $path;
     }
 
@@ -59,6 +59,9 @@ class BukuTamuController extends Controller
         //
         try {
             $ttdTamuPath = $this->saveSignature($request->ttd_tamu, 'tamu');
+            $siswaId = $request->siswa_id;
+            $jumlahKunjunganSebelumnya = BukuTamu::where('siswa_id', $siswaId)->count();
+            $kunjunganKe = $jumlahKunjunganSebelumnya + 1;
 
             BukuTamu::create([
                 'siswa_id' => $request->nama,
@@ -67,6 +70,7 @@ class BukuTamuController extends Controller
                 'alamat' => $request->alamat,
                 'tindak_lanjut' => $request->tindak,
                 'ttd_path' => $ttdTamuPath,
+                'kunjungan_ke' => $kunjunganKe,
                 'tanggal' => now()->toDateString(),
             ]);
 

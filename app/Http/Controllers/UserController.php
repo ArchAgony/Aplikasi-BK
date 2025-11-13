@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function RegisterForm() {
+    public function RegisterForm()
+    {
         return view('auth.register');
     }
 
-    public function Register(Request $request){
+    public function Register(Request $request)
+    {
         try {
             $field = $request->validate([
                 'nama_guru' => 'required|unique:users,nama_guru',
@@ -22,10 +25,6 @@ class UserController extends Controller
             ]);
 
             $user = User::create($field);
-            // return response()->json([
-            //     'message' => 'created successfully',
-            //     'data' => $user
-            // ]);
 
             return redirect()->route('register.form')->with('success', 'registrasi berhasil!');
         } catch (\Exception $th) {
@@ -35,23 +34,28 @@ class UserController extends Controller
         }
     }
 
-    public function Login(Request $request){
+    public function LoginForm()
+    {
+        if (Auth::check()) {
+            return redirect('/dashboard');
+        }
+        return view('auth.login');
+    }
+
+    public function Login(Request $request)
+    {
         try {
-            $request->validate([
-                'email' => 'required|exists:users,email',
-                'password' => 'required'
-            ]);
-            $user = User::where('email', $request->email)->first();
-            if (!$user || !Hash::check($request->password, $user->password)) {
-                return response()->json([
-                    'message' => 'User atau password salah'
-                ]);
+            $email = $request->email;
+            $password = $request->password;
+            $remember = $request->has('remember');
+
+            if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
+                $request->session()->regenerate();
+
+                return redirect('/')->with('success', 'Selamat datang, ' . Auth::user()->nama_guru);
             }
-            $token = $user->createToken('auth_token')->plainTextToken;
-            return response()->json([
-                'message' => 'berhasil login',
-                'token' => $token
-            ]);
+
+            return back()->with('error', 'Email atau password salah!')->withInput($request->only('email'));
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage()
@@ -59,13 +63,15 @@ class UserController extends Controller
         }
     }
 
-    public function Logout(Request $request){
+    public function Logout(Request $request)
+    {
         try {
-            $user = $request->user();
-            $user->CurrentAccessToken()->delete();
-            return response()->json([
-                'message' => 'berhasil logout'
-            ]);
+            Auth::logout();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect('/login')->with('success', 'Logout berhasil!');
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage()

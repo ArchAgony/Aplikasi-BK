@@ -269,26 +269,21 @@
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                 </nav>
-                <div class="ms-auto">
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="profileDropdown"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                            <li><a class="dropdown-item" href="/profile"><i class="bi bi-person"></i> Profil</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <form method="POST" action="{{-- route('logout') --}}">
-                                    @csrf
-                                    <button class="dropdown-item" type="submit"><i class="bi bi-box-arrow-right"></i>
-                                        Log Out</button>
-                                </form>
-                            </li>
-                        </ul>
+                <div class="d-flex align-items-center">
+                    <div class="text-white me-3">
+                        <div class="fw-bold">
+                            <i class="fas fa-user-tie"></i> {{ Auth::user()->nama_guru }}
+                        </div>
+                        <small class="opacity-75">
+                            NIP: {{ Auth::user()->nip }}
+                        </small>
                     </div>
+                    <form action="/logout" method="POST" id="logout-form">
+                        @csrf
+                        <button type="button" class="dropdown-item text-danger" onclick="confirmLogout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -429,6 +424,24 @@
                         document.getElementById('delete-form-' + id).submit();
                     }
                 })
+            }
+
+            function confirmLogout() {
+                Swal.fire({
+                    title: 'Konfirmasi Logout',
+                    text: 'Apakah Anda yakin ingin keluar?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: '<i class="fas fa-sign-out-alt"></i> Ya, Logout',
+                    cancelButtonText: '<i class="fas fa-times"></i> Batal',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit form logout
+                        document.getElementById('logout-form').submit();
+                    }
+                });
             }
         </script>
 </body>

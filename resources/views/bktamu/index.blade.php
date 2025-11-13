@@ -202,7 +202,7 @@
                                 <td class="text-center align-middle">{{ $item->siswa->tingkat ?? '-' }}
                                     {{ $item->siswa->jurusan ?? '-' }}
                                 </td>
-                                <td class="text-center align-middle">{{ $item->siswa->total_kunjungan ?? '-' }}</td>
+                                <td class="text-center align-middle">Ke-{{ $item->kunjungan_ke }}</td>
                                 <td class="text-center align-middle">{{ $item->no_telp }}</td>
                                 <td class="text-center align-middle">{{ $item->alamat }}</td>
                                 <td class="text-center align-middle">{{ $item->tindak_lanjut }}</td>
