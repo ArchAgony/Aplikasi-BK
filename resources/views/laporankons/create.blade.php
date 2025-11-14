@@ -27,7 +27,7 @@
                 Form Pengisian Buku Tamu
             </div>
             <div class="authors-table p-3">
-                <form action="/laporan" method="post">
+                <form action="/laporan/store" method="post">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nama Siswa</label>
