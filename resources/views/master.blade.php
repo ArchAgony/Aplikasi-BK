@@ -269,26 +269,14 @@
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                 </nav>
-                <div class="ms-auto">
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="profileDropdown"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle"></i>
+                <div class="d-flex align-items-center">
+                    
+                    <form action="/logout" method="POST" id="logout-form">
+                        @csrf
+                        <button type="button" class="dropdown-item text-danger" onclick="confirmLogout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                            <li><a class="dropdown-item" href="/profile"><i class="bi bi-person"></i> Profil</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <form method="POST" action="{{-- route('logout') --}}">
-                                    @csrf
-                                    <button class="dropdown-item" type="submit"><i class="bi bi-box-arrow-right"></i>
-                                        Log Out</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -331,10 +319,8 @@
         <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
         <script src="{{ asset('Js/dataTables.responsive.js') }}"></script>
         <script src="{{ asset('Js/responsive.dataTables.js') }}"></script>
-        <script src="
-                                        {{ asset('Js/sweetalert2.all.min.js') }}
-                                        "></script>
-
+        <script src="{{ asset('Js/sweetalert2.all.min.js') }}"></script>
+        <script src="{{ asset('Js/signature_pad.umd.min.js') }}"></script>
         @if (session('success'))
             <script>
                 Swal.fire({
@@ -431,6 +417,24 @@
                         document.getElementById('delete-form-' + id).submit();
                     }
                 })
+            }
+
+            function confirmLogout() {
+                Swal.fire({
+                    title: 'Konfirmasi Logout',
+                    text: 'Apakah Anda yakin ingin keluar?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: '<i class="fas fa-sign-out-alt"></i> Ya, Logout',
+                    cancelButtonText: '<i class="fas fa-times"></i> Batal',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit form logout
+                        document.getElementById('logout-form').submit();
+                    }
+                });
             }
         </script>
 </body>

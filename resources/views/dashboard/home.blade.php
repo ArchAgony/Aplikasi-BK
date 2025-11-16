@@ -219,13 +219,12 @@
         </div>
         <div class="col-lg-4 mb-4">
             <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="mb-0">Jenis Kasus Terbanyak</h6>
+                </div>
                 <div class="card-body p-0">
-                    <div class="chart-placeholder chart-dark">
-                        <div class="text-center">
-                            <i class="bi bi-check-circle-fill mb-2" style="font-size: 2rem;"></i>
-                            <div>Chart Donut</div>
-                            <small>Informasi Kasus</small>
-                        </div>
+                    <div style="position: relative; height: 300px;">
+                        <canvas id="donutChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -286,9 +285,13 @@ $(document).ready(function() {
 </script>
 
 <script>
-    // Data dari controller
-    var chartLabels = {!! json_encode($kasusPerkelas->pluck('jurusan')) !!};
+    // Data dari controller (kelas diambil dari laporan_konselings)
+    var chartLabels = {!! json_encode($kasusPerkelas->pluck('kelas')) !!};
     var chartData = {!! json_encode($kasusPerkelas->pluck('total')) !!};
+
+    // Data untuk donut (jenis kasus dari kolom 'masalah')
+    var donutLabels = {!! json_encode($kasusPerMasalah->pluck('masalah')) !!};
+    var donutData = {!! json_encode($kasusPerMasalah->pluck('total')) !!};
 
     // Debug
     console.log('Chart Labels:', chartLabels);
@@ -350,6 +353,54 @@ $(document).ready(function() {
                 }
             }
         });
+
+        // Buat donut chart di canvas #donutChart
+        var donutCanvas = document.getElementById('donutChart');
+        if (donutCanvas) {
+            var donutCtx = donutCanvas.getContext('2d');
+
+            if (window.donutChartInstance) {
+                window.donutChartInstance.destroy();
+            }
+
+            var baseColors = [
+                '#5F6DEE','#FF6384','#36A2EB','#FFCE56','#4BC0C0','#9966FF','#FF9F40'
+            ];
+            var backgroundColors = donutLabels.map(function(_, i) {
+                return baseColors[i % baseColors.length];
+            });
+
+            window.donutChartInstance = new Chart(donutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: donutLabels,
+                    datasets: [{
+                        data: donutData,
+                        backgroundColor: backgroundColors,
+                        borderColor: '#fff',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    var label = context.label || '';
+                                    var value = context.parsed || 0;
+                                    return label + ': ' + value;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        } else {
+            console.warn('Canvas donutChart tidak ditemukan di DOM');
+        }
     });
 </script>
 @endsection

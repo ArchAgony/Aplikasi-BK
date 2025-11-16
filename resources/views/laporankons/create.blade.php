@@ -31,8 +31,8 @@
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nama Siswa</label>
-                        <select class="form-select" name="nama">
-                            <option selected disabled>Nama Siswa</option>
+                        <select class="form-select" name="nama" required>
+                            <option value="" selected disabled>-- Pilih Nama Siswa --</option>
                             @foreach ($siswa as $item)
                                 <option value="{{ $item->id }}">
                                     {{ $item->nama_siswa }}
@@ -44,22 +44,22 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Masalah</label>
-                                <textarea class="form-control" rows="3" placeholder="Tuliskan masalah..." name="masalah"></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Tuliskan masalah..." name="masalah" required></textarea>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Kesimpulan</label>
-                                <textarea class="form-control" rows="3" placeholder="Tuliskan kesimpulan..." name="kesimpulan"></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Tuliskan kesimpulan..." name="kesimpulan" required></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Penyebab</label>
-                                <textarea class="form-control" rows="3" placeholder="Tuliskan penyebab..." name="penyebab"></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Tuliskan penyebab..." name="penyebab" required></textarea>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Evaluasi</label>
-                                <select class="form-select" name="evaluasi">
-                                    <option selected disabled>Pilih kategori...</option>
+                                <select class="form-select" name="evaluasi" required>
+                                    <option value="" selected disabled>Pilih kategori...</option>
                                     <option value="efektif">Efektif</option>
                                     <option value="tidak efektif">Tidak Efektif</option>
                                 </select>

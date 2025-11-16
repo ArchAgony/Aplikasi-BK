@@ -31,8 +31,8 @@
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nama Siswa</label>
-                        <select class="form-select" name="nama">
-                            <option selected disabled>Nama Siswa</option>
+                        <select class="form-select" name="nama" required>
+                            <option value="" selected disabled>Nama Siswa</option>
                             @foreach ($siswa as $item)
                                 <option value="{{ $item->id }}" {{ $laporan->siswa_id == $item->id ? 'selected' : '' }}>
                                     {{ $item->nama_siswa }} - {{ $item->tingkat }} {{ $item->jurusan }}
@@ -58,8 +58,8 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Evaluasi</label>
-                                <select class="form-select" name="evaluasi">
-                                    <option selected disabled>Pilih kategori...</option>
+                                <select class="form-select" name="evaluasi" required>
+                                    <option value="" selected disabled>Pilih kategori...</option>
                                     <option value="efektif" {{ $laporan->evaluasi == 'efektif' ? 'selected' : '' }}>Efektif
                                     </option>
                                     <option value="tidak efektif" {{ $laporan->evaluasi == 'tidak efektif' ? 'selected' : '' }}>Tidak Efektif</option>

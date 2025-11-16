@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('alamat_id')->nullable()->constrained('buku_tamus')->onDelete('restrict');
             $table->dateTime('tanggal');
             $table->string('nama_guru')->nullable();
+            $table->string('jabatan')->nullable();
             $table->string('tujuan')->nullable();
             $table->text('hasil_wawancara')->nullable();
             $table->text('kesimpulan_tindak_lanjut')->nullable();

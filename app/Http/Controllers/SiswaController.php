@@ -41,7 +41,7 @@ class SiswaController extends Controller
                 'jurusan' => $request->jurusan
             ]);
 
-            return redirect('/siswa');
+            return redirect('/siswa')->with('success', 'Data siswa berhasil ditambahkan');
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage(),
