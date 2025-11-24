@@ -156,6 +156,26 @@
 
         @media (max-width: 768px) {
 
+        .authors-table {
+            overflow: visible !important;
+        }
+
+        .dropdown-menu {
+            z-index: 9999 !important;
+            position: absolute !important;
+        }
+
+        .table td {
+            position: relative;
+        }
+
+        /* Nonaktifkan scroll yang memotong dropdown */
+        .dataTables_wrapper .dataTables_scroll,
+        .dataTables_scrollBody {
+            overflow: visible !important;
+        }
+
+        @media (max-width: 768px) {
             .dataTables_wrapper .dataTables_filter,
             .dataTables_wrapper .dataTables_length {
                 float: none !important;

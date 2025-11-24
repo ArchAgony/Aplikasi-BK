@@ -83,18 +83,19 @@
                                 </div>
                             </div>
                             <div class="mb-3">
+                                <label class="form-label">Alamat Tamu</label>
+                                <textarea class="form-control" rows="2" placeholder="Masukkan Alamat Tamu" required name="alamat"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
                                 <label for="basic-url" class="form-label">Tindak lanjut</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="basic-url"
                                         aria-describedby="basic-addon3 basic-addon4" required name="tindak">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Alamat Tamu</label>
-                                <textarea class="form-control" rows="2" placeholder="Masukkan Alamat Tamu" required name="alamat"></textarea>
-                            </div>
+                            
                             <div class="mb-3">
                                 <div class="mb-3">
                                     <label class="form-label">Tanda Tangan Tamu/Wali <span
