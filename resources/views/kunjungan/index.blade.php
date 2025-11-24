@@ -2,20 +2,10 @@
 @section('content')
     <style>
         .table-header {
-            background: linear-gradient(135deg, #84c4e2, #fff3f7);
+            background: linear-gradient(135deg, #4cb0deff, #fff3f7);
             color: white;
             padding: 15px 20px;
             border-radius: 10px 10px 0 0;
-            font-weight: 600;
-            font-size: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 0;
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, #e91e63, #f06292);
-            color: white;
-            padding: 15px 20px;
             font-weight: 600;
             font-size: 16px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -33,7 +23,6 @@
             border: none !important;
         }
 
-        /* ✅ FIX SEARCH BOX POSITION */
         .dataTables_wrapper .dataTables_filter {
             float: right !important;
             text-align: right !important;
@@ -54,7 +43,6 @@
             box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
         }
 
-        /* ✅ FIX LENGTH MENU POSITION */
         .dataTables_wrapper .dataTables_length {
             float: left !important;
             margin-bottom: 10px;
@@ -75,7 +63,6 @@
             min-width: 70px;
         }
 
-        /* ✅ INFO & PAGINATION STYLING */
         .dataTables_wrapper .dataTables_info {
             float: left !important;
             padding-top: 10px;
@@ -116,7 +103,6 @@
             cursor: not-allowed;
         }
 
-        /* ✅ CLEAR FLOATS */
         .dataTables_wrapper::after {
             content: "";
             display: table;
@@ -129,10 +115,45 @@
             background: white;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-            overflow: hidden;
+            overflow: visible !important;
+            /* FIX DROPDOWN */
         }
 
-        /* ✅ RESPONSIVE TABLE */
+        /* ✅ FIX DROPDOWN Z-INDEX */
+        .dataTables_wrapper {
+            position: relative;
+            z-index: 1;
+            overflow: visible !important;
+        }
+
+        .authors-table {
+            overflow: visible !important;
+        }
+
+        .dropdown-menu {
+            z-index: 9999 !important;
+            position: absolute !important;
+        }
+        .dropdown-item.hijau{
+            background: linear-gradient(135deg, #d6ba53ff, #fff3f7);
+        }
+        .dropdown-item.biru{
+            background: linear-gradient(135deg, #449ad4ff, #fff3f7);
+        }
+        .dropdown-item.merah{
+            background: linear-gradient(135deg, #ec2a2aff, #fff3f7);
+        }
+
+        .table td {
+            position: relative;
+        }
+
+        /* Nonaktifkan scroll yang memotong dropdown */
+        .dataTables_wrapper .dataTables_scroll,
+        .dataTables_scrollBody {
+            overflow: visible !important;
+        }
+
         @media (max-width: 768px) {
 
             .dataTables_wrapper .dataTables_filter,
@@ -159,7 +180,7 @@
     <div class="container-fluid">
         <div class="table-container">
             <div class="table-header">
-                Surat Tugas Kunjungan Rumah
+                Kunjungan Rumah
                 <a href="/kunjungan/create">
                     <button type="button" class="btn btn-light btn-sm float-end rounded-2">
                         <i class="fas fa-plus me-1"></i> Tambah
@@ -177,7 +198,7 @@
                             <th>Nama Siswa</th>
                             <th>Kelas</th>
                             <th>Alamat</th>
-                            <th>Laporan Kunjungan & <br> Layanan Kunjungan Rumah</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -185,8 +206,8 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
-                                <td>{{ $item->nama_guru }}</td>
-                                <td>{{ $item->jabatan }}</td>
+                                <td>{{ $item->guru->nama_guru }}</td>
+                                <td>{{ $item->guru->jabatan }}</td>
                                 <td class="text-center align-middle">
                                     {{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}
                                 </td>
@@ -194,14 +215,18 @@
                                 <td>{{ $item->bukutamu->alamat }}</td>
                                 <td>
                                     <center>
-                                        <a href="{{ route('kunjungan.laporan', $item->id) }}"
-                                            class="btn btn-sm btn-primary">
-                                            Laporan
-                                        </a>
-                                        <a href="{{ route('kunjungan.layanan', $item->id) }}"
-                                            class="btn btn-sm btn-success">
-                                            Layanan
-                                        </a>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle bg-primary" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                Dropdown button
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><button class="dropdown-item hijau" href="{{ route('kunjungan.laporan', $item ->id) }}"> <i class="bi bi-envelope-paper"></i> Laporan</button></li>
+                                                <li><a class="dropdown-item biru " href="{{ route('kunjungan.layanan', $item->id) }}"><i class="bi bi-house-door"></i> Layanan</a></li>
+                                                <li><a class="dropdown-item kuning" href="{{ route('kunjungan.edit',$item->id) }}">Edit</a></li>
+                                                <li><a class="dropdown-item merah" href="{{ route('kunjungan.delete', $item->id) }}"><i class="bi bi-trash"></i> Delete</a></li>
+                                            </ul>
+                                        </div>
                                     </center>
                                 </td>
                             </tr>
@@ -213,12 +238,14 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            $('#datatablesSimple').DataTable({
-                responsive: true,
+        $(document).ready(function () {
+            // Inisialisasi DataTables TANPA responsive
+            var table = $('#datatablesSimple').DataTable({
+                responsive: false, // Nonaktifkan fitur responsive
+                dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rtip',
                 language: {
                     search: "Cari:",
-                    searchPlaceholder: "Cari siswa...",
+                    searchPlaceholder: "Cari data...",
                     lengthMenu: "Tampilkan _MENU_ data",
                     info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
                     infoEmpty: "Tidak ada data",
@@ -232,9 +259,7 @@
                         last: "Terakhir"
                     }
                 },
-                order: [
-                    [0, 'asc']
-                ],
+                order: [[0, 'asc']],
                 pageLength: 10,
                 lengthMenu: [
                     [5, 10, 25, 50, -1],
@@ -242,9 +267,25 @@
                 ],
                 columnDefs: [{
                     className: "text-center",
-                    targets: [0, 2, 4]
+                    targets: [0, 1, 4, 7]
+                }, {
+                    orderable: false,
+                    targets: [7] // Kolom aksi tidak bisa disort
                 }]
             });
+
+            // Fix untuk dropdown Bootstrap di DataTables
+            $('#datatablesSimple').on('draw.dt', function () {
+                $('[data-bs-toggle="dropdown"]').dropdown();
+            });
+
+            // Pastikan dropdown bekerja setelah render
+            setTimeout(function () {
+                var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+                var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+                    return new bootstrap.Dropdown(dropdownToggleEl)
+                });
+            }, 500);
         });
     </script>
 @endsection

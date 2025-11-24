@@ -2,7 +2,7 @@
 @section('content')
     <style>
         .table-header {
-            background: linear-gradient(135deg, #84c4e2, #fff3f7);
+            background: linear-gradient(135deg, #4cb0deff, #fff3f7);
             color: white;
             padding: 15px 20px;
             border-radius: 10px 10px 0 0;
@@ -167,7 +167,7 @@
     <div class="container-fluid">
         <div class="table-container">
             <div class="table-header">
-                Laporan
+                Data Buku Tamu
                 <a href="/tamu/create"><button type="button" class="btn btn-light btn-sm float-end rounded-2"
                         data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
                         <i class="fas fa-plus me-1"></i> Tambah

@@ -2,7 +2,7 @@
 @section('content')
     <style>
         .table-header {
-            background: linear-gradient(135deg, #84c4e2, #fff3f7);
+            background: linear-gradient(135deg, #4cb0deff, #fff3f7);
             color: white;
             padding: 15px 20px;
             border-radius: 10px 10px 0 0;

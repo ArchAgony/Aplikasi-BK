@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get("/tamu", [BukuTamuController::class, "index"]);
     Route::get("/tamu/create", [BukuTamuController::class, "create"]);
-    Route::post("/tamu", [BukuTamuController::class, "store"]);
+    Route::post("/tamu/store", [BukuTamuController::class, "store"]);
     Route::get("/tamu/{id}/edit", [BukuTamuController::class, "edit"]);
     Route::post("/tamu/{id}", [BukuTamuController::class, "update"]);
     Route::get("/tamu/{id}", [BukuTamuController::class, "destroy"]);
@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/kunjungan/create', [KunjunganRumahController::class, 'create']);
     Route::get('/kunjungan/{id}/laporan', [KunjunganRumahController::class, 'laporan'])->name('kunjungan.laporan');
     Route::get('/kunjungan/{id}/layanan', [KunjunganRumahController::class, 'layanan'])->name('kunjungan.layanan');
+    Route::get('/kunjungan/{id}/delete', [KunjunganRumahController::class, 'destroy'])->name('kunjungan.delete');
+    Route::get('/kunjungan/{id}/edit', [KunjunganRumahController::class, 'edit'])->name('kunjungan.edit');
 
 
     route::post('/kunjungan', [KunjunganRumahController::class, 'store'])->name('kunjungan.store');

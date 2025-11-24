@@ -7,10 +7,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard - Bootstrap Only</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="{{ asset('/Lib/bootstrap-icons-1.11.1/bootstrap-icons.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}"> -->
     <link href="
 {{ asset('Css/sweetalert2.min.css') }}
 " rel="stylesheet">
@@ -270,7 +270,7 @@
                     </ol>
                 </nav>
                 <div class="d-flex align-items-center">
-                    
+
                     <form action="/logout" method="POST" id="logout-form">
                         @csrf
                         <button type="button" class="dropdown-item text-danger" onclick="confirmLogout()">
@@ -280,6 +280,7 @@
                 </div>
             </div>
         </nav>
+        <script src="{{ asset('Js/jquery-3.7.1.js') }}"></script>
         @yield('content') @yield('scripts')
         <!-- Bootstrap JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
@@ -292,7 +293,7 @@
             }
 
             // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', function(event) {
+            document.addEventListener('click', function (event) {
                 const sidebar = document.getElementById('sidebar');
                 const toggle = document.querySelector('.sidebar-toggle');
 
@@ -304,7 +305,7 @@
             });
 
             // Handle window resize
-            window.addEventListener('resize', function() {
+            window.addEventListener('resize', function () {
                 const sidebar = document.getElementById('sidebar');
                 if (window.innerWidth > 768) {
                     sidebar.classList.remove('show');
@@ -314,9 +315,9 @@
         <script src="{{ asset('Js/jquery-3.7.1.js') }}"></script>
         <script src="{{ asset('/Lib/bootstrap/js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
         <script src="{{ asset('/Lib/chart.js/Chart.min.js') }}" crossorigin="anonymous"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
         <script src="{{ asset('Js/jquery.dataTables.min.js') }}"></script>
-        <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
         <script src="{{ asset('Js/dataTables.responsive.js') }}"></script>
         <script src="{{ asset('Js/responsive.dataTables.js') }}"></script>
         <script src="{{ asset('Js/sweetalert2.all.min.js') }}"></script>
@@ -344,7 +345,7 @@
         @endif
 
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
 
                 // Inisialisasi datatablesSimple (halaman siswa)
                 if ($('#datatablesSimple').length && !$.fn.DataTable.isDataTable('#datatablesSimple')) {
@@ -388,18 +389,6 @@
                     });
                 }
 
-            });
-
-            const input = document.getElementById('customInput');
-
-            input.addEventListener('input', function(e) {
-                let value = e.target.value;
-
-                // Ubah ke huruf besar dan ganti spasi dengan strip
-                value = value.toUpperCase().replace(/ /g, '-');
-
-                // Set nilai yang sudah diubah
-                e.target.value = value;
             });
 
             function confirmDelete(id) {
