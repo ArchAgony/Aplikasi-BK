@@ -143,6 +143,9 @@
         .dropdown-item.merah{
             background: linear-gradient(135deg, #ec2a2aff, #fff3f7);
         }
+        .dropdown-item.kuning{
+            background: linear-gradient(135deg, #cef011ff, #fff3f7);
+        }
 
         .table td {
             position: relative;
@@ -241,9 +244,9 @@
                                                 Dropdown button
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><button class="dropdown-item hijau" href="{{ route('kunjungan.laporan', $item ->id) }}"> <i class="bi bi-envelope-paper"></i> Laporan</button></li>
+                                                <li><a class="dropdown-item hijau" href="{{ route('kunjungan.laporan', $item->id) }}"> <i class="bi bi-envelope-paper"></i> Laporan</a></li>
                                                 <li><a class="dropdown-item biru " href="{{ route('kunjungan.layanan', $item->id) }}"><i class="bi bi-house-door"></i> Layanan</a></li>
-                                                <li><a class="dropdown-item kuning" href="{{ route('kunjungan.edit',$item->id) }}">Edit</a></li>
+                                                <li><a class="dropdown-item kuning" href="{{ route('kunjungan.edit',$item->id) }}"><i class="bi bi-pencil"></i> Edit</a></li>
                                                 <li><a class="dropdown-item merah" href="{{ route('kunjungan.delete', $item->id) }}"><i class="bi bi-trash"></i> Delete</a></li>
                                             </ul>
                                         </div>
