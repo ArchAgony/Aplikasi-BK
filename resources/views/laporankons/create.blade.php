@@ -27,7 +27,7 @@
                 Form Pengisian Buku Tamu
             </div>
             <div class="authors-table p-3">
-                <form action="/laporan/store" method="post">
+                <form action="/laporan" method="post">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nama Siswa</label>
@@ -35,7 +35,7 @@
                             <option value="" selected disabled>-- Pilih Nama Siswa --</option>
                             @foreach ($siswa as $item)
                                 <option value="{{ $item->id }}">
-                                    {{ $item->nama_siswa }}
+                                    {{ $item->nama_siswa }} - {{ $item->tingkat }} {{ $item->jurusan }}
                                 </option>
                             @endforeach
                         </select>

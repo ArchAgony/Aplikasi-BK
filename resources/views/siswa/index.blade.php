@@ -192,19 +192,20 @@
                                         <i class="fas fa-edit"></i>
                                     </button>
                                     </a>
-                                    <a onclick="confirmDelete({{ $s->id }})" class="btn btn-sm btn-outline-danger me-1"><i
-                                            class="fas fa-trash"></i></a>
-                                    <form id="delete-form-{{ $s->id }}" action="/siswa/{{ $s->id }}" method="GET"
-                                        style="display:none;">
+                                    <a onclick="confirmDelete({{ $s->id }})"
+                                        class="btn btn-sm btn-outline-danger me-1"><i class="fas fa-trash"></i></a>
+                                    <form id="delete-form-{{ $s->id }}" action="/siswa/{{ $s->id }}"
+                                        method="GET" style="display:none;">
                                     </form>
                                 </td>
                             </tr>
 
-                            <div class="modal fade" id="modal-edit-siswa-{{ $s->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal fade" id="modal-edit-siswa-{{ $s->id }}" tabindex="-1"
+                                aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header border-0">
-                                            <h5 class="modal-title">Tambah Data Siswa</h5>
+                                            <h5 class="modal-title">Ubah Data Siswa</h5>
                                             <button type="button" class="btn-close btn-close-white"
                                                 data-bs-dismiss="modal"></button>
                                         </div>
@@ -235,11 +236,14 @@
                                                     <div class="col-sm-9">
                                                         <select class="form-select" required name="tingkat">
                                                             <option value="">Pilih Tingkat</option>
-                                                            <option value="X" {{ $s->tingkat == 'X' ? 'selected' : '' }}>X
+                                                            <option value="X"
+                                                                {{ $s->tingkat == 'X' ? 'selected' : '' }}>X
                                                             </option>
-                                                            <option value="XI" {{ $s->tingkat == 'XI' ? 'selected' : '' }}>XI
+                                                            <option value="XI"
+                                                                {{ $s->tingkat == 'XI' ? 'selected' : '' }}>XI
                                                             </option>
-                                                            <option value="XII" {{ $s->tingkat == 'XII' ? 'selected' : '' }}>XII
+                                                            <option value="XII"
+                                                                {{ $s->tingkat == 'XII' ? 'selected' : '' }}>XII
                                                             </option>
                                                         </select>
                                                     </div>
@@ -250,9 +254,9 @@
                                                     <div class="col-sm-9">
                                                         <div class="input-group mb-3">
                                                             <input type="text" class="form-control"
-                                                                aria-label="Text input with dropdown button" id="customInput"
-                                                                placeholder="masukkan jurusan" name="jurusan"
-                                                                value="{{ $s->jurusan }}">
+                                                                aria-label="Text input with dropdown button"
+                                                                id="customInput" placeholder="masukkan jurusan"
+                                                                name="jurusan" value="{{ $s->jurusan }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -274,7 +278,6 @@
         </div>
     </div>
 
-    <!-- Modal Tambah -->
     <div class="modal fade" id="modal-tambah-siswa" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -288,25 +291,29 @@
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">NIS <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nis-tambah" placeholder="Masukkan NIS" required
-                                    name="nis">
+                                <input type="text" class="form-control" id="nis-tambah" placeholder="Masukkan NIS"
+                                    required name="nis" value="{{ $s->nis }}">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Nama Siswa <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nama-tambah" placeholder="Masukkan Nama Lengkap"
-                                    required name="nama">
+                                <input type="text" class="form-control" id="nama-tambah"
+                                    placeholder="Masukkan Nama Lengkap" required name="nama"
+                                   >
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Tingkat <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
-                                <select class="form-select" id="tingkat-tambah" required name="tingkat">
+                                <select class="form-select" required name="tingkat">
                                     <option value="">Pilih Tingkat</option>
-                                    <option value="X">X</option>
-                                    <option value="XI">XI</option>
-                                    <option value="XII">XII</option>
+                                    <option value="X">X
+                                    </option>
+                                    <option value="XI" >XI
+                                    </option>
+                                    <option value="XII" >XII
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -314,8 +321,9 @@
                             <label class="col-sm-3 col-form-label">Jurusan <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" aria-label="Text input with dropdown button"
-                                        id="customInput" placeholder="masukkan jurusan" name="jurusan">
+                                    <input type="text" class="form-control"
+                                        aria-label="Text input with dropdown button" id="customInput"
+                                        placeholder="masukkan jurusan" name="jurusan" >
                                 </div>
                             </div>
                         </div>
@@ -329,20 +337,20 @@
             </div>
         </div>
     </div>
-
 @endsection
 @section('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const input = document.getElementById('customInput');
-        
-        if (input) {
-            input.addEventListener('input', (e) => {
-                e.target.value = e.target.value
-                    .toUpperCase()
-                    .replace(/\s+/g, '-');
-            });
-        }
-    });
-</script>
+    <script src="{{ asset('Js/jquery-3.7.1.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('customInput');
+
+            if (input) {
+                input.addEventListener('input', (e) => {
+                    e.target.value = e.target.value
+                        .toUpperCase()
+                        .replace(/\s+/g, '-');
+                });
+            }
+        });
+    </script>
 @endsection

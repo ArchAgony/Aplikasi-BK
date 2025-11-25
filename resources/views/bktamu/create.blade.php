@@ -64,7 +64,7 @@
                                     <option value="" selected disabled>Nama Siswa</option>
                                     @foreach ($siswa as $item)
                                         <option value="{{ $item->id }}">
-                                            {{ $item->nama_siswa }}
+                                            {{ $item->nama_siswa }} - {{ $item->tingkat }} {{ $item->jurusan }}
                                         </option>
                                     @endforeach
                                 </select>
