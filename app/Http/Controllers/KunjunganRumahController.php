@@ -31,6 +31,11 @@ class KunjunganRumahController extends Controller
     {
         return view('kunjungan.form_lay_kunj');
     }
+    public function print()
+    {
+        $data = KunjunganRumah::with('guru', 'siswa', 'bukutamu')->get();
+        return view('kunjungan.kunjungan_print', compact('data'));
+    }
 
     /**
      * Store a newly created resource in storage.

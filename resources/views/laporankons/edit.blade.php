@@ -31,7 +31,7 @@
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nama Siswa</label>
-                        <select class="form-select" name="nama" required>
+                        <select class="form-select" name="nama" required disabled>
                             <option value="" selected disabled>Nama Siswa</option>
                             @foreach ($siswa as $item)
                                 <option value="{{ $item->id }}" {{ $laporan->siswa_id == $item->id ? 'selected' : '' }}>
