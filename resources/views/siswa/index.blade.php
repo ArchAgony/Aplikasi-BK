@@ -270,7 +270,7 @@
                                                             <input type="text" class="form-control"
                                                                 aria-label="Text input with dropdown button"
                                                                 id="customInput" placeholder="masukkan jurusan"
-                                                                name="jurusan" value="{{ $s->alamat }}">
+                                                                name="alamat" value="{{ $s->alamat }}">
                                                         </div>
                                                     </div>
                                                 </div>

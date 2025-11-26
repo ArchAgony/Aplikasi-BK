@@ -58,7 +58,7 @@ class KunjunganRumahController extends Controller
         try {
             $ttdTamuPath = $this->saveSignature($request->ttd_tamu, 'tamu');
 
-            $data = KunjunganRumah::create([
+            KunjunganRumah::create([
                 'siswa_id' => $request->nama,
                 'nama_guru' => $request->nama_guru,
                 'jabatan' => $request->jabatan,
