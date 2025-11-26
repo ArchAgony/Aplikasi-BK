@@ -275,8 +275,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer border-0">
-                                                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                    <button class="btn btn-primary"
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-primary"
                                                         style="background: #8d5bbcff; border-color: #63dfe3ff;"
                                                         onclick="btnTambah()">Simpan</button>
                                                 </div>

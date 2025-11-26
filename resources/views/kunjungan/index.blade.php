@@ -241,7 +241,7 @@
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle bg-primary" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                                Dropdown button
+                                                Aksi
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item hijau" href="{{ route('kunjungan.laporan', $item->id) }}"> <i class="bi bi-envelope-paper"></i> Laporan</a></li>
@@ -249,6 +249,7 @@
                                                 <li><a class="dropdown-item kuning" href="{{ route('kunjungan.edit',$item->id) }}"><i class="bi bi-pencil"></i> Edit</a></li>
                                                 <li><a class="dropdown-item merah" href="{{ route('kunjungan.delete', $item->id) }}"><i class="bi bi-trash"></i> Delete</a></li>
                                             </ul>
+                                            <a href="{{ route('kunjungan.print',$item->id ) }}" class="btn btn-secondary"><i class="bi bi-printer"></i>Print</a>
                                         </div>
                                     </center>
                                 </td>
