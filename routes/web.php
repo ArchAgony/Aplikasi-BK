@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get("/kunjungan", [KunjunganRumahController::class, "index"]);
     Route::get('/kunjungan/create', [KunjunganRumahController::class, 'create']);
+    Route::post("/kunjungan", [KunjunganRumahController::class, "index"])->name('kunjungan.store');
     Route::get('/kunjungan/{id}/laporan', [KunjunganRumahController::class, 'laporan'])->name('kunjungan.laporan');
     Route::get('/kunjungan/{id}/layanan', [KunjunganRumahController::class, 'layanan'])->name('kunjungan.layanan');
     Route::get('/kunjungan/{id}/delete', [KunjunganRumahController::class, 'destroy'])->name('kunjungan.delete');

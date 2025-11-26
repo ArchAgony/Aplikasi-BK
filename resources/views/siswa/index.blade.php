@@ -176,6 +176,7 @@
                             <th>Nama Siswa</th>
                             <th>Kelas</th>
                             <th>Kasus</th>
+                            <th>Alamat</th>
                             <th>aksi</th>
                         </tr>
                     </thead>
@@ -186,6 +187,7 @@
                                 <td>{{ $s->nama_siswa }}</td>
                                 <td class="text-center">{{ $s->tingkat }} {{ $s->jurusan }}</td>
                                 <td>{{ $s->kasus }}</td>
+                                <td>{{ $s->alamat }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
                                         data-bs-target="#modal-edit-siswa-{{ $s->id }}">
@@ -260,6 +262,18 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row mb-3">
+                                                    <label class="col-sm-3 col-form-label">Alamat <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" class="form-control"
+                                                                aria-label="Text input with dropdown button"
+                                                                id="customInput" placeholder="masukkan jurusan"
+                                                                name="jurusan" value="{{ $s->alamat }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="modal-footer border-0">
                                                     <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                                     <button class="btn btn-primary"
@@ -292,7 +306,7 @@
                             <label class="col-sm-3 col-form-label">NIS <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="nis-tambah" placeholder="Masukkan NIS"
-                                    required name="nis" value="{{ $s->nis }}">
+                                    required name="nis">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -324,6 +338,16 @@
                                     <input type="text" class="form-control"
                                         aria-label="Text input with dropdown button" id="customInput"
                                         placeholder="masukkan jurusan" name="jurusan" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Alamat <span class="text-danger">*</span></label>
+                            <div class="col-sm-9">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control"
+                                        aria-label="Text input with dropdown button" id="customInput"
+                                        placeholder="masukkan jurusan" name="alamat" >
                                 </div>
                             </div>
                         </div>

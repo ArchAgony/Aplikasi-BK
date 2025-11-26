@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kunjungan_rumahs', function (Blueprint $table) {
+        Schema::create('laporan_kunjunganrumahs', function (Blueprint $table) {
             $table->id();
+            $table->date('tanggal');
             $table->foreignId('siswa_id')->nullable()->constrained('siswas')->onDelete('restrict');
-            $table->foreignId('alamat_id')->nullable()->constrained('buku_tamus')->onDelete('restrict');
-            $table->dateTime('tanggal');
-            $table->dateTime('tanggal_laksana');
-            $table->string('nama_guru')->nullable();
-            $table->string('jabatan')->nullable();
-            $table->string('ttd_path')->nullable();
+            $table->string('tujuan_kunjungan');
+            $table->string('hasil_wawancara');
+            $table->string('kesimpulan');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kunjungan_rumahs');
+        Schema::dropIfExists('laporan_kunjunganrumahs');
     }
 };

@@ -203,7 +203,7 @@
     <div class="container-fluid">
         <div class="table-container">
             <div class="table-header">
-                Kunjungan Rumah
+                Surat Tugas Kunjungan Rumah
                 <a href="/kunjungan/create">
                     <button type="button" class="btn btn-light btn-sm float-end rounded-2">
                         <i class="fas fa-plus me-1"></i> Tambah
@@ -229,13 +229,13 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
-                                <td>{{ $item->guru->nama_guru }}</td>
-                                <td>{{ $item->guru->jabatan }}</td>
+                                <td>{{ $item->nama_guru }}</td>
+                                <td>{{ $item->jabatan }}</td>
                                 <td class="text-center align-middle">
                                     {{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}
                                 </td>
                                 <td>{{ $item->siswa->tingkat ?? '-' }} {{ $item->siswa->jurusan ?? '-' }}</td>
-                                <td>{{ $item->bukutamu->alamat }}</td>
+                                <td>{{ $item->siswa->alamat }}</td>
                                 <td>
                                     <center>
                                         <div class="dropdown">

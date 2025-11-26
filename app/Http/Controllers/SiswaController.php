@@ -38,7 +38,8 @@ class SiswaController extends Controller
                 'nama_siswa' => $request->nama,
                 'nis' => $request->nis,
                 'tingkat' => $request->tingkat,
-                'jurusan' => $request->jurusan
+                'jurusan' => $request->jurusan,
+                'alamat' => $request->alamat,
             ]);
 
             return redirect('/siswa')->with('success', 'Data siswa berhasil ditambahkan');
@@ -78,6 +79,7 @@ class SiswaController extends Controller
                 'nama_siswa' => $request->nama,
                 'tingkat' => $request->tingkat,
                 'jurusan' => $request->jurusan,
+                'alamat' => $request->alamat,
             ]);
 
             return redirect()->back()->with('success', 'Data siswa berhasil diupdate');

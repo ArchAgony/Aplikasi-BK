@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nis')->unique();
             $table->string('nama_siswa');
+            $table->string('alamat');
             $table->enum('tingkat', ['X', 'XI', 'XII']);
             $table->string('jurusan');
             $table->integer('total_kunjungan')->default(1);
