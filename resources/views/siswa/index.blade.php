@@ -347,7 +347,7 @@
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control"
                                         aria-label="Text input with dropdown button" id="customInput"
-                                        placeholder="masukkan jurusan" name="alamat" >
+                                        placeholder="Masukkan Alamat" name="alamat" >
                                 </div>
                             </div>
                         </div>

@@ -87,20 +87,7 @@
                     </div>
 
                     <!-- Row 4: Kami Yang Menerima Kunjungan & Kepala Sekolah -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Kami Yang Menerima Kunjungan</label>
-                                <textarea name="penerima_kunjungan" class="form-control" rows="4" placeholder="Masukkan nama dan keterangan penerima" required></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Kepala Sekolah</label>
-                                <textarea name="kepala_sekolah" class="form-control" rows="4" placeholder="Masukkan nama dan keterangan kepala sekolah" required></textarea>
-                            </div>
-                        </div>
-                    </div>
+                   
 
                     <!-- Tombol Submit -->
                     <div class="text-center mt-4">

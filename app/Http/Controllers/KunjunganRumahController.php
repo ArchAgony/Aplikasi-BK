@@ -94,7 +94,7 @@ class KunjunganRumahController extends Controller
      */
     public function edit(KunjunganRumah $kunjunganRumah)
     {
-        return view('kunjungan.edit', compact('kunjunganRumah'));
+        return view('kunjungan.edit_kunjungan', compact('kunjunganRumah'));
     }
 
     /**
