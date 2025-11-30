@@ -2,7 +2,7 @@
 @section('content')
     <style>
         .table-header {
-            background: linear-gradient(135deg, #e91e63, #f06292);
+            background: linear-gradient(135deg, #1f80adff, #f3f4ffff);
             color: white;
             padding: 15px 20px;
             border-radius: 10px 10px 0 0;
@@ -11,41 +11,32 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 0;
         }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button {
-            padding: 0.2em 1em;
-            margin: 0 2px;
-            border-radius: 20px;
-            border: none !important;
-
-            color: #fff !important;
-            transition: background 0.2s;
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-
-            color: #fff !important;
-        }
-
-        .dataTables_wrapper .dataTables_filter input {
-            border-radius: 20px;
-            border: 1px solid #e91e63;
-            padding: 0.3em 1em;
-        }
-
-        .dataTables_length select {
-            border-radius: 20px;
-            border: 1px solid #e91e63;
-            padding: 0.2em 1em;
-        }
-
         .table-container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 2rem auto;
             background: white;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
             overflow: hidden;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #2196F3, #42A5F5);
+            border: none;
+            padding: 10px 40px;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
         }
     </style>
     <div class="container-fluid">
@@ -60,7 +51,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Nama Siswa</label>
-                                <select class="form-select" name="nama" required> 
+                                <select class="form-select" id="search-select" name="nama" required> 
                                     <option value="" selected disabled>Nama Siswa</option>
                                     @foreach ($siswa as $item)
                                         <option value="{{ $item->id }}"

@@ -71,7 +71,7 @@
 
                             <!-- Tujuan rumah -->
                             <div class="mb-3">
-                                <label class="form-label">Tujuan rumah</label>
+                                <label class="form-label">Tujuan Kunjungan Rumah</label>
                                 <input type="text" name="tujuan_rumah" class="form-control" required>
                             </div>
 
@@ -86,7 +86,7 @@
                         <div class="col-md-6">
                             <!-- Kesimpulan -->
                             <div class="mb-3">
-                                <label class="form-label">Kesimpulan</label>
+                                <label class="form-label">Kesimpulan / Tindak</label>
                                 <textarea name="kesimpulan" class="form-control" rows="5" required></textarea>
                             </div>
 

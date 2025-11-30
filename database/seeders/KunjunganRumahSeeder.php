@@ -21,14 +21,14 @@ class KunjunganRumahSeeder extends Seeder
         $faker = Faker::create('id_ID');
         // $guruIds = User::pluck('id')->toArray();
         $siswaIds = Siswa::pluck('id')->toArray();
-        $bukutamuIds = BukuTamu::pluck('id')->toArray();
+        // $bukutamuIds = BukuTamu::pluck('id')->toArray();
         $faker = Faker::create('id_ID');
 
         for ($i = 1; $i <= 5; $i++) {
             KunjunganRumah::create([
                 // 'guru_id' => $faker->randomElement($guruIds),
                 'siswa_id' => $faker->randomElement($siswaIds),
-                'alamat_id' => $faker->randomElement($bukutamuIds),
+                // 'alamat_id' => $faker->randomElement($bukutamuIds),
                 'tanggal' => $faker->date(),
                 'tanggal_laksana' => $faker->date(),
                 'nama_guru' => $faker->name,

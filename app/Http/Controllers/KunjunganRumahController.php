@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BukuTamu;
 use App\Models\KunjunganRumah;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class KunjunganRumahController extends Controller
      */
     public function index()
     {
-        $data = KunjunganRumah::with('guru', 'siswa', 'bukutamu')->get();
+        $data = KunjunganRumah::with('guru', 'siswa', 'bukutamu')->orderBy('id', 'desc')->get();
         return view('kunjungan.index', compact('data'));
     }
 
@@ -29,6 +30,11 @@ class KunjunganRumahController extends Controller
     public function laporan()
     {
         return view('kunjungan.form_lpor_kunj');
+    }
+    public function loslaporan()
+    {
+        $data = KunjunganRumah::with('guru', 'siswa', 'bukutamu')->orderBy('id', 'desc')->get();
+        return view('kunjungan.laporan_kunjungan', compact('data'));
     }
     public function layanan()
     {
@@ -63,11 +69,11 @@ class KunjunganRumahController extends Controller
         try {
             $ttdTamuPath = $this->saveSignature($request->ttd_tamu, 'tamu');
 
-            $data = KunjunganRumah::create([
+            KunjunganRumah::create([
                 'siswa_id' => $request->nama,
                 'nama_guru' => $request->nama_guru,
                 'jabatan' => $request->jabatan,
-                'kesimpulan_tindak_lanjut' => $request->kesimpulan_tindak_lanjut,
+                // 'kesimpulan_tindak_lanjut' => $request->kesimpulan_tindak_lanjut,
                 'ttd_path' => $ttdTamuPath,
                 'tanggal' => now()->toDateString(),
                 'tanggal_laksana' => $request->tanggal_laksana,
@@ -92,33 +98,31 @@ class KunjunganRumahController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(KunjunganRumah $kunjunganRumah)
+    public function edit(string $id)
     {
-        return view('kunjungan.edit', compact('kunjunganRumah'));
+        $data = KunjunganRumah::with('siswa')->findOrFail($id);
+        $siswa = Siswa::all();
+        return view('kunjungan.edit_kunjungan', compact('siswa', 'data'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, KunjunganRumah $kunjunganRumah)
+    public function update(Request $request, string $id)
     {
         //
         try {
-            $field = $request->validate([
-                'guru_id' => 'required',
-                'siswa_id' => 'nullable',
-                'tujuan' => 'nullable',
-                'hasil_wawancara' => 'nullable',
-                'kesimpulan_tindak_lanjut' => 'nullable',
-                'ttd_path' => 'nullable',
-            ]);
+            $data = KunjunganRumah::find($id);
 
-            $kunjunganRumah->update($field);
+            $data->siswa_id = $request->nama;
+            $data->nama_guru = $request->nama_guru;
+            $data->jabatan = $request->jabatan;
+            // $data->kesimpulan_tindak_lanjut = $request->kesimpulan_tindak_lanjut;
+            $data->tanggal_laksana = $request->tanggal_laksana;
 
-            return response()->json([
-                'message' => 'berhasil diupdate',
-                'data' => $kunjunganRumah
-            ]);
+            $data->save();
+
+            return redirect('/kunjungan')->with('success', 'Data kunjungan berhasil diupdate');
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage()
@@ -129,14 +133,12 @@ class KunjunganRumahController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(KunjunganRumah $kunjunganRumah)
+    public function destroy(string $id)
     {
         //
         try {
-            $kunjunganRumah->delete();
-            return response()->json([
-                'message' => 'berhasil dihapus'
-            ]);
+            KunjunganRumah::where('id', $id)->delete();
+            return redirect('/kunjungan')->with('success', 'Data kunjungan berhasil dihapus');
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage()

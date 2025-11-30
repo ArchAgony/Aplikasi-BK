@@ -16,7 +16,7 @@ class BukuTamuController extends Controller
      */
     public function index()
     {
-        $data = BukuTamu::with('siswa', 'guru')->get();
+        $data = BukuTamu::with('siswa', 'guru')->orderBy('id', 'desc')->get();
         return view('bktamu.index', compact('data'));
         // return response()->json([
         //     'data' => $data

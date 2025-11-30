@@ -116,10 +116,8 @@
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
             overflow: visible !important;
-            /* FIX DROPDOWN */
         }
 
-        /* ✅ FIX DROPDOWN Z-INDEX */
         .dataTables_wrapper {
             position: relative;
             z-index: 1;
@@ -134,16 +132,20 @@
             z-index: 9999 !important;
             position: absolute !important;
         }
-        .dropdown-item.hijau{
+
+        .dropdown-item.hijau {
             background: linear-gradient(135deg, #d6ba53ff, #fff3f7);
         }
-        .dropdown-item.biru{
+
+        .dropdown-item.biru {
             background: linear-gradient(135deg, #449ad4ff, #fff3f7);
         }
-        .dropdown-item.merah{
+
+        .dropdown-item.merah {
             background: linear-gradient(135deg, #ec2a2aff, #fff3f7);
         }
-        .dropdown-item.kuning{
+
+        .dropdown-item.kuning {
             background: linear-gradient(135deg, #cef011ff, #fff3f7);
         }
 
@@ -151,31 +153,65 @@
             position: relative;
         }
 
-        /* Nonaktifkan scroll yang memotong dropdown */
-        .dataTables_wrapper .dataTables_scroll,
-        .dataTables_scrollBody {
-            overflow: visible !important;
+        /* Responsive Row Details Styling */
+        td.dt-control {
+            text-align: center;
+            cursor: pointer;
+            color: #4cb0de;
+            font-size: 20px;
         }
 
-        @media (max-width: 768px) {
-
-        .authors-table {
-            overflow: visible !important;
+        td.dt-control:before {
+            content: '⊕';
+            font-weight: bold;
         }
 
-        .dropdown-menu {
-            z-index: 9999 !important;
-            position: absolute !important;
+        tr.shown td.dt-control:before {
+            content: '⊖';
+            color: #ec2a2a;
         }
 
-        .table td {
-            position: relative;
+        .detail-row {
+            background-color: #f9f9f9;
         }
 
-        /* Nonaktifkan scroll yang memotong dropdown */
-        .dataTables_wrapper .dataTables_scroll,
-        .dataTables_scrollBody {
-            overflow: visible !important;
+        .detail-content {
+            padding: 20px;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .detail-content table {
+            width: 100%;
+            margin: 0;
+        }
+
+        .detail-content table td {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-content table td:first-child {
+            font-weight: bold;
+            width: 200px;
+            color: #555;
+        }
+
+        .badge-custom {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 500;
         }
 
         @media (max-width: 768px) {
@@ -214,44 +250,76 @@
                 <table id="datatablesSimple" class="table table-hover w-100">
                     <thead class="text-center align-middle">
                         <tr>
-                            <th>No</th>
+                            <th width="30"></th>
                             <th>Tanggal</th>
                             <th>Nama Guru</th>
                             <th>Jabatan</th>
                             <th>Nama Siswa</th>
                             <th>Kelas</th>
-                            <th>Alamat</th>
-                            <th>Aksi</th>
+                            <th width="150">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $item)
                             <tr>
-                                <td>{{ $key + 1 }}</td>
+                                <td class="dt-control"></td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                 <td>{{ $item->nama_guru }}</td>
                                 <td>{{ $item->jabatan }}</td>
-                                <td class="text-center align-middle">
-                                    {{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}
-                                </td>
-                                <td>{{ $item->siswa->tingkat ?? '-' }} {{ $item->siswa->jurusan ?? '-' }}</td>
-                                <td>{{ $item->siswa->alamat }}</td>
+                                <td>{{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}</td>
                                 <td>
-                                    <center>
+                                    @if($item->siswa)
+                                        <span class="badge badge-custom bg-info">
+                                            {{ $item->siswa->tingkat ?? '-' }} {{ $item->siswa->jurusan ?? '-' }}
+                                        </span>
+                                    @else
+                                        <span class="text-muted">-</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-1 justify-content-center">
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle bg-primary" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                Aksi
+                                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="bi bi-gear"></i> Aksi
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item hijau" href="{{ route('kunjungan.laporan', $item->id) }}"> <i class="bi bi-envelope-paper"></i> Laporan</a></li>
-                                                <li><a class="dropdown-item biru " href="{{ route('kunjungan.layanan', $item->id) }}"><i class="bi bi-house-door"></i> Layanan</a></li>
-                                                <li><a class="dropdown-item kuning" href="{{ route('kunjungan.edit',$item->id) }}"><i class="bi bi-pencil"></i> Edit</a></li>
-                                                <li><a class="dropdown-item merah" href="{{ route('kunjungan.delete', $item->id) }}"><i class="bi bi-trash"></i> Delete</a></li>
+                                                <li>
+                                                    <a class="dropdown-item hijau" href="{{ route('kunjungan.laporan', $item->id) }}">
+                                                        <i class="bi bi-envelope-paper"></i> Laporan
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item biru" href="{{ route('kunjungan.layanan', $item->id) }}">
+                                                        <i class="bi bi-house-door"></i> Layanan
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item kuning" href="{{ route('kunjungan.edit', $item->id) }}">
+                                                        <i class="bi bi-pencil"></i> Edit
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item merah" href="#" onclick="confirmDelete({{ $item->id }}); return false;">
+                                                        <i class="bi bi-trash"></i> Delete
+                                                    </a>
+                                                </li>
                                             </ul>
-                                            <a href="{{ route('kunjungan.print',$item->id ) }}" class="btn btn-secondary"><i class="bi bi-printer"></i>Print</a>
                                         </div>
-                                    </center>
+                                        <a href="{{ route('kunjungan.print', $item->id) }}" class="btn btn-secondary btn-sm" target="_blank" title="Print">
+                                            <i class="bi bi-printer"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                                <!-- Hidden data untuk detail row -->
+                                <td style="display:none;" class="detail-data" 
+                                    data-tanggal="{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}"
+                                    data-nama-guru="{{ $item->nama_guru }}"
+                                    data-jabatan="{{ $item->jabatan }}"
+                                    data-nama-siswa="{{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}"
+                                    data-tingkat="{{ $item->siswa->tingkat ?? '-' }}"
+                                    data-jurusan="{{ $item->siswa->jurusan ?? '-' }}"
+                                    data-alamat="{{ $item->siswa->alamat ?? '-' }}"
+                                    data-no-induk="{{ $item->siswa->no_induk ?? '-' }}">
                                 </td>
                             </tr>
                         @endforeach
@@ -261,55 +329,143 @@
         </div>
     </div>
 
+    @push('scripts')
     <script>
-        $(document).ready(function () {
-            // Inisialisasi DataTables TANPA responsive
+        // Function untuk format detail row
+        function formatDetails(detailData) {
+            return `
+                <div class="detail-content">
+                    <table class="table table-sm">
+                        <tr>
+                            <td><i class="bi bi-calendar-event text-primary"></i> Tanggal Kunjungan</td>
+                            <td>${detailData.tanggal}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-person-badge text-success"></i> Nama Guru</td>
+                            <td>${detailData.namaGuru}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-briefcase text-info"></i> Jabatan</td>
+                            <td>${detailData.jabatan}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-person text-warning"></i> Nama Siswa</td>
+                            <td>${detailData.namaSiswa}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-book text-primary"></i> Kelas</td>
+                            <td><span class="badge bg-info">${detailData.tingkat} ${detailData.jurusan}</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-house text-danger"></i> Alamat</td>
+                            <td>${detailData.alamat}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-hash text-secondary"></i> No. Induk</td>
+                            <td>${detailData.noInduk}</td>
+                        </tr>
+                    </table>
+                </div>
+            `;
+        }
+
+        $(document).ready(function() {
             var table = $('#datatablesSimple').DataTable({
-                responsive: false, // Nonaktifkan fitur responsive
-                dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rtip',
+                columnDefs: [
+                    { 
+                        targets: 0,
+                        orderable: false,
+                        className: 'dt-control'
+                    },
+                    {
+                        targets: -1, // Kolom hidden data
+                        visible: false
+                    }
+                ],
                 language: {
                     search: "Cari:",
-                    searchPlaceholder: "Cari data...",
-                    lengthMenu: "Tampilkan _MENU_ data",
+                    lengthMenu: "Tampilkan _MENU_ data per halaman",
                     info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                    infoEmpty: "Tidak ada data",
-                    infoFiltered: "(disaring dari _MAX_ total data)",
-                    zeroRecords: "Tidak ada data yang cocok",
-                    emptyTable: "Tidak ada data dalam tabel",
+                    infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+                    infoFiltered: "(difilter dari _MAX_ total data)",
                     paginate: {
                         first: "Pertama",
-                        previous: "Sebelumnya",
-                        next: "Berikutnya",
-                        last: "Terakhir"
-                    }
+                        last: "Terakhir",
+                        next: "Selanjutnya",
+                        previous: "Sebelumnya"
+                    },
+                    emptyTable: "Tidak ada data yang tersedia",
+                    zeroRecords: "Tidak ada data yang cocok"
                 },
-                order: [[0, 'asc']],
+                order: [[1, 'desc']], // Sort by tanggal
                 pageLength: 10,
-                lengthMenu: [
-                    [5, 10, 25, 50, -1],
-                    [5, 10, 25, 50, "Semua"]
-                ],
-                columnDefs: [{
-                    className: "text-center",
-                    targets: [0, 1, 4, 7]
-                }, {
-                    orderable: false,
-                    targets: [7] // Kolom aksi tidak bisa disort
-                }]
+                lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]]
             });
 
-            // Fix untuk dropdown Bootstrap di DataTables
-            $('#datatablesSimple').on('draw.dt', function () {
-                $('[data-bs-toggle="dropdown"]').dropdown();
-            });
+            // Event listener untuk membuka/menutup detail row
+            $('#datatablesSimple tbody').on('click', 'td.dt-control', function() {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                var detailDataElement = tr.find('.detail-data');
 
-            // Pastikan dropdown bekerja setelah render
-            setTimeout(function () {
-                var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
-                var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
-                    return new bootstrap.Dropdown(dropdownToggleEl)
-                });
-            }, 500);
+                if (row.child.isShown()) {
+                    // Row sudah terbuka, tutup
+                    row.child.hide();
+                    tr.removeClass('shown');
+                } else {
+                    // Ambil data dari atribut data-*
+                    var detailData = {
+                        tanggal: detailDataElement.data('tanggal'),
+                        namaGuru: detailDataElement.data('nama-guru'),
+                        jabatan: detailDataElement.data('jabatan'),
+                        namaSiswa: detailDataElement.data('nama-siswa'),
+                        tingkat: detailDataElement.data('tingkat'),
+                        jurusan: detailDataElement.data('jurusan'),
+                        alamat: detailDataElement.data('alamat'),
+                        noInduk: detailDataElement.data('no-induk')
+                    };
+
+                    // Buka row detail
+                    row.child(formatDetails(detailData)).show();
+                    tr.addClass('shown');
+                }
+            });
         });
+
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Buat form untuk delete
+                    var form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '/kunjungan/delete/' + id;
+                    
+                    var csrfToken = document.createElement('input');
+                    csrfToken.type = 'hidden';
+                    csrfToken.name = '_token';
+                    csrfToken.value = '{{ csrf_token() }}';
+                    
+                    var methodField = document.createElement('input');
+                    methodField.type = 'hidden';
+                    methodField.name = '_method';
+                    methodField.value = 'DELETE';
+                    
+                    form.appendChild(csrfToken);
+                    form.appendChild(methodField);
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            });
+        }
     </script>
+    @endpush
 @endsection
