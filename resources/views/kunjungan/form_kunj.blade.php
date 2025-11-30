@@ -11,6 +11,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 0;
         }
+
         .table-container {
             max-width: 1000px;
             margin: 2rem auto;
@@ -19,11 +20,13 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
             overflow: hidden;
         }
+
         .form-label {
             font-weight: 600;
             color: #333;
             margin-bottom: 8px;
         }
+
         .btn-submit {
             background: linear-gradient(135deg, #2196F3, #42A5F5);
             border: none;
@@ -34,6 +37,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
         }
+
         .btn-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
@@ -45,21 +49,28 @@
                 Form Tugas Kunjungan Rumah
             </div>
             <div class="authors-table p-4">
-                
-            <form action="{{ route('kunjungan.store') }}" method="POST">
+
+                <form action="{{ route('kunjungan.store') }}" method="POST">
                     @csrf
-                    <!-- Row 1: Nama Guru & Jabatan -->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Nama Siswa</label>
-                                <input type="text" name="nama_guru" class="form-control" placeholder="Masukkan nama guru" required>
+                                <select class="form-select" name="nama" required>
+                                    <option value="" selected disabled>Nama Siswa</option>
+                                    @foreach ($siswa as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->nama_siswa }} - {{ $item->tingkat }} {{ $item->jurusan }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Nama Guru</label>
-                                <input type="text" name="jabatan" class="form-control" placeholder="Masukkan nama guru" required>
+                                <input type="text" name="nama_guru" class="form-control" placeholder="Masukkan nama guru"
+                                    required>
                             </div>
                         </div>
                     </div>
@@ -69,23 +80,18 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Dilaksanakan pada tanggal</label>
-                                <input type="date" name="tanggal" class="form-control" required>
+                                <input type="date" name="tanggal_laksana" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Jabatan</label>
-                                <input type="text" name="jabatan" class="form-control" placeholder="Masukkan jabatan" required>
+                                <input type="text" name="jabatan" class="form-control" placeholder="Masukkan jabatan"
+                                    required>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Alamat Siswa Yang Dituju</label>
-                        <textarea name="alamat_siswa" class="form-control" rows="3" placeholder="Masukkan alamat lengkap siswa" required></textarea>
-                    </div>
-
-                    
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -146,7 +152,7 @@
                 penColor: 'rgb(0, 0, 0)',
                 minWidth: 1,
                 maxWidth: 3,
-                throttle: 0, 
+                throttle: 0,
                 velocityFilterWeight: 0.7
             });
 

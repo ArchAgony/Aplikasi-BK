@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\KunjunganRumah;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class KunjunganRumahController extends Controller
 {
@@ -21,7 +23,8 @@ class KunjunganRumahController extends Controller
      */
     public function create()
     {
-        return view('kunjungan.form_kunj');
+        $siswa = Siswa::all();
+        return view('kunjungan.form_kunj', compact('siswa'));
     }
     public function laporan()
     {
@@ -40,33 +43,37 @@ class KunjunganRumahController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    private function saveSignature($base64String, $type)
+    {
+        $image = str_replace('data:image/png;base64,', '', $base64String);
+        $image = str_replace(' ', '+', $image);
+        $imageData = base64_decode($image);
+
+        $imageName = 'ttd_' . date('YmdHis') . '.png';
+        $path = 'ttd/' . $imageName;
+        Storage::disk('public')->put($path, $imageData);
+
+        return $path;
+    }
+
     public function store(Request $request)
     {
         //
         try {
-            $field = $request->validate([
-                'guru_id' => 'required',
-                'siswa_id' => 'nullable',
-                'tujuan' => 'nullable',
-                'hasil_wawancara' => 'nullable',
-                'kesimpulan_tindak_lanjut' => 'nullable',
-                'ttd_path' => 'nullable',
-            ]);
+            $ttdTamuPath = $this->saveSignature($request->ttd_tamu, 'tamu');
 
             $data = KunjunganRumah::create([
-                'guru_id' => $request->guru_id,
-                'siswa_id' => $request->siswa_id,
-                'tujuan' => $request->tujuan,
-                'hasil_wawancara' => $request->hasil_wawancara,
+                'siswa_id' => $request->nama,
+                'nama_guru' => $request->nama_guru,
+                'jabatan' => $request->jabatan,
                 'kesimpulan_tindak_lanjut' => $request->kesimpulan_tindak_lanjut,
-                'ttd_path' => $request->ttd_path,
+                'ttd_path' => $ttdTamuPath,
                 'tanggal' => now()->toDateString(),
+                'tanggal_laksana' => $request->tanggal_laksana,
             ]);
 
-            return response()->json([
-                'message' => 'berhasil ditambahkan',
-                'data' => $data
-            ]);
+            return redirect('/kunjungan')->with('success', 'Data kunjungan berhasil disimpan');
         } catch (\Exception $th) {
             return response()->json([
                 'message' => $th->getMessage()
