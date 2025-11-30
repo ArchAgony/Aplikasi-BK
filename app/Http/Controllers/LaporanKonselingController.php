@@ -15,7 +15,7 @@ class LaporanKonselingController extends Controller
     public function index()
     {
         //
-        $laporan = LaporanKonseling::with('guru', 'siswa')->get();
+        $laporan = LaporanKonseling::with('guru', 'siswa')->orderBy('id', 'desc')->get();
         return view('laporankons.index', compact('laporan'));
     }
 

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('kunjungan_rumahs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->nullable()->constrained('siswas')->onDelete('restrict');
-            $table->foreignId('alamat_id')->nullable()->constrained('buku_tamus')->onDelete('restrict');
-            $table->dateTime('tanggal');
-            $table->dateTime('tanggal_laksana');
+            // $table->foreignId('alamat_id')->nullable()->constrained('buku_tamus')->onDelete('restrict');
+            $table->date('tanggal')->nullable();
+            $table->date('tanggal_laksana');
             $table->string('nama_guru')->nullable();
             $table->string('jabatan')->nullable();
             $table->string('ttd_path')->nullable();

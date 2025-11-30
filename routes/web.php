@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/kunjungan/{id}/layanan', [KunjunganRumahController::class, 'layanan'])->name('kunjungan.layanan');
     Route::get('/kunjungan/{id}/delete', [KunjunganRumahController::class, 'destroy'])->name('kunjungan.delete');
     Route::get('/kunjungan/{id}/edit', [KunjunganRumahController::class, 'edit'])->name('kunjungan.edit');
+    Route::post("/kunjungan/{id}", [KunjunganRumahController::class, "update"])->name('kunjungan.update');
 
 
     route::post('/kunjungan', [KunjunganRumahController::class, 'store'])->name('kunjungan.store');

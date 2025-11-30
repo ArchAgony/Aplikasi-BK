@@ -265,7 +265,6 @@
         });
 
         function btnTambah() {
-            // Add your save logic here
             console.log('Simpan data siswa');
             $('#modal-tambah-siswa').modal('hide');
         }

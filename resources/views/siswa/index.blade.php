@@ -13,9 +13,10 @@
         }
 
         .modal-header {
-            background: linear-gradient(135deg, #5f6deeff, #ffffffff);
+            background: linear-gradient(135deg, #1f80adff, #f3f4ffff);
             color: white;
             padding: 15px 20px;
+            border-radius: 10px 10px 0 0;
             font-weight: 600;
             font-size: 16px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -175,7 +176,7 @@
                             <th>No</th>
                             <th>Nama Siswa</th>
                             <th>Kelas</th>
-                            <th>Kasus</th>
+                            {{-- <th>Kasus</th> --}}
                             <th>Alamat</th>
                             <th>aksi</th>
                         </tr>
@@ -183,108 +184,105 @@
                     <tbody>
                         @foreach ($siswa as $key => $s)
                             <tr>
-                                <td class="text-center">{{ $key + 1 }}</td>
+                                <td>{{ $key + 1 }}</td>
                                 <td>{{ $s->nama_siswa }}</td>
-                                <td class="text-center">{{ $s->tingkat }} {{ $s->jurusan }}</td>
-                                <td>{{ $s->kasus }}</td>
+                                <td>{{ $s->tingkat }} {{ $s->jurusan }}</td>
+                                {{-- <td>{{ $s->kasus }}</td> --}}
                                 <td>{{ $s->alamat }}</td>
-                                <td class="text-center">
+                                <td>
                                     <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
                                         data-bs-target="#modal-edit-siswa-{{ $s->id }}">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    </a>
                                     <a onclick="confirmDelete({{ $s->id }})"
                                         class="btn btn-sm btn-outline-danger me-1"><i class="fas fa-trash"></i></a>
                                     <form id="delete-form-{{ $s->id }}" action="/siswa/{{ $s->id }}"
                                         method="GET" style="display:none;">
                                     </form>
                                 </td>
-                            </tr>
-
-                            <div class="modal fade" id="modal-edit-siswa-{{ $s->id }}" tabindex="-1"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header border-0">
-                                            <h5 class="modal-title">Ubah Data Siswa</h5>
-                                            <button type="button" class="btn-close btn-close-white"
-                                                data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="form-tambah" action="/siswa/{{ $s->id }}" method="POST">
-                                                @csrf
-                                                <div class="row mb-3">
-                                                    <label class="col-sm-3 col-form-label">NIS <span
-                                                            class="text-danger">*</span></label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="nis-tambah"
-                                                            placeholder="Masukkan NIS" required name="nis"
-                                                            value="{{ $s->nis }}">
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label class="col-sm-3 col-form-label">Nama Siswa <span
-                                                            class="text-danger">*</span></label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="nama-tambah"
-                                                            placeholder="Masukkan Nama Lengkap" required name="nama"
-                                                            value="{{ $s->nama_siswa }}">
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label class="col-sm-3 col-form-label">Tingkat <span
-                                                            class="text-danger">*</span></label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-select" required name="tingkat">
-                                                            <option value="">Pilih Tingkat</option>
-                                                            <option value="X"
-                                                                {{ $s->tingkat == 'X' ? 'selected' : '' }}>X
-                                                            </option>
-                                                            <option value="XI"
-                                                                {{ $s->tingkat == 'XI' ? 'selected' : '' }}>XI
-                                                            </option>
-                                                            <option value="XII"
-                                                                {{ $s->tingkat == 'XII' ? 'selected' : '' }}>XII
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label class="col-sm-3 col-form-label">Jurusan <span
-                                                            class="text-danger">*</span></label>
-                                                    <div class="col-sm-9">
-                                                        <div class="input-group mb-3">
-                                                            <input type="text" class="form-control"
-                                                                aria-label="Text input with dropdown button"
-                                                                id="customInput" placeholder="masukkan jurusan"
-                                                                name="jurusan" value="{{ $s->jurusan }}">
+                                <div class="modal fade" id="modal-edit-siswa-{{ $s->id }}" tabindex="-1"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header border-0">
+                                                <h5 class="modal-title">Ubah Data Siswa</h5>
+                                                <button type="button" class="btn-close btn-close-white"
+                                                    data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="form-tambah" action="/siswa/{{ $s->id }}" method="POST">
+                                                    @csrf
+                                                    <div class="row mb-3">
+                                                        <label class="col-sm-3 col-form-label">NIS <span
+                                                                class="text-danger">*</span></label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="nis-tambah"
+                                                                placeholder="Masukkan NIS" required name="nis"
+                                                                value="{{ $s->nis }}">
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label class="col-sm-3 col-form-label">Alamat <span
-                                                            class="text-danger">*</span></label>
-                                                    <div class="col-sm-9">
-                                                        <div class="input-group mb-3">
-                                                            <input type="text" class="form-control"
-                                                                aria-label="Text input with dropdown button"
-                                                                id="customInput" placeholder="masukkan jurusan"
-                                                                name="alamat" value="{{ $s->alamat }}">
+                                                    <div class="row mb-3">
+                                                        <label class="col-sm-3 col-form-label">Nama Siswa <span
+                                                                class="text-danger">*</span></label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="nama-tambah"
+                                                                placeholder="Masukkan Nama Lengkap" required name="nama"
+                                                                value="{{ $s->nama_siswa }}">
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer border-0">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-primary"
-                                                        style="background: #8d5bbcff; border-color: #63dfe3ff;"
-                                                        onclick="btnTambah()">Simpan</button>
-                                                </div>
-                                            </form>
+                                                    <div class="row mb-3">
+                                                        <label class="col-sm-3 col-form-label">Tingkat <span
+                                                                class="text-danger">*</span></label>
+                                                        <div class="col-sm-9">
+                                                            <select class="form-select" required name="tingkat">
+                                                                <option value="">Pilih Tingkat</option>
+                                                                <option value="X"
+                                                                    {{ $s->tingkat == 'X' ? 'selected' : '' }}>X
+                                                                </option>
+                                                                <option value="XI"
+                                                                    {{ $s->tingkat == 'XI' ? 'selected' : '' }}>XI
+                                                                </option>
+                                                                <option value="XII"
+                                                                    {{ $s->tingkat == 'XII' ? 'selected' : '' }}>XII
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label class="col-sm-3 col-form-label">Jurusan <span
+                                                                class="text-danger">*</span></label>
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group mb-3">
+                                                                <input type="text" class="form-control format-jurusan"
+                                                                    name="jurusan" value="{{ $s->jurusan }}" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label class="col-sm-3 col-form-label">Alamat <span
+                                                                class="text-danger">*</span></label>
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group mb-3">
+                                                                <input type="text" class="form-control"
+                                                                    aria-label="Text input with dropdown button"
+                                                                    id="customInput" placeholder="masukkan jurusan"
+                                                                    name="alamat" value="{{ $s->alamat }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer border-0">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary"
+                                                            style="background: #8d5bbcff; border-color: #63dfe3ff;"
+                                                            onclick="btnTambah()">Simpan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -313,8 +311,7 @@
                             <label class="col-sm-3 col-form-label">Nama Siswa <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="nama-tambah"
-                                    placeholder="Masukkan Nama Lengkap" required name="nama"
-                                   >
+                                    placeholder="Masukkan Nama Lengkap" required name="nama">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -324,9 +321,9 @@
                                     <option value="">Pilih Tingkat</option>
                                     <option value="X">X
                                     </option>
-                                    <option value="XI" >XI
+                                    <option value="XI">XI
                                     </option>
-                                    <option value="XII" >XII
+                                    <option value="XII">XII
                                     </option>
                                 </select>
                             </div>
@@ -335,9 +332,8 @@
                             <label class="col-sm-3 col-form-label">Jurusan <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control"
-                                        aria-label="Text input with dropdown button" id="customInput"
-                                        placeholder="masukkan jurusan" name="jurusan" >
+                                    <input type="text" class="form-control format-jurusan" name="jurusan"
+                                        placeholder="Masukkan jurusan" required>
                                 </div>
                             </div>
                         </div>
@@ -347,7 +343,7 @@
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control"
                                         aria-label="Text input with dropdown button" id="customInput"
-                                        placeholder="Masukkan Alamat" name="alamat" >
+                                        placeholder="Masukkan Alamat" name="alamat">
                                 </div>
                             </div>
                         </div>
@@ -362,19 +358,9 @@
         </div>
     </div>
 @endsection
-@section('scripts')
+{{-- @section('scripts')
     <script src="{{ asset('Js/jquery-3.7.1.js') }}"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const input = document.getElementById('customInput');
-
-            if (input) {
-                input.addEventListener('input', (e) => {
-                    e.target.value = e.target.value
-                        .toUpperCase()
-                        .replace(/\s+/g, '-');
-                });
-            }
-        });
+        
     </script>
-@endsection
+@endsection --}}

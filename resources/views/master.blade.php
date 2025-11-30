@@ -11,6 +11,9 @@
     <!-- Bootstrap Icons -->
     <link href="{{ asset('/Lib/bootstrap-icons-1.11.1/bootstrap-icons.min.css') }}" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}"> -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css"
+        rel="stylesheet" />
     <link href="
 {{ asset('Css/sweetalert2.min.css') }}
 " rel="stylesheet">
@@ -198,14 +201,12 @@
             }
         }
 
-        /* Custom Card Header biar lebih cantik */
         .card-header {
             font-weight: bold;
             font-size: 1.1rem;
             letter-spacing: 0.5px;
         }
 
-        /* Styling tabel (opsional) */
         .table thead th {
             background-color: #f8f9fa;
             text-transform: uppercase;
@@ -231,8 +232,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ Request::is('siswa*') ? 'active-link' : 'text-dark' }}" href="/siswa">
+                        <i class="bi bi-person me-2"></i>Siswa
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ Request::is('laporan*') ? 'active-link' : 'text-dark' }}" href="/laporan">
-                        <i class="bi bi-graph-up me-2"></i>Buku Kasus
+                        <i class="bi bi-graph-up me-2"></i>Laporan Konseling
+                        {{-- Buku Kasus --}}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -243,12 +250,6 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('kunjungan*') ? 'active-link' : 'text-dark' }}" href="/kunjungan">
                         <i class="bi bi-house-exclamation me-2"></i>Kunjungan Rumah
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('siswa*') ? 'active-link' : 'text-dark' }}" href="/siswa">
-                        <i class="bi bi-person me-2"></i>Siswa
                     </a>
                 </li>
             </ul>
@@ -293,7 +294,7 @@
             }
 
             // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', function (event) {
+            document.addEventListener('click', function(event) {
                 const sidebar = document.getElementById('sidebar');
                 const toggle = document.querySelector('.sidebar-toggle');
 
@@ -305,7 +306,7 @@
             });
 
             // Handle window resize
-            window.addEventListener('resize', function () {
+            window.addEventListener('resize', function() {
                 const sidebar = document.getElementById('sidebar');
                 if (window.innerWidth > 768) {
                     sidebar.classList.remove('show');
@@ -315,13 +316,17 @@
         <script src="{{ asset('Js/jquery-3.7.1.js') }}"></script>
         <script src="{{ asset('/Lib/bootstrap/js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
         <script src="{{ asset('/Lib/chart.js/Chart.min.js') }}" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+        </script>
         <script src="{{ asset('Js/jquery.dataTables.min.js') }}"></script>
         <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
         <script src="{{ asset('Js/dataTables.responsive.js') }}"></script>
         <script src="{{ asset('Js/responsive.dataTables.js') }}"></script>
         <script src="{{ asset('Js/sweetalert2.all.min.js') }}"></script>
         <script src="{{ asset('Js/signature_pad.umd.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
         @if (session('success'))
             <script>
                 Swal.fire({
@@ -346,50 +351,52 @@
 
         <script>
             $(document).ready(function () {
-
-                // Inisialisasi datatablesSimple (halaman siswa)
-                if ($('#datatablesSimple').length && !$.fn.DataTable.isDataTable('#datatablesSimple')) {
-                    $('#datatablesSimple').DataTable({
-                        responsive: true,
-                        language: {
-                            search: "_INPUT_",
-                            searchPlaceholder: "Cari siswa...",
-                            lengthMenu: "Tampilkan _MENU_ data",
-                            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                            paginate: {
-                                previous: "Sebelumnya",
-                                next: "Berikutnya"
-                            }
-                        },
-                        order: [
-                            [1, 'asc']
-                        ]
-                    });
-                }
-
-                // Inisialisasi datatablesHome (halaman dashboard)
-                if ($('#datatablesHome').length && !$.fn.DataTable.isDataTable('#datatablesHome')) {
-                    $('#datatablesHome').DataTable({
-                        responsive: true,
-                        dom: '<"row mb-2"<"col-md-6"l><"col-md-6 text-end"f>>rtip',
-                        language: {
-                            search: "_INPUT_",
-                            searchPlaceholder: "Cari...",
-                            lengthMenu: "Tampilkan _MENU_ data",
-                            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                            paginate: {
-                                previous: "Sebelumnya",
-                                next: "Berikutnya"
-                            },
-                            zeroRecords: "Data tidak ditemukan"
-                        },
-                        order: [
-                            [0, 'asc']
-                        ]
-                    });
-                }
-
+            var table = $('#datatablesSimple').DataTable({
+                responsive: false, 
+                destroy: true,
+                dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rtip',
+                language: {
+                    search: "Cari:",
+                    searchPlaceholder: "Cari data...",
+                    lengthMenu: "Tampilkan _MENU_ data",
+                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                    infoEmpty: "Tidak ada data",
+                    infoFiltered: "(disaring dari _MAX_ total data)",
+                    zeroRecords: "Tidak ada data yang cocok",
+                    emptyTable: "Tidak ada data dalam tabel",
+                    paginate: {
+                        first: "Pertama",
+                        previous: "Sebelumnya",
+                        next: "Berikutnya",
+                        last: "Terakhir"
+                    }
+                },
+                order: [[0, 'asc']],
+                pageLength: 10,
+                lengthMenu: [
+                    [5, 10, 25, 50, -1],
+                    [5, 10, 25, 50, "Semua"]
+                ],
+                columnDefs: [{
+                    className: "text-center",
+                    targets: [0, 1, 4, 7]
+                }, {
+                    orderable: false,
+                    targets: [7] 
+                }]
             });
+
+            $('#datatablesSimple').on('draw.dt', function () {
+                $('[data-bs-toggle="dropdown"]').dropdown();
+            });
+
+            setTimeout(function () {
+                var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+                var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+                    return new bootstrap.Dropdown(dropdownToggleEl)
+                });
+            }, 500);
+        });
 
             function confirmDelete(id) {
                 Swal.fire({
@@ -420,11 +427,37 @@
                     cancelButtonText: '<i class="fas fa-times"></i> Batal',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Submit form logout
                         document.getElementById('logout-form').submit();
                     }
                 });
             }
+
+            document.addEventListener('DOMContentLoaded', function() {
+
+                const jurusanInputs = document.querySelectorAll('.format-jurusan');
+
+                jurusanInputs.forEach(function(input) {
+                    input.addEventListener('input', function(e) {
+                        let cursorPosition = e.target.selectionStart;
+                        let oldValue = e.target.value;
+
+                        let newValue = oldValue.toUpperCase().replace(/ /g, '-');
+
+                        e.target.value = newValue;
+
+                        e.target.setSelectionRange(cursorPosition, cursorPosition);
+                    });
+                });
+            });
+
+            $(document).ready(function() {
+                $('#search-select').select2({
+                    theme: 'bootstrap-5',
+                    placeholder: 'Ketik untuk mencari siswa...',
+                    allowClear: true,
+                    width: '100%'
+                });
+            });
         </script>
 </body>
 

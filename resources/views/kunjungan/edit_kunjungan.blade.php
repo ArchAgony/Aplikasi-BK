@@ -46,55 +46,52 @@
             </div>
             <div class="authors-table p-4">
                 
-            <form action="{{ route('kunjungan.store') }}" method="POST">
+            <form action="/kunjungan/{{ $data->id }}" method="POST">
                     @csrf
-                    <!-- Row 1: Nama Guru & Jabatan -->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Nama Siswa</label>
-                                <input type="text" name="nama_guru" class="form-control" placeholder="Masukkan nama guru" required>
+                                <select class="form-select" id="search-select" name="nama" required>
+                                    <option value="" selected disabled>Nama Siswa</option>
+                                    @foreach ($siswa as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ $data->siswa_id == $item->id ? 'selected' : '' }}
+                                            >
+                                            {{ $item->nama_siswa }} - {{ $item->tingkat }} {{ $item->jurusan }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Nama Guru</label>
-                                <input type="text" name="jabatan" class="form-control" placeholder="Masukkan nama guru" required>
+                                <input type="text" name="nama_guru" class="form-control" placeholder="Masukkan nama guru"
+                                    required value="{{ $data->nama_guru }}">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Row 2: Nama Siswa & Dilaksanakan pada tanggal -->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Dilaksanakan pada tanggal</label>
-                                <input type="date" name="tanggal" class="form-control" required>
+                                <input type="date" name="tanggal_laksana" class="form-control" required value="{{ $data->tanggal_laksana }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Jabatan</label>
-                                <input type="text" name="jabatan" class="form-control" placeholder="Masukkan jabatan" required>
+                                <input type="text" name="jabatan" class="form-control" placeholder="Masukkan jabatan"
+                                    required value="{{ $data->jabatan }}">
                             </div>
                         </div>
                     </div>
-
-                    <!-- Row 3: Alamat Siswa (Full Width) -->
-                    <div class="mb-3">
-                        <label class="form-label">Alamat Siswa Yang Dituju</label>
-                        <textarea name="alamat_siswa" class="form-control" rows="3" placeholder="Masukkan alamat lengkap siswa" required></textarea>
-                    </div>
-
-                    <!-- Row 4: Kami Yang Menerima Kunjungan & Kepala Sekolah -->
-                   
-
-                    <!-- Tombol Submit -->
                     <div class="text-center mt-4">
                         <button type="submit" class="btn btn-submit">Kirim</button>
                     </div>
                 </form>
-            </div>
         </div>
     </div>
 @endsection

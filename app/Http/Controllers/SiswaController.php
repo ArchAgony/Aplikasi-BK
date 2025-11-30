@@ -12,7 +12,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswa = Siswa::all();
+        $siswa = Siswa::orderBy('id', 'desc')->get();
         return view('siswa.index', compact('siswa'));
         return response()->json([
             'siswa' => $siswa

@@ -157,8 +157,6 @@
             overflow: visible !important;
         }
 
-        @media (max-width: 768px) {
-
         .authors-table {
             overflow: visible !important;
         }
@@ -172,7 +170,6 @@
             position: relative;
         }
 
-        /* Nonaktifkan scroll yang memotong dropdown */
         .dataTables_wrapper .dataTables_scroll,
         .dataTables_scrollBody {
             overflow: visible !important;
@@ -247,7 +244,7 @@
                                                 <li><a class="dropdown-item hijau" href="{{ route('kunjungan.laporan', $item->id) }}"> <i class="bi bi-envelope-paper"></i> Laporan</a></li>
                                                 <li><a class="dropdown-item biru " href="{{ route('kunjungan.layanan', $item->id) }}"><i class="bi bi-house-door"></i> Layanan</a></li>
                                                 <li><a class="dropdown-item kuning" href="{{ route('kunjungan.edit',$item->id) }}"><i class="bi bi-pencil"></i> Edit</a></li>
-                                                <li><a class="dropdown-item merah" href="{{ route('kunjungan.delete', $item->id) }}"><i class="bi bi-trash"></i> Delete</a></li>
+                                                <li><a class="dropdown-item merah" href="{{ route('kunjungan.delete', $item->id) }}" onclick="confirmDelete({{ $item->id }})"><i class="bi bi-trash"></i> Delete</a></li>
                                             </ul>
                                             <a href="{{ route('kunjungan.print',$item->id ) }}" class="btn btn-secondary"><i class="bi bi-printer"></i>Print</a>
                                         </div>
@@ -261,11 +258,10 @@
         </div>
     </div>
 
-    <script>
+    {{-- <script>
         $(document).ready(function () {
-            // Inisialisasi DataTables TANPA responsive
             var table = $('#datatablesSimple').DataTable({
-                responsive: false, // Nonaktifkan fitur responsive
+                responsive: false, 
                 dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rtip',
                 language: {
                     search: "Cari:",
@@ -294,16 +290,14 @@
                     targets: [0, 1, 4, 7]
                 }, {
                     orderable: false,
-                    targets: [7] // Kolom aksi tidak bisa disort
+                    targets: [7] 
                 }]
             });
 
-            // Fix untuk dropdown Bootstrap di DataTables
             $('#datatablesSimple').on('draw.dt', function () {
                 $('[data-bs-toggle="dropdown"]').dropdown();
             });
 
-            // Pastikan dropdown bekerja setelah render
             setTimeout(function () {
                 var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
                 var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
@@ -311,5 +305,5 @@
                 });
             }, 500);
         });
-    </script>
+    </script> --}}
 @endsection
