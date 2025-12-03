@@ -194,21 +194,178 @@
                                         <i class="fas fa-edit"></i>
                                     </button>
 
-                                    <a onclick="confirmDelete({{ $s->id }})" class="btn btn-sm btn-outline-danger me-1">
+                                    <a onclick="confirmDelete({{ $s->id }})"
+                                        class="btn btn-sm btn-outline-danger me-1">
                                         <i class="fas fa-trash"></i>
                                     </a>
 
-                                    <form id="delete-form-{{ $s->id }}" action="/siswa/{{ $s->id }}" method="GET"
-                                        style="display:none;">
+                                    <form id="delete-form-{{ $s->id }}" action="/siswa/{{ $s->id }}"
+                                        method="GET" style="display:none;">
                                     </form>
+
+                                    <div class="modal fade" id="modal-edit-siswa-{{ $s->id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header border-0">
+                                                    <h5 class="modal-title">Ubah Data Siswa</h5>
+                                                    <button type="button" class="btn-close btn-close-white"
+                                                        data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="delete-form-{{ $s->id }}"
+                                                        action="/siswa/{{ $s->id }}" method="GET"
+                                                        style="display:none;">
+
+                                                    </form>
+
+                                </td>
+
+                                <div class="modal fade" id="modal-edit-siswa-{{ $s->id }}" tabindex="-1"
+                                    aria-hidden="true">
+
+                                    <div class="modal-dialog modal-lg">
+
+                                        <div class="modal-content">
+
+                                            <div class="modal-header border-0">
+
+                                                <h5 class="modal-title">Ubah Data Siswa</h5>
+
+                                                <button type="button" class="btn-close btn-close-white"
+                                                    data-bs-dismiss="modal"></button>
+
+                                            </div>
+
+                                            <div class="modal-body">
+
+                                                <form id="form-tambah" action="/siswa/{{ $s->id }}" method="POST">
+
+                                                    @csrf
+
+                                                    <div class="row mb-3">
+
+                                                        <label class="col-sm-3 col-form-label">NIS <span
+                                                                class="text-danger">*</span></label>
+
+                                                        <div class="col-sm-9">
+
+                                                            <input type="text" class="form-control" id="nis-tambah"
+                                                                placeholder="Masukkan NIS" required name="nis"
+                                                                value="{{ $s->nis }}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row mb-3">
+
+                                                        <label class="col-sm-3 col-form-label">Nama Siswa <span
+                                                                class="text-danger">*</span></label>
+
+                                                        <div class="col-sm-9">
+
+                                                            <input type="text" class="form-control" id="nama-tambah"
+                                                                placeholder="Masukkan Nama Lengkap" required name="nama"
+                                                                value="{{ $s->nama_siswa }}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row mb-3">
+
+                                                        <label class="col-sm-3 col-form-label">Tingkat <span
+                                                                class="text-danger">*</span></label>
+
+                                                        <div class="col-sm-9">
+
+                                                            <select class="form-select" required name="tingkat">
+
+                                                                <option value="">Pilih Tingkat</option>
+
+                                                                <option value="X"
+                                                                    {{ $s->tingkat == 'X' ? 'selected' : '' }}>X
+
+                                                                </option>
+
+                                                                <option value="XI"
+                                                                    {{ $s->tingkat == 'XI' ? 'selected' : '' }}>XI
+
+                                                                </option>
+
+                                                                <option value="XII"
+                                                                    {{ $s->tingkat == 'XII' ? 'selected' : '' }}>XII
+
+                                                                </option>
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row mb-3">
+
+                                                        <label class="col-sm-3 col-form-label">Jurusan <span
+                                                                class="text-danger">*</span></label>
+
+                                                        <div class="col-sm-9">
+
+                                                            <div class="input-group mb-3">
+
+                                                                <input type="text" class="form-control format-jurusan"
+                                                                    name="jurusan" value="{{ $s->jurusan }}" required>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row mb-3">
+
+                                                        <label class="col-sm-3 col-form-label">Alamat <span
+                                                                class="text-danger">*</span></label>
+
+                                                        <div class="col-sm-9">
+
+                                                            <div class="input-group mb-3">
+
+                                                                <input type="text" class="form-control"
+                                                                    aria-label="Text input with dropdown button"
+                                                                    id="customInput" placeholder="masukkan jurusan"
+                                                                    name="alamat" value="{{ $s->alamat }}">
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="modal-footer border-0">
+
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Batal</button>
+
+                                                        <button type="submit" class="btn btn-primary"
+                                                            style="background: #8d5bbcff; border-color: #63dfe3ff;"
+                                                            onclick="btnTambah()">Simpan</button>
+
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
 
-                {{-- ✅ tempatkan modal di bawah table --}}
-                @foreach ($siswa as $s)
+                {{-- @foreach ($siswa as $s)
                     <div class="modal fade" id="modal-edit-siswa-{{ $s->id }}" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -219,7 +376,6 @@
                                 <div class="modal-body">
                                     <form id="form-tambah" action="/siswa/{{ $s->id }}" method="POST">
                                         @csrf
-                                        {{-- semua input nis, nama, tingkat, jurusan, alamat dst --}}
                                         <div class="modal-footer border-0">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Batal</button>
@@ -233,7 +389,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @endforeach --}}
             </div>
         </div>
     </div>
@@ -251,15 +407,15 @@
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">NIS <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nis-tambah" placeholder="Masukkan NIS" required
-                                    name="nis">
+                                <input type="text" class="form-control" id="nis-tambah" placeholder="Masukkan NIS"
+                                    required name="nis">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Nama Siswa <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nama-tambah" placeholder="Masukkan Nama Lengkap"
-                                    required name="nama">
+                                <input type="text" class="form-control" id="nama-tambah"
+                                    placeholder="Masukkan Nama Lengkap" required name="nama">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -289,8 +445,9 @@
                             <label class="col-sm-3 col-form-label">Alamat <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" aria-label="Text input with dropdown button"
-                                        id="customInput" placeholder="Masukkan Alamat" name="alamat">
+                                    <input type="text" class="form-control"
+                                        aria-label="Text input with dropdown button" id="customInput"
+                                        placeholder="Masukkan Alamat" name="alamat">
                                 </div>
                             </div>
                         </div>
