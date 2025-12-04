@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LaporanKonseling;
 use App\Models\Siswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,11 +15,15 @@ class DashboardController extends Controller
      */
     public function index()
     {
-            $jumlahsiswa = Siswa::count();
-            $siswa = Siswa::all();
+        $jumlahsiswa = Siswa::count();
+        $siswa = Siswa::all();
+        $totalKasus = LaporanKonseling::count();
+        $kasusSedangBerjalan = LaporanKonseling::where('keterangan', 'Sedang Berjalan')
+            ->count();
 
-        // Ambil jumlah kasus berdasarkan kelas dari tabel laporan_konselings
-        // Menggabungkan tingkat + jurusan sebagai label kelas
+        $kasusTuntas = LaporanKonseling::where('keterangan', 'Tuntas')
+            ->count();
+
         $kasusPerkelas = DB::table('laporan_konselings')
             ->join('siswas', 'laporan_konselings.siswa_id', '=', 'siswas.id')
             ->select(DB::raw("CONCAT(siswas.tingkat, ' ', siswas.jurusan) as kelas"), DB::raw('COUNT(laporan_konselings.id) as total'))
@@ -25,13 +31,12 @@ class DashboardController extends Controller
             ->orderByDesc('total')
             ->get();
 
-        // Ambil jumlah kasus berdasarkan jenis masalah dari laporan_konselings
         $kasusPerMasalah = DB::table('laporan_konselings')
             ->select('masalah', DB::raw('COUNT(id) as total'))
             ->groupBy('masalah')
             ->orderByDesc('total')
             ->get();
-        return view('dashboard.home', compact('jumlahsiswa','siswa','kasusPerkelas','kasusPerMasalah'));
+        return view('dashboard.home', compact('jumlahsiswa', 'siswa', 'kasusPerkelas', 'kasusPerMasalah', 'totalKasus', 'kasusSedangBerjalan', 'kasusTuntas'));
     }
 
     /**

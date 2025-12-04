@@ -185,7 +185,7 @@
                             <th>Penyebab</th>
                             <th>Kesimpulan</th>
                             <th>Penyelesaian</th>
-                            <th>Evaluasi</th>
+                            <th>Keterangan</th>
                             <th>aksi</th>
                         </tr>
                     </thead>
@@ -204,7 +204,7 @@
                                 <td class="text-center align-middle">{{ $item->penyebab }}</td>
                                 <td class="text-center align-middle">{{ $item->kesimpulan_masalah }}</td>
                                 <td class="text-center align-middle">{{ $item->penyelesaian }}</td>
-                                <td class="text-center align-middle">{{ $item->evaluasi }}</td>
+                                <td class="text-center align-middle">{{ $item->keterangan }}</td>
                                 <td class="text-center align-middle">
                                     <div class="row">
                                         <div class="col">

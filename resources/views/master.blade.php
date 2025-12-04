@@ -212,20 +212,102 @@
             text-transform: uppercase;
             font-size: 0.9rem;
         }
+
+        /* nambahin ini */
+        .sidebar-user-profile {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 10px;
+        }
+
+        .sidebar-user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: white;
+            color: #0d6efd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-user-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .sidebar-user-name {
+            margin: 0;
+            font-weight: 600;
+            font-size: 14px;
+            color: #212529;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ini juga */
+        .sidebar-user-profile {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            gap: 12px;
+        }
+
+        .sidebar-user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .sidebar-user-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .sidebar-user-name {
+            margin: 0;
+            font-weight: 600;
+            font-size: 14px;
+            color: #212529;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-user-info small {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: -2px;
+        }
     </style>
 </head>
 
 <body>
-    <!-- Sidebar -->
-    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="p-3 border-bottom">
             <h5 class="mb-0 text-primary">
                 <i class="bi bi-speedometer2 me-2"></i>APLIKASI BK
             </h5>
         </div>
-        <nav class="mt-3">
-            <ul class="nav flex-column">
+        <nav class="mt-3 d-flex flex-column" style="height: 89vh;">
+            <ul class="nav flex-column flex-grow-1">
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('/*') ? 'active-link' : 'text-dark' }}" href="/">
                         <i class="bi bi-house-door me-2"></i>Dashboard
@@ -253,6 +335,17 @@
                     </a>
                 </li>
             </ul>
+            <div class="mt-auto border-top">
+                <div class="sidebar-user-profile">
+                    <div class="sidebar-user-avatar">
+                        {{ strtoupper(substr(Auth::user()->nama_guru, 0, 2)) }}
+                    </div>
+                    <div class="sidebar-user-info">
+                        <p class="sidebar-user-name">{{ Str::limit(Auth::user()->nama_guru, 20) }}</p>
+                        <small class="text-muted d-block">Guru BK</small>
+                    </div>
+                </div>
+            </div>
         </nav>
     </div>
 
@@ -294,7 +387,7 @@
             }
 
             // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', function (event) {
+            document.addEventListener('click', function(event) {
                 const sidebar = document.getElementById('sidebar');
                 const toggle = document.querySelector('.sidebar-toggle');
 
@@ -306,7 +399,7 @@
             });
 
             // Handle window resize
-            window.addEventListener('resize', function () {
+            window.addEventListener('resize', function() {
                 const sidebar = document.getElementById('sidebar');
                 if (window.innerWidth > 768) {
                     sidebar.classList.remove('show');
@@ -318,7 +411,7 @@
         <script src="{{ asset('/Lib/chart.js/Chart.min.js') }}" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-            </script>
+        </script>
         <script src="{{ asset('Js/jquery.dataTables.min.js') }}"></script>
         <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
         <script src="{{ asset('Js/dataTables.responsive.js') }}"></script>
@@ -350,7 +443,7 @@
         @endif
 
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
                 var table = $('#datatablesSimple').DataTable({
                     responsive: false,
                     destroy: true,
@@ -371,25 +464,32 @@
                             last: "Terakhir"
                         }
                     },
-                    order: [[0, 'asc']],
+                    order: [
+                        [0, 'asc']
+                    ],
                     pageLength: 10,
                     lengthMenu: [
                         [5, 10, 25, 50, -1],
                         [5, 10, 25, 50, "Semua"]
                     ],
-                    columnDefs: [
-                        { className: "text-center", targets: [0, 1, 4] },
-                        { orderable: false, targets: [4] }
+                    columnDefs: [{
+                            className: "text-center",
+                            targets: [0, 1, 4]
+                        },
+                        {
+                            orderable: false,
+                            targets: [4]
+                        }
                     ]
                 });
 
-                $('#datatablesSimple').on('draw.dt', function () {
+                $('#datatablesSimple').on('draw.dt', function() {
                     $('[data-bs-toggle="dropdown"]').dropdown();
                 });
 
-                setTimeout(function () {
+                setTimeout(function() {
                     var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
-                    var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+                    var dropdownList = dropdownElementList.map(function(dropdownToggleEl) {
                         return new bootstrap.Dropdown(dropdownToggleEl)
                     });
                 }, 500);
@@ -429,12 +529,12 @@
                 });
             }
 
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
 
                 const jurusanInputs = document.querySelectorAll('.format-jurusan');
 
-                jurusanInputs.forEach(function (input) {
-                    input.addEventListener('input', function (e) {
+                jurusanInputs.forEach(function(input) {
+                    input.addEventListener('input', function(e) {
                         let cursorPosition = e.target.selectionStart;
                         let oldValue = e.target.value;
 
@@ -447,7 +547,7 @@
                 });
             });
 
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $('#search-select').select2({
                     theme: 'bootstrap-5',
                     placeholder: 'Ketik untuk mencari siswa...',

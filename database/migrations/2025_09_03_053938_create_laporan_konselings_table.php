@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('penyebab')->nullable();
             $table->text('kesimpulan_masalah');
             $table->text('penyelesaian');
-            $table->enum('evaluasi', ['efektif', 'tidak efektif']);
+            $table->enum('keterangan', ['Tuntas', 'Sedang Berjalan']);
             $table->timestamps();
         });
     }

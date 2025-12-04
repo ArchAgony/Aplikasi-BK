@@ -57,11 +57,11 @@
                                 <textarea class="form-control" rows="3" placeholder="Tuliskan penyebab..." name="penyebab" required></textarea>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Evaluasi</label>
-                                <select class="form-select" name="evaluasi" required>
+                                <label class="form-label">Keterangan</label>
+                                <select class="form-select" name="keterangan" required>
                                     <option value="" selected disabled>Pilih kategori...</option>
-                                    <option value="efektif">Efektif</option>
-                                    <option value="tidak efektif">Tidak Efektif</option>
+                                    <option value="Tuntas">Tuntas</option>
+                                    <option value="Sedang Berjalan">Sedang Berjalan</option>
                                 </select>
                             </div>
                         </div>

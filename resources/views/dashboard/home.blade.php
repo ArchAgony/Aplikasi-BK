@@ -165,7 +165,7 @@
                 <div class="card-body">
                     <div class="text-end">
                         <p class="text-muted small mb-1">Jumlah Kasus</p>
-                        <h4 class="mb-0">319</h4>
+                        <h4 class="mb-0">{{ $totalKasus }}</h4>
                     </div>
                 </div>
                 <div class="card-footer bg-transparent border-0"></div>
@@ -180,7 +180,7 @@
                 <div class="card-body">
                     <div class="text-end">
                         <p class="text-muted small mb-1">Kasus Tuntas</p>
-                        <h4 class="mb-0">215</h4>
+                        <h4 class="mb-0">{{ $kasusTuntas }}</h4>
                     </div>
                 </div>
                 <div class="card-footer bg-transparent border-0"></div>
@@ -195,7 +195,7 @@
                 <div class="card-body">
                     <div class="text-end">
                         <p class="text-muted small mb-1">Kasus Sedang Berjalan</p>
-                        <h4 class="mb-0">20</h4>
+                        <h4 class="mb-0">{{ $kasusSedangBerjalan }}</h4>
                     </div>
                 </div>
                 <div class="card-footer bg-transparent border-0"></div>
@@ -264,7 +264,7 @@
                         @foreach ($siswa as $key => $s)
                             <tr>
                                 <td class="text-center">{{ $key + 1 }}</td>
-                                <td>{{ $s->nama_siswa }}</td>
+                                <td class="text-center">{{ $s->nama_siswa }}</td>
                                 <td class="text-center">{{ $s->tingkat }} {{ $s->jurusan }}</td>
                                 <td>{{ $s->kasus }}</td>
                             </tr>
@@ -285,11 +285,9 @@ $(document).ready(function() {
 </script>
 
 <script>
-    // Data dari controller (kelas diambil dari laporan_konselings)
     var chartLabels = {!! json_encode($kasusPerkelas->pluck('kelas')) !!};
     var chartData = {!! json_encode($kasusPerkelas->pluck('total')) !!};
 
-    // Data untuk donut (jenis kasus dari kolom 'masalah')
     var donutLabels = {!! json_encode($kasusPerMasalah->pluck('masalah')) !!};
     var donutData = {!! json_encode($kasusPerMasalah->pluck('total')) !!};
 

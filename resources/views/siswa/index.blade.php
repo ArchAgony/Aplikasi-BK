@@ -183,7 +183,7 @@
 
                     <tbody>
                         @foreach ($siswa as $key => $s)
-                            <tr>
+                            <tr class="text-center">
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $s->nama_siswa }}</td>
                                 <td>{{ $s->tingkat }} {{ $s->jurusan }}</td>

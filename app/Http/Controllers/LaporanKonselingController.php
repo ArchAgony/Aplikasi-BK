@@ -41,7 +41,7 @@ class LaporanKonselingController extends Controller
             'kesimpulan_masalah' => $request->kesimpulan,
             'penyelesaian' => $request->penyelesaian,
             'penyebab' => $request->penyebab,
-            'evaluasi' => $request->evaluasi,
+            'keterangan' => $request->keterangan,
             'tanggal' => Carbon::now()
         ]);
         return redirect('/laporan')->with('success', 'data berhasil dibuat');
@@ -78,7 +78,7 @@ class LaporanKonselingController extends Controller
         $laporan->kesimpulan_masalah = $request->kesimpulan;
         $laporan->penyelesaian = $request->penyelesaian;
         $laporan->penyebab = $request->penyebab;
-        $laporan->evaluasi = $request->evaluasi;
+        $laporan->keterangan = $request->keterangan;
 
         $laporan->save();
 

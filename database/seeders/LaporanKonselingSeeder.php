@@ -27,7 +27,7 @@ class LaporanKonselingSeeder extends Seeder
                 'penyebab' => $faker->sentence(4),
                 'kesimpulan_masalah' => $faker->sentence(6),
                 'penyelesaian' => $faker->paragraph,
-                'evaluasi' => 'efektif',
+                'keterangan' => 'Tuntas',
             ]);
         }
     }

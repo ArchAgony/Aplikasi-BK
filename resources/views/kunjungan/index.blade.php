@@ -250,7 +250,7 @@
                 <table id="datatablesSimple" class="table table-hover w-100">
                     <thead class="text-center align-middle">
                         <tr>
-                            <th width="30"></th>
+                            <th width="30">No.</th>
                             <th>Tanggal</th>
                             <th>Nama Guru</th>
                             <th>Jabatan</th>
@@ -261,8 +261,8 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $item)
-                            <tr>
-                                <td class="dt-control"></td>
+                            <tr class="text-center">
+                                <td class="dt-control">{{ $key+1 }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                 <td>{{ $item->nama_guru }}</td>
                                 <td>{{ $item->jabatan }}</td>
@@ -309,17 +309,6 @@
                                             <i class="bi bi-printer"></i>
                                         </a>
                                     </div>
-                                </td>
-                                <!-- Hidden data untuk detail row -->
-                                <td style="display:none;" class="detail-data" 
-                                    data-tanggal="{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}"
-                                    data-nama-guru="{{ $item->nama_guru }}"
-                                    data-jabatan="{{ $item->jabatan }}"
-                                    data-nama-siswa="{{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}"
-                                    data-tingkat="{{ $item->siswa->tingkat ?? '-' }}"
-                                    data-jurusan="{{ $item->siswa->jurusan ?? '-' }}"
-                                    data-alamat="{{ $item->siswa->alamat ?? '-' }}"
-                                    data-no-induk="{{ $item->siswa->no_induk ?? '-' }}">
                                 </td>
                             </tr>
                         @endforeach

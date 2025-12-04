@@ -76,8 +76,6 @@
                     {{-- <p class="mt-3 mb-1 text-sm">
           Lupa Password ? Reset Di <a href="#" class="text-danger fw-bold">Sini</a>
         </p> --}}
-                    <p class="text-sm">Tidak Punya Akun ? <a href="{{ route('register') }}" class="hv fw-bold">Sign
-                            up</a></p>
                 </div>
             </div>
             

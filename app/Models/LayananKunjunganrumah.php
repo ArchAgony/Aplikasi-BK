@@ -8,8 +8,6 @@ use Illuminate\Notifications\Notifiable;
 
 class LayananKunjunganrumah extends Model
 {
-    //
-
     use HasFactory, Notifiable;
 
     protected $table = 'layanan_kunjunganrumahs';
