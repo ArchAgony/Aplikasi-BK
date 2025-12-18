@@ -34,7 +34,6 @@ return new class extends Migration
             $table->string('penggunaan_pertemuan');
             $table->string('rencana_penilaian');
             $table->string('catatan_khusus');
-            $table->string('ttd_path')->nullable();
             $table->timestamps();
         });
     }

@@ -38,7 +38,7 @@ class LaporanKonselingController extends Controller
         LaporanKonseling::create([
             'siswa_id' => $request->nama,
             'masalah' => $request->masalah,
-            'kesimpulan_masalah' => $request->kesimpulan,
+            'tindak_lanjut' => $request->tindak_lanjut,
             'penyelesaian' => $request->penyelesaian,
             'penyebab' => $request->penyebab,
             'keterangan' => $request->keterangan,
@@ -73,9 +73,9 @@ class LaporanKonselingController extends Controller
     {
         $laporan = LaporanKonseling::find($id);
 
-        $laporan->siswa_id = $request->nama;
+        // $laporan->siswa_id = $request->nama;
         $laporan->masalah = $request->masalah;
-        $laporan->kesimpulan_masalah = $request->kesimpulan;
+        $laporan->tindak_lanjut = $request->tindak_lanjut;
         $laporan->penyelesaian = $request->penyelesaian;
         $laporan->penyebab = $request->penyebab;
         $laporan->keterangan = $request->keterangan;

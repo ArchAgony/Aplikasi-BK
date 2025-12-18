@@ -19,7 +19,6 @@ return new class extends Migration
             $table->date('tanggal_laksana');
             $table->string('nama_guru')->nullable();
             $table->string('jabatan')->nullable();
-            $table->string('ttd_path')->nullable();
             $table->timestamps();
         });
     }

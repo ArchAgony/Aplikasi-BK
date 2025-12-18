@@ -47,8 +47,8 @@
                                 <textarea class="form-control" rows="3" placeholder="Tuliskan masalah..." name="masalah" required></textarea>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Kesimpulan</label>
-                                <textarea class="form-control" rows="3" placeholder="Tuliskan kesimpulan..." name="kesimpulan" required></textarea>
+                                <label class="form-label">Tindak Lanjut Menuju Hasil</label>
+                                <textarea class="form-control" rows="3" placeholder="Tuliskan tindak lanjut..." name="tindak_lanjut" required></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">

@@ -305,9 +305,6 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <a href="{{ route('kunjungan.print', $item->id) }}" class="btn btn-secondary btn-sm" target="_blank" title="Print">
-                                            <i class="bi bi-printer"></i>
-                                        </a>
                                     </div>
                                 </td>
                             </tr>

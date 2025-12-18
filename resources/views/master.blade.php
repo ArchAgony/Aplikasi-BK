@@ -417,7 +417,6 @@
         <script src="{{ asset('Js/dataTables.responsive.js') }}"></script>
         <script src="{{ asset('Js/responsive.dataTables.js') }}"></script>
         <script src="{{ asset('Js/sweetalert2.all.min.js') }}"></script>
-        <script src="{{ asset('Js/signature_pad.umd.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
         @if (session('success'))

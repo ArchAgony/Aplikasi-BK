@@ -92,30 +92,6 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <div class="mb-3">
-                                    <label class="form-label">Kami Yang Menerima Kunjungan <span
-                                            class="text-danger">*</span></label>
-                                    <div class="border rounded p-2 bg-white" style="touch-action: none;">
-                                        <canvas id="canvas-ttd-tamu" width="500" height="200"
-                                            style="border: 2px dashed #ccc; width: 100%; max-width: 500px;"></canvas>
-                                    </div>
-                                    <div class="mt-2">
-                                        <button type="button" class="btn btn-sm btn-warning" id="btn-clear-ttd">
-                                            <i class="fas fa-redo"></i> Bersihkan
-                                        </button>
-                                        <small class="text-muted ms-2">
-                                            <i class="fas fa-info-circle"></i> Tanda tangan di area putih
-                                        </small>
-                                    </div>
-                                    <input type="hidden" name="ttd_kunjungan" id="ttd-kunjungan-data" required>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Tombol Submit -->
                     <div class="text-center mt-4">
                         <button type="submit" class="btn btn-submit">Kirim</button>
@@ -124,60 +100,4 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-            const canvas = document.getElementById('canvas-ttd-tamu');
-
-            if (!canvas) {
-                console.error('Canvas tidak ditemukan!');
-                return;
-            }
-
-            function resizeCanvas() {
-                const ratio = Math.max(window.devicePixelRatio || 1, 1);
-                const rect = canvas.getBoundingClientRect();
-
-                canvas.width = rect.width * ratio;
-                canvas.height = rect.height * ratio;
-
-                const ctx = canvas.getContext('2d');
-                ctx.scale(ratio, ratio);
-
-                signaturePad.clear();
-            }
-
-            const signaturePad = new SignaturePad(canvas, {
-                backgroundColor: 'rgb(255, 255, 255)',
-                penColor: 'rgb(0, 0, 0)',
-                minWidth: 1,
-                maxWidth: 3,
-                throttle: 0,
-                velocityFilterWeight: 0.7
-            });
-
-            resizeCanvas();
-
-            window.addEventListener('resize', function() {
-                resizeCanvas();
-            });
-
-            document.getElementById('btn-clear-ttd').addEventListener('click', function() {
-                signaturePad.clear();
-                document.getElementById('ttd-kunj-data').value = '';
-            });
-
-            document.getElementById('form-kunjungan').addEventListener('submit', function(e) {
-                if (signaturePad.isEmpty()) {
-                    e.preventDefault();
-                    alert('Tanda tangan harus diisi!');
-                    return false;
-                }
-                const dataURL = signaturePad.toDataURL('image/png');
-                document.getElementById('ttd-kunj-data').value = dataURL;
-            });
-
-            console.log('Signature Pad initialized successfully!');
-        });
-    </script>
 @endsection

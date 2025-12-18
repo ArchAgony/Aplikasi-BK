@@ -22,7 +22,6 @@ return new class extends Migration
             // $table->text('keperluan');
             $table->integer('kunjungan_ke')->default(1);
             $table->text('tindak_lanjut')->nullable();
-            $table->string('ttd_path')->nullable();
             $table->timestamps();
         });
     }

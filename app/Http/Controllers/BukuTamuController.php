@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\BukuTamu;
 use App\Models\Siswa;
-use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -37,20 +35,6 @@ class BukuTamuController extends Controller
         return view('bktamu.create', compact('siswa'));
     }
 
-
-    private function saveSignature($base64String, $type)
-    {
-        $image = str_replace('data:image/png;base64,', '', $base64String);
-        $image = str_replace(' ', '+', $image);
-        $imageData = base64_decode($image);
-
-        $imageName = 'ttd_' . date('YmdHis') . '.png';
-        $path = 'ttd/' . $imageName;
-        Storage::disk('public')->put($path, $imageData);
-
-        return $path;
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -58,7 +42,6 @@ class BukuTamuController extends Controller
     {
         //
         try {
-            $ttdTamuPath = $this->saveSignature($request->ttd_tamu, 'tamu');
             $siswaId = $request->siswa_id;
             $jumlahKunjunganSebelumnya = BukuTamu::where('siswa_id', $siswaId)->count();
             $kunjunganKe = $jumlahKunjunganSebelumnya + 1;
@@ -69,7 +52,6 @@ class BukuTamuController extends Controller
                 'no_telp' => $request->no,
                 'alamat' => $request->alamat,
                 'tindak_lanjut' => $request->tindak,
-                'ttd_path' => $ttdTamuPath,
                 'kunjungan_ke' => $kunjunganKe,
                 'tanggal' => now()->toDateString(),
             ]);

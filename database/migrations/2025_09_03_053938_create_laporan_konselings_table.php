@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('siswa_id')->nullable()->constrained('siswas')->onDelete('restrict');
             $table->text('masalah');
             $table->text('penyebab')->nullable();
-            $table->text('kesimpulan_masalah');
+            $table->text('tindak_lanjut');
             $table->text('penyelesaian');
             $table->enum('keterangan', ['Tuntas', 'Sedang Berjalan']);
             $table->timestamps();
