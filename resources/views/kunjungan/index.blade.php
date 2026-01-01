@@ -185,6 +185,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -215,6 +216,7 @@
         }
 
         @media (max-width: 768px) {
+
             .dataTables_wrapper .dataTables_filter,
             .dataTables_wrapper .dataTables_length {
                 float: none !important;
@@ -262,13 +264,13 @@
                     <tbody>
                         @foreach ($data as $key => $item)
                             <tr class="text-center">
-                                <td class="dt-control">{{ $key+1 }}</td>
+                                <td class="dt-control">{{ $key + 1 }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                 <td>{{ $item->nama_guru }}</td>
                                 <td>{{ $item->jabatan }}</td>
                                 <td>{{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}</td>
                                 <td>
-                                    @if($item->siswa)
+                                    @if ($item->siswa)
                                         <span class="badge badge-custom bg-info">
                                             {{ $item->siswa->tingkat ?? '-' }} {{ $item->siswa->jurusan ?? '-' }}
                                         </span>
@@ -279,29 +281,38 @@
                                 <td>
                                     <div class="d-flex gap-1 justify-content-center">
                                         <div class="dropdown">
-                                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="bi bi-gear"></i> Aksi
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a class="dropdown-item hijau" href="{{ route('kunjungan.laporan', $item->id) }}">
+                                                    <a class="dropdown-item hijau"
+                                                        href="{{ route('kunjungan.laporan', $item->id) }}">
                                                         <i class="bi bi-envelope-paper"></i> Laporan
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item biru" href="{{ route('kunjungan.layanan', $item->id) }}">
+                                                    <a class="dropdown-item biru"
+                                                        href="{{ route('kunjungan.layanan', $item->id) }}">
                                                         <i class="bi bi-house-door"></i> Layanan
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item kuning" href="{{ route('kunjungan.edit', $item->id) }}">
+                                                    <a class="dropdown-item kuning"
+                                                        href="{{ route('kunjungan.edit', $item->id) }}">
                                                         <i class="bi bi-pencil"></i> Edit
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item merah" href="#" onclick="confirmDelete({{ $item->id }}); return false;">
+                                                    <a class="dropdown-item merah btn"
+                                                        onclick="confirmDelete({{ $item->id }}); return false;">
                                                         <i class="bi bi-trash"></i> Delete
                                                     </a>
+                                                    <form id="delete-form-{{ $item->id }}"
+                                                        action="/kunjungan/{{ $item->id }}/delete" method="GET"
+                                                        style="display:none;">
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>
@@ -316,10 +327,10 @@
     </div>
 
     @push('scripts')
-    <script>
-        // Function untuk format detail row
-        function formatDetails(detailData) {
-            return `
+        <script>
+            // Function untuk format detail row
+            function formatDetails(detailData) {
+                return `
                 <div class="detail-content">
                     <table class="table table-sm">
                         <tr>
@@ -353,105 +364,109 @@
                     </table>
                 </div>
             `;
-        }
+            }
 
-        $(document).ready(function() {
-            var table = $('#datatablesSimple').DataTable({
-                columnDefs: [
-                    { 
-                        targets: 0,
-                        orderable: false,
-                        className: 'dt-control'
+            $(document).ready(function() {
+                var table = $('#datatablesSimple').DataTable({
+                    columnDefs: [{
+                            targets: 0,
+                            orderable: false,
+                            className: 'dt-control'
+                        },
+                        {
+                            targets: -1, // Kolom hidden data
+                            visible: false
+                        }
+                    ],
+                    language: {
+                        search: "Cari:",
+                        lengthMenu: "Tampilkan _MENU_ data per halaman",
+                        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                        infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+                        infoFiltered: "(difilter dari _MAX_ total data)",
+                        paginate: {
+                            first: "Pertama",
+                            last: "Terakhir",
+                            next: "Selanjutnya",
+                            previous: "Sebelumnya"
+                        },
+                        emptyTable: "Tidak ada data yang tersedia",
+                        zeroRecords: "Tidak ada data yang cocok"
                     },
-                    {
-                        targets: -1, // Kolom hidden data
-                        visible: false
+                    order: [
+                        [1, 'desc']
+                    ], // Sort by tanggal
+                    pageLength: 10,
+                    lengthMenu: [
+                        [10, 25, 50, 100, -1],
+                        [10, 25, 50, 100, "Semua"]
+                    ]
+                });
+
+                // Event listener untuk membuka/menutup detail row
+                $('#datatablesSimple tbody').on('click', 'td.dt-control', function() {
+                    var tr = $(this).closest('tr');
+                    var row = table.row(tr);
+                    var detailDataElement = tr.find('.detail-data');
+
+                    if (row.child.isShown()) {
+                        // Row sudah terbuka, tutup
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    } else {
+                        // Ambil data dari atribut data-*
+                        var detailData = {
+                            tanggal: detailDataElement.data('tanggal'),
+                            namaGuru: detailDataElement.data('nama-guru'),
+                            jabatan: detailDataElement.data('jabatan'),
+                            namaSiswa: detailDataElement.data('nama-siswa'),
+                            tingkat: detailDataElement.data('tingkat'),
+                            jurusan: detailDataElement.data('jurusan'),
+                            alamat: detailDataElement.data('alamat'),
+                            noInduk: detailDataElement.data('no-induk')
+                        };
+
+                        // Buka row detail
+                        row.child(formatDetails(detailData)).show();
+                        tr.addClass('shown');
                     }
-                ],
-                language: {
-                    search: "Cari:",
-                    lengthMenu: "Tampilkan _MENU_ data per halaman",
-                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                    infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
-                    infoFiltered: "(difilter dari _MAX_ total data)",
-                    paginate: {
-                        first: "Pertama",
-                        last: "Terakhir",
-                        next: "Selanjutnya",
-                        previous: "Sebelumnya"
-                    },
-                    emptyTable: "Tidak ada data yang tersedia",
-                    zeroRecords: "Tidak ada data yang cocok"
-                },
-                order: [[1, 'desc']], // Sort by tanggal
-                pageLength: 10,
-                lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]]
+                });
             });
 
-            // Event listener untuk membuka/menutup detail row
-            $('#datatablesSimple tbody').on('click', 'td.dt-control', function() {
-                var tr = $(this).closest('tr');
-                var row = table.row(tr);
-                var detailDataElement = tr.find('.detail-data');
+            function confirmDelete(id) {
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Buat form untuk delete
+                        var form = document.createElement('form');
+                        form.method = 'POST';
+                        form.action = '/kunjungan/delete/' + id;
 
-                if (row.child.isShown()) {
-                    // Row sudah terbuka, tutup
-                    row.child.hide();
-                    tr.removeClass('shown');
-                } else {
-                    // Ambil data dari atribut data-*
-                    var detailData = {
-                        tanggal: detailDataElement.data('tanggal'),
-                        namaGuru: detailDataElement.data('nama-guru'),
-                        jabatan: detailDataElement.data('jabatan'),
-                        namaSiswa: detailDataElement.data('nama-siswa'),
-                        tingkat: detailDataElement.data('tingkat'),
-                        jurusan: detailDataElement.data('jurusan'),
-                        alamat: detailDataElement.data('alamat'),
-                        noInduk: detailDataElement.data('no-induk')
-                    };
+                        var csrfToken = document.createElement('input');
+                        csrfToken.type = 'hidden';
+                        csrfToken.name = '_token';
+                        csrfToken.value = '{{ csrf_token() }}';
 
-                    // Buka row detail
-                    row.child(formatDetails(detailData)).show();
-                    tr.addClass('shown');
-                }
-            });
-        });
+                        var methodField = document.createElement('input');
+                        methodField.type = 'hidden';
+                        methodField.name = '_method';
+                        methodField.value = 'DELETE';
 
-        function confirmDelete(id) {
-            Swal.fire({
-                title: 'Apakah Anda yakin?',
-                text: "Data yang dihapus tidak dapat dikembalikan!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Buat form untuk delete
-                    var form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = '/kunjungan/delete/' + id;
-                    
-                    var csrfToken = document.createElement('input');
-                    csrfToken.type = 'hidden';
-                    csrfToken.name = '_token';
-                    csrfToken.value = '{{ csrf_token() }}';
-                    
-                    var methodField = document.createElement('input');
-                    methodField.type = 'hidden';
-                    methodField.name = '_method';
-                    methodField.value = 'DELETE';
-                    
-                    form.appendChild(csrfToken);
-                    form.appendChild(methodField);
-                    document.body.appendChild(form);
-                    form.submit();
-                }
-            });
-        }
-    </script>
+                        form.appendChild(csrfToken);
+                        form.appendChild(methodField);
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+                });
+            }
+        </script>
     @endpush
 @endsection
