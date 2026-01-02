@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KunjunganRumah;
 use App\Models\LaporanKunjunganrumah;
 use Illuminate\Http\Request;
 
 class LaporanKunjunganrumahController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $data = LaporanKunjunganRumah::with(
+            // 'guru',
+             'siswa', 'bukutamu')->get();
+        $kunjungan = KunjunganRumah::with(
+             'siswa', 'bukutamu')->get();
+        return view('kunjungan.laporan_kunjungan', compact('data', 'kunjungan'));
     }
 
     /**

@@ -13,7 +13,9 @@ class KunjunganRumahController extends Controller
      */
     public function index()
     {
-        $data = KunjunganRumah::with('guru', 'siswa', 'bukutamu')->orderBy('id', 'desc')->get();
+        $data = KunjunganRumah::with(
+            // 'guru',
+             'siswa', 'bukutamu')->orderBy('id', 'desc')->get();
         return view('kunjungan.index', compact('data'));
     }
 
@@ -31,7 +33,9 @@ class KunjunganRumahController extends Controller
     }
     public function loslaporan()
     {
-        $data = KunjunganRumah::with('guru', 'siswa', 'bukutamu')->orderBy('id', 'desc')->get();
+        $data = KunjunganRumah::with(
+            // 'guru',
+             'siswa', 'bukutamu')->orderBy('id', 'desc')->get();
         return view('kunjungan.laporan_kunjungan', compact('data'));
     }
     public function layanan()

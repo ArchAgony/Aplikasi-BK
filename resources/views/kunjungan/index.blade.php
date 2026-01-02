@@ -288,7 +288,7 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <a class="dropdown-item hijau"
-                                                        href="{{ route('kunjungan.laporan', $item->id) }}">
+                                                        href="{{ route('laporkunjungan.index', $item->id) }}">
                                                         <i class="bi bi-envelope-paper"></i> Laporan
                                                     </a>
                                                 </li>

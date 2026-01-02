@@ -13,4 +13,20 @@ class LaporanKunjunganrumah extends Model
 
     protected $table = 'laporan_kunjunganrumahs';
     protected $guarded = ['id'];
+
+    
+    // public function guru()
+    // {
+    //     return $this->belongsTo(User::class, 'guru_id');
+    // }
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id');
+    }
+
+    public function bukutamu()
+    {
+        return $this->belongsTo(BukuTamu::class, 'alamat_id');
+    }
 }

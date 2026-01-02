@@ -14,10 +14,10 @@ class KunjunganRumah extends Model
     protected $table = 'kunjungan_rumahs';
     protected $guarded = ['id'];
 
-    public function guru()
-    {
-        return $this->belongsTo(User::class, 'guru_id');
-    }
+    // public function guru()
+    // {
+    //     return $this->belongsTo(User::class, 'guru_id');
+    // }
 
     public function siswa()
     {

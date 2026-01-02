@@ -15,7 +15,9 @@ class LaporanKonselingController extends Controller
     public function index()
     {
         //
-        $laporan = LaporanKonseling::with('guru', 'siswa')->orderBy('id', 'desc')->get();
+        $laporan = LaporanKonseling::with(
+            // 'guru',
+             'siswa')->orderBy('id', 'desc')->get();
         return view('laporankons.index', compact('laporan'));
     }
 
@@ -60,7 +62,9 @@ class LaporanKonselingController extends Controller
      */
     public function edit(string $id)
     {
-        $laporan = LaporanKonseling::with('guru', 'siswa')->findOrFail($id);
+        $laporan = LaporanKonseling::with(
+            // 'guru',
+             'siswa')->findOrFail($id);
         $siswa = Siswa::all();
 
         return view('laporankons.edit', compact('laporan', 'siswa'));

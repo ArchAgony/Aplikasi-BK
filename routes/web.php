@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuTamuController;
 use App\Http\Controllers\KunjunganRumahController;
 use App\Http\Controllers\LaporanKonselingController;
+use App\Http\Controllers\LaporanKunjunganrumahController;
 
 Route::middleware('auth')->group(function () {
 
@@ -34,15 +35,16 @@ Route::middleware('auth')->group(function () {
     Route::get("/kunjungan", [KunjunganRumahController::class, "index"]);
     Route::get('/kunjungan/create', [KunjunganRumahController::class, 'create'])->name('kunjungan.create');
     Route::post("/kunjungan", [KunjunganRumahController::class, "index"])->name('kunjungan.store');
-    Route::get('/kunjungan/{id}/laporan', [KunjunganRumahController::class, 'laporan'])->name('kunjungan.laporan');
+
+    // Route::get('/kunjungan/{id}/laporan', [KunjunganRumahController::class, 'laporan'])->name('kunjungan.laporan');
+    Route::get('/kunjungan/laporan', [KunjunganRumahController::class, 'laporan'])->name('kunjungan.laporan');
+    
     Route::get('/kunjungan/{id}/layanan', [KunjunganRumahController::class, 'layanan'])->name('kunjungan.layanan');
     Route::get('/kunjungan/{id}/delete', [KunjunganRumahController::class, 'destroy'])->name('kunjungan.delete');
     Route::get('/kunjungan/{id}/edit', [KunjunganRumahController::class, 'edit'])->name('kunjungan.edit');
     Route::post("/kunjungan/{id}", [KunjunganRumahController::class, "update"])->name('kunjungan.update');
 
-    Route::get('/kunjungan/laporan_kunjungan', function(){
-        return view('kunjungan.laporan_kunjungan');
-    } );
+    Route::get('/kunjungan/{id}/laporan_kunjungan', [LaporanKunjunganrumahController::class, 'index'])->name('laporkunjungan.index');
 
     route::post('/kunjungan', [KunjunganRumahController::class, 'store'])->name('kunjungan.store');
 });

@@ -14,16 +14,13 @@ class BukuTamuController extends Controller
      */
     public function index()
     {
-        $data = BukuTamu::with('siswa', 'guru')->orderBy('id', 'desc')->get();
-        return view('bktamu.index', compact('data'));
+        // $data = BukuTamu::with('siswa', 'guru')->orderBy('id', 'desc')->get();
+        // return view('bktamu.index', compact('data'));
         // return response()->json([
         //     'data' => $data
         // ]);
         $data = BukuTamu::with('siswa')->get();
         return view('bktamu.index', compact('data'));
-        return response()->json([
-            'data' => $data
-        ]);
     }
 
     /**

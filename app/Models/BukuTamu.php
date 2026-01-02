@@ -14,10 +14,10 @@ class BukuTamu extends Model
     protected $table = 'buku_tamus';
     protected $guarded = ['id'];
 
-    public function guru()
-    {
-        return $this->belongsTo(User::class, 'guru_id');
-    }
+    // public function guru()
+    // {
+    //     return $this->belongsTo(User::class, 'guru_id');
+    // }
 
     public function siswa()
     {
