@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 
 class LaporanKunjunganrumahController extends Controller
 {
-    public function index()
+    public function index($id)
     {
         $data = LaporanKunjunganRumah::with(
             // 'guru',
              'siswa', 'bukutamu')->get();
-        $kunjungan = KunjunganRumah::with(
-             'siswa', 'bukutamu')->get();
+        $kunjungan = KunjunganRumah::with('siswa', 'bukutamu')
+        ->where('id', $id)
+        ->first();
         return view('kunjungan.laporan_kunjungan', compact('data', 'kunjungan'));
     }
 

@@ -360,14 +360,13 @@
                     </div>
                 </div>
                 
-                @foreach ($kunjungan as $key => $item)
                 <div class="detail-row">
                     <div class="detail-label">
                         <i class="bi bi-person-badge"></i>
                         Guru Pembimbing
                     </div>
                     <div class="detail-value">
-                        <strong>{{ $item->nama_guru }}</strong>
+                        <strong>{{ $kunjungan->nama_guru }}</strong>
                     </div>
                 </div>
 
@@ -377,10 +376,9 @@
                         Jabatan
                     </div>
                     <div class="detail-value">
-                        {{ $item->jabatan }}
+                        {{ $kunjungan->jabatan }}
                     </div>
                 </div>
-                @endforeach
                 <div class="detail-row">
                     <div class="detail-label">
                         <i class="bi bi-house-door"></i>
