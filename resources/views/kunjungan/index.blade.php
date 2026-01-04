@@ -254,10 +254,15 @@
                         <tr>
                             <th width="30">No.</th>
                             <th>Tanggal</th>
-                            <th>Nama Guru</th>
-                            <th>Jabatan</th>
-                            <th>Nama Siswa</th>
+                            <th>Siswa</th>
                             <th>Kelas</th>
+                            <th>Wali</th>
+                            <th>Nama Wali</th>
+                            <th>Pekerjaan</th>
+                            <th>Alamat</th>
+                            <th>Alasan Kunjungan</th>
+                            <th>Hasil Wawancara</th>
+                            <th>Tindak Lanjut</th>
                             <th width="150">Aksi</th>
                         </tr>
                     </thead>
@@ -266,8 +271,6 @@
                             <tr class="text-center">
                                 <td class="dt-control">{{ $key + 1 }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
-                                <td>{{ $item->nama_guru }}</td>
-                                <td>{{ $item->jabatan }}</td>
                                 <td>{{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}</td>
                                 <td>
                                     @if ($item->siswa)
@@ -279,42 +282,32 @@
                                     @endif
                                 </td>
                                 <td>
+                                    {{ $item->peran === 'wali' ? $item->hubungan_wali : ucfirst($item->peran) }}
+                                </td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->pekerjaan }}</td>
+                                <td>{{ $item->alamat }}</td>
+                                <td>{{ $item->alasan_tujuan }}</td>
+                                <td>{{ $item->hasil_wawancara }}</td>
+                                <td>{{ $item->tindak_lanjut }}</td>
+                                <td>
                                     <div class="d-flex gap-1 justify-content-center">
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="bi bi-gear"></i> Aksi
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item hijau"
-                                                        href="{{ route('laporkunjungan.index', $item->id) }}">
-                                                        <i class="bi bi-envelope-paper"></i> Laporan
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item biru"
-                                                        href="{{ route('kunjungan.layanan', $item->id) }}">
-                                                        <i class="bi bi-house-door"></i> Layanan
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item kuning"
-                                                        href="{{ route('kunjungan.edit', $item->id) }}">
-                                                        <i class="bi bi-pencil"></i> Edit
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item merah btn"
-                                                        onclick="confirmDelete({{ $item->id }}); return false;">
-                                                        <i class="bi bi-trash"></i> Delete
-                                                    </a>
-                                                    <form id="delete-form-{{ $item->id }}"
-                                                        action="/kunjungan/{{ $item->id }}/delete" method="GET"
-                                                        style="display:none;">
-                                                    </form>
-                                                </li>
-                                            </ul>
+                                        <div class="row">
+                                            <div class="col">
+                                                <a class="btn btn-sm btn-outline-primary me-1"
+                                                    href="{{ route('kunjungan.edit', $item->id) }}">
+                                                    <i class="bi bi-pencil"></i> Edit
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <a class="btn btn-sm btn-outline-danger me-1"
+                                                    onclick="confirmDelete({{ $item->id }}); return false;">
+                                                    <i class="bi bi-trash"></i> Delete
+                                                </a>
+                                                <form id="delete-form-{{ $item->id }}"
+                                                    action="/kunjungan/{{ $item->id }}/delete" method="GET"
+                                                    style="display:none;">
+                                            </div>
                                         </div>
                                     </div>
                                 </td>

@@ -15,7 +15,9 @@ class KunjunganRumahController extends Controller
     {
         $data = KunjunganRumah::with(
             // 'guru',
-             'siswa', 'bukutamu')->orderBy('id', 'desc')->get();
+            'siswa',
+            'bukutamu'
+        )->orderBy('id', 'desc')->get();
         return view('kunjungan.index', compact('data'));
     }
 
@@ -25,24 +27,8 @@ class KunjunganRumahController extends Controller
     public function create()
     {
         $siswa = Siswa::all();
-        return view('kunjungan.form_kunj', compact('siswa'));
+        return view('kunjungan.create', compact('siswa'));
     }
-    public function laporan()
-    {
-        return view('kunjungan.form_lpor_kunj');
-    }
-    public function loslaporan()
-    {
-        $data = KunjunganRumah::with(
-            // 'guru',
-             'siswa', 'bukutamu')->orderBy('id', 'desc')->get();
-        return view('kunjungan.laporan_kunjungan', compact('data'));
-    }
-    public function layanan()
-    {
-        return view('kunjungan.form_lay_kunj');
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -51,15 +37,20 @@ class KunjunganRumahController extends Controller
     {
         //
         try {
-
-            KunjunganRumah::create([
-                'siswa_id' => $request->nama,
-                'nama_guru' => $request->nama_guru,
-                'jabatan' => $request->jabatan,
-                // 'kesimpulan_tindak_lanjut' => $request->kesimpulan_tindak_lanjut,
-                'tanggal' => now()->toDateString(),
-                'tanggal_laksana' => $request->tanggal_laksana,
-            ]);
+            foreach ($request->nama as $index => $nama) {
+                KunjunganRumah::create([
+                    'siswa_id'      => $request->siswa_id,
+                    'tanggal'       => now()->toDateString(),
+                    'peran'         => $request->peran[$index],
+                    'hubungan_wali' => $request->hubungan_wali[$index] ?? null,
+                    'nama'          => $nama,
+                    'pekerjaan'     => $request->pekerjaan[$index],
+                    'alamat'        => $request->alamat[$index],
+                    'alasan_tujuan' => $request->alasan_tujuan,
+                    'hasil_wawancara' => $request->hasil_wawancara,
+                    'tindak_lanjut' => $request->tindak_lanjut,
+                ]);
+            }
 
             return redirect('/kunjungan')->with('success', 'Data kunjungan berhasil disimpan');
         } catch (\Exception $th) {
@@ -84,7 +75,7 @@ class KunjunganRumahController extends Controller
     {
         $data = KunjunganRumah::with('siswa')->findOrFail($id);
         $siswa = Siswa::all();
-        return view('kunjungan.edit_kunjungan', compact('siswa', 'data'));
+        return view('kunjungan.edit', compact('siswa', 'data'));
     }
 
     /**
@@ -99,8 +90,6 @@ class KunjunganRumahController extends Controller
             $data->siswa_id = $request->nama;
             $data->nama_guru = $request->nama_guru;
             $data->jabatan = $request->jabatan;
-            // $data->kesimpulan_tindak_lanjut = $request->kesimpulan_tindak_lanjut;
-            $data->tanggal_laksana = $request->tanggal_laksana;
 
             $data->save();
 

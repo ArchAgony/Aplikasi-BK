@@ -16,9 +16,14 @@ return new class extends Migration
             $table->foreignId('siswa_id')->nullable()->constrained('siswas')->onDelete('restrict');
             // $table->foreignId('alamat_id')->nullable()->constrained('buku_tamus')->onDelete('restrict');
             $table->date('tanggal')->nullable();
-            $table->date('tanggal_laksana');
-            $table->string('nama_guru')->nullable();
-            $table->string('jabatan')->nullable();
+            $table->string('peran');
+            $table->string('hubungan_wali')->nullable();
+            $table->string('nama');
+            $table->string('pekerjaan');
+            $table->string('alamat');
+            $table->string('alasan_tujuan');
+            $table->string('hasil_wawancara');
+            $table->string('tindak_lanjut');
             $table->timestamps();
         });
     }
