@@ -336,14 +336,38 @@
                 </li>
             </ul>
             <div class="mt-auto border-top">
-                <div class="sidebar-user-profile">
-                    <div class="sidebar-user-avatar">
-                        {{ strtoupper(substr(Auth::user()->nama_guru, 0, 2)) }}
+                <div class="dropup">
+                    <div class="sidebar-user-profile dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                        style="cursor: pointer;">
+                        <div class="sidebar-user-avatar">
+                            {{ strtoupper(substr(Auth::user()->nama_guru, 0, 2)) }}
+                        </div>
+                        <div class="sidebar-user-info">
+                            <p class="sidebar-user-name">{{ Str::limit(Auth::user()->nama_guru, 20) }}</p>
+                            <small class="text-muted d-block">Guru BK</small>
+                        </div>
                     </div>
-                    <div class="sidebar-user-info">
-                        <p class="sidebar-user-name">{{ Str::limit(Auth::user()->nama_guru, 20) }}</p>
-                        <small class="text-muted d-block">Guru BK</small>
-                    </div>
+
+                    <ul class="dropdown-menu w-100 mb-2">
+                        <li>
+                            <a class="dropdown-item" href="">
+                                <i class="bi bi-people me-2"></i>Data Guru
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="#"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="bi bi-box-arrow-right me-2"></i>Logout
+                            </a>
+                        </li>
+                    </ul>
+
+                    <form id="logout-form" action="" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </nav>

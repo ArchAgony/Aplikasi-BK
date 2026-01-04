@@ -322,22 +322,20 @@
             <div class="header-card">
                 <div class="header-content">
                     <div class="student-avatar">
-                        F
+                        {{ strtoupper(substr($kunjungan->siswa->nama_siswa, 0, 2)) }}
                     </div>
                     <div class="student-info">
-                        <h2>Feri Febrianto</h2>
+                        <h2>{{ $kunjungan->siswa->nama_siswa }}</h2>
                         <div class="student-meta">
                             <div class="meta-item">
                                 <i class="bi bi-book"></i>
-                                <span>XI TAB 1</span>
+                                <span>
+                                    {{ $kunjungan->siswa->tingkat ?? '-' }} {{ $kunjungan->siswa->jurusan ?? '-' }}
+                                </span>
                             </div>
                             <div class="meta-item">
                                 <i class="bi bi-hash"></i>
-                                <span>NIS: 12345</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="bi bi-calendar-event"></i>
-                                <span>27 Maret 2021</span>
+                                <span>NIS: {{ $kunjungan->siswa->nis }}</span>
                             </div>
                         </div>
                     </div>
@@ -359,7 +357,20 @@
                         </div>
                     </div>
                 </div>
-                
+                <div class="detail-row">
+                    <div class="detail-label">
+                        <i class="bi bi-check-circle"></i>
+                        Status
+                    </div>
+                    <div class="detail-value">
+                        <span class="badge-custom">
+                            <i class="bi bi-check2"></i>
+                            Selesai
+                        </span>
+                    </div>
+                </div>
+
+
                 <div class="detail-row">
                     <div class="detail-label">
                         <i class="bi bi-person-badge"></i>
@@ -379,6 +390,7 @@
                         {{ $kunjungan->jabatan }}
                     </div>
                 </div>
+                
                 <div class="detail-row">
                     <div class="detail-label">
                         <i class="bi bi-house-door"></i>
@@ -396,19 +408,6 @@
                     </div>
                     <div class="detail-value">
                         Sabtu, 27 Maret 2021 - 14:00 WIB
-                    </div>
-                </div>
-
-                <div class="detail-row">
-                    <div class="detail-label">
-                        <i class="bi bi-check-circle"></i>
-                        Status
-                    </div>
-                    <div class="detail-value">
-                        <span class="badge-custom">
-                            <i class="bi bi-check2"></i>
-                            Selesai
-                        </span>
                     </div>
                 </div>
             </div>
