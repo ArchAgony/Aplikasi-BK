@@ -241,7 +241,7 @@
     <div class="container-fluid">
         <div class="table-container">
             <div class="table-header">
-                Surat Tugas Kunjungan Rumah
+                Laporan Kunjungan Rumah
                 <a href="/kunjungan/create">
                     <button type="button" class="btn btn-light btn-sm float-end rounded-2">
                         <i class="fas fa-plus me-1"></i> Tambah
@@ -305,8 +305,11 @@
                                                     <i class="bi bi-trash"></i> Delete
                                                 </a>
                                                 <form id="delete-form-{{ $item->id }}"
-                                                    action="/kunjungan/{{ $item->id }}/delete" method="GET"
+                                                    action="{{ route('kunjungan.destroy', $item->id) }}" method="POST"
                                                     style="display:none;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

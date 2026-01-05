@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/kunjungan/create', [KunjunganRumahController::class, 'create'])->name('kunjungan.create');
     Route::post("/kunjungan", [KunjunganRumahController::class, "index"])->name('kunjungan.store');
 
-    Route::get('/kunjungan/{id}/delete', [KunjunganRumahController::class, 'destroy'])->name('kunjungan.delete');
+    Route::delete('/kunjungan/{id}', [KunjunganRumahController::class, 'destroy'])->name('kunjungan.destroy');
     Route::get('/kunjungan/{id}/edit', [KunjunganRumahController::class, 'edit'])->name('kunjungan.edit');
     Route::post("/kunjungan/{id}", [KunjunganRumahController::class, "update"])->name('kunjungan.update');
 

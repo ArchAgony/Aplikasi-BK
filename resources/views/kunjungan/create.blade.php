@@ -46,7 +46,7 @@
     <div class="container-fluid">
         <div class="table-container">
             <div class="table-header">
-                Form Tugas Kunjungan Rumah
+                Form Laporan Kunjungan Rumah
             </div>
             <div class="authors-table p-4">
 
@@ -71,7 +71,6 @@
                     <div id="kunjungan-wrapper">
                         <div class="kunjungan-item border rounded p-3 mb-3">
 
-                            <!-- PERAN (RADIO) -->
                             <label class="form-label d-block">Peran</label>
                             <div class="d-flex gap-3 mb-2">
                                 <div class="form-check">
@@ -93,35 +92,26 @@
                                 </div>
                             </div>
 
-                            <!-- HUBUNGAN WALI (HANYA JIKA WALI) -->
                             <div class="mb-2 hubungan-wali-wrapper d-none">
                                 <label>Hubungan Wali</label>
                                 <input type="text" class="form-control hubungan-wali-input" name="hubungan_wali[0]"
                                     placeholder="Contoh: Paman, Bibi">
                             </div>
 
-                            <!-- NAMA -->
                             <div class="mb-2">
                                 <label>Nama</label>
                                 <input type="text" name="nama[]" class="form-control" required>
                             </div>
 
-                            <!-- PEKERJAAN & ALAMAT -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Pekerjaan</label>
                                     <input type="text" name="pekerjaan[]" class="form-control" required>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label>Alamat</label>
                                     <input type="text" name="alamat[]" class="form-control" required>
-                                </div>
-
-                                <div class="col-md-2 d-flex align-items-end">
-                                    <button type="button" class="btn btn-danger remove-btn w-100">
-                                        Hapus
-                                    </button>
                                 </div>
                             </div>
                         </div>
