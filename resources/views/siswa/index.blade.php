@@ -158,6 +158,47 @@
                 margin-top: 10px;
             }
         }
+
+        .btn-tambah {
+            background: linear-gradient(135deg, #2196f3, #64b5f6) !important;
+            color: white !important;
+            border: none !important;
+            padding: 8px 16px !important;
+            font-weight: 500 !important;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3) !important;
+            transition: all 0.3s ease !important;
+            border-radius: 20px !important;
+            margin-right: 8px !important;
+        }
+
+        .btn-tambah:hover {
+            background: linear-gradient(135deg, #1976d2, #5c9ed6) !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4) !important;
+            color: white !important;
+        }
+
+        .btn-import {
+            background: linear-gradient(135deg, #adaf4c, #c7c681) !important;
+            color: white !important;
+            border: none !important;
+            padding: 8px 16px !important;
+            font-weight: 500 !important;
+            box-shadow: 0 2px 8px rgba(160, 175, 76, 0.3) !important;
+            transition: all 0.3s ease !important;
+            border-radius: 20px !important;
+        }
+
+        .btn-import:hover {
+            background: linear-gradient(135deg, #adaf4c, #c7c681) !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(160, 175, 76, 0.3) !important;
+            color: white !important;
+        }
+
+        .btn-import:active {
+            transform: translateY(0) !important;
+        }
     </style>
 
     <div class="container-fluid">
@@ -165,13 +206,13 @@
             <div class="table-header">
                 Tabel Data Siswa
                 <div class="float-end">
-                    <button type="button" class="btn btn-success btn-sm me-2 rounded-2" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-import btn-sm float-end rounded-2" data-bs-toggle="modal"
                         data-bs-target="#modal-import-siswa">
-                        <i class="fas fa-file-import me-1"></i> Import
+                        <i class="fas fa-file-import me-1"></i> Import Excel
                     </button>
-                    <button type="button" class="btn btn-light btn-sm rounded-2" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-tambah btn-sm float-end rounded-2" data-bs-toggle="modal"
                         data-bs-target="#modal-tambah-siswa">
-                        <i class="fas fa-plus me-1"></i> Tambah
+                        <i class="fas fa-plus me-1"></i> Tambah Siswa
                     </button>
                 </div>
             </div>
@@ -372,58 +413,32 @@
                         @endforeach
                     </tbody>
                 </table>
-
-                {{-- @foreach ($siswa as $s)
-                    <div class="modal fade" id="modal-edit-siswa-{{ $s->id }}" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header border-0">
-                                    <h5 class="modal-title">Ubah Data Siswa</h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form id="form-tambah" action="/siswa/{{ $s->id }}" method="POST">
-                                        @csrf
-                                        <div class="modal-footer border-0">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Batal</button>
-                                            <button type="submit" class="btn btn-primary"
-                                                style="background:#8d5bbcff;border-color:#63dfe3ff;">
-                                                Simpan
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach --}}
             </div>
         </div>
     </div>
-            <div class="modal fade" id="modal-import-siswa" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header border-0">
-                            <h5 class="modal-title">Import Data Siswa</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+    <div class="modal fade" id="modal-import-siswa" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Import Data Siswa</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/siswa/import" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label">Pilih file (Excel/CSV)</label>
+                            <input type="file" name="file" accept=".xlsx,.xls,.csv" class="form-control" required>
                         </div>
-                        <div class="modal-body">
-                            <form action="/siswa/import" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="mb-3">
-                                    <label class="form-label">Pilih file (Excel/CSV)</label>
-                                    <input type="file" name="file" accept=".xlsx,.xls,.csv" class="form-control" required>
-                                </div>
-                                <div class="modal-footer border-0">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                    <button type="submit" class="btn btn-success">Import</button>
-                                </div>
-                            </form>
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-success">Import excel</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
+        </div>
+    </div>
     <div class="modal fade" id="modal-tambah-siswa" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -437,8 +452,11 @@
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">NIS <span class="text-danger">*</span></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nis-tambah" placeholder="Masukkan NIS"
-                                    required name="nis">
+                                <input type="text" class="form-control @error('nis') is-invalid @enderror"
+                                    name="nis" placeholder="NIS" value="{{ old('nis') }}" required>
+                                @error('nis')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row mb-3">

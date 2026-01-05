@@ -196,7 +196,7 @@
 
         /* ✅ CHILD ROW STYLING */
         .details-control {
-            background: linear-gradient(135deg, #e91e63, #f06292);
+            background: linear-gradient(135deg, #4cb0de, #64c5f0);
             color: white;
             cursor: pointer;
             border: none;
@@ -204,23 +204,23 @@
             border-radius: 5px;
             font-size: 12px;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(233, 30, 99, 0.3);
+            box-shadow: 0 2px 5px rgba(76, 176, 222, 0.3);
         }
 
         .details-control:hover {
-            background: linear-gradient(135deg, #c2185b, #e91e63);
+            background: linear-gradient(135deg, #3a9cc9, #4cb0de);
             transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(233, 30, 99, 0.4);
+            box-shadow: 0 4px 8px rgba(76, 176, 222, 0.4);
         }
 
         .details-control.shown {
-            background: linear-gradient(135deg, #c2185b, #e91e63);
+            background: linear-gradient(135deg, #3a9cc9, #4cb0de);
         }
 
         .child-row-details {
             background: linear-gradient(135deg, #f8f9fa, #ffffff);
             padding: 20px;
-            border-left: 4px solid #e91e63;
+            border-left: 4px solid #4cb0de;
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
@@ -238,7 +238,7 @@
 
         .detail-label {
             font-weight: 600;
-            color: #e91e63;
+            color: #4cb0de;
             margin-bottom: 5px;
             font-size: 14px;
             text-transform: uppercase;
@@ -288,8 +288,7 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $item)
-                            <tr data-alamat="{{ $item->alamat }}" 
-                                data-tindak="{{ $item->tindak_lanjut }}">
+                            <tr data-alamat="{{ $item->alamat }}" data-tindak="{{ $item->tindak_lanjut }}">
                                 <td class="text-center align-middle">
                                     <button class="details-control">
                                         <i class="fas fa-plus-circle"></i>
@@ -310,8 +309,7 @@
                                 <td class="text-center align-middle">{{ $item->no_telp }}</td>
                                 <td class="text-center align-middle">
                                     <div class="d-flex justify-content-center gap-1">
-                                        <a href="/tamu/{{ $item->id }}/edit"
-                                            class="btn btn-sm btn-outline-primary">
+                                        <a href="/tamu/{{ $item->id }}/edit" class="btn btn-sm btn-outline-primary">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <a onclick="confirmDelete({{ $item->id }}); return false;"

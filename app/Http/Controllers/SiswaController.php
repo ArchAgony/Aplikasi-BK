@@ -21,7 +21,7 @@ class SiswaController extends Controller
         // ]);
     }
 
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,19 +38,33 @@ class SiswaController extends Controller
     {
         //
         try {
-            Siswa::create([
-                'nama_siswa' => $request->nama,
-                'nis' => $request->nis,
-                'tingkat' => $request->tingkat,
-                'jurusan' => $request->jurusan,
-                'alamat' => $request->alamat,
+            $request->validate([
+                'nis'     => 'required|numeric|unique:siswas,nis',
+                'nama'    => 'required',
+                'tingkat' => 'required',
+                'jurusan' => 'required',
+                'alamat'  => 'required',
+            ], [
+                'nis.numeric'  => 'NIS harus berupa angka.',
+                'nis.unique'   => 'NIS sudah terdaftar.',
             ]);
 
-            return redirect('/siswa')->with('success', 'Data siswa berhasil ditambahkan');
-        } catch (\Exception $th) {
-            return response()->json([
-                'message' => $th->getMessage(),
+            Siswa::create([
+                'nis'        => $request->nis,
+                'nama_siswa' => $request->nama,
+                'tingkat'    => $request->tingkat,
+                'jurusan'    => $request->jurusan,
+                'alamat'     => $request->alamat,
             ]);
+
+            return back()->with('success', 'Data siswa berhasil ditambahkan!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $errors = $e->errors();
+            $firstError = collect($errors)->flatten()->first();
+
+            return redirect()->back()
+                ->withInput()
+                ->with('error', $firstError);
         }
     }
 

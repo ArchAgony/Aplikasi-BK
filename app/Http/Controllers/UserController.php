@@ -33,7 +33,7 @@ class UserController extends Controller
                 'password.min' => 'Password minimal 6 karakter!'
             ]);
 
-            $user = User::create($field);
+            User::create($field);
 
             return redirect('/')->with('success', 'registrasi berhasil!');
         } catch (\Illuminate\Validation\ValidationException $e) {
