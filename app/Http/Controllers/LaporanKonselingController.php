@@ -6,6 +6,8 @@ use App\Models\LaporanKonseling;
 use App\Models\Siswa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\LaporanExport;
 
 class LaporanKonselingController extends Controller
 {
@@ -19,6 +21,11 @@ class LaporanKonselingController extends Controller
             // 'guru',
              'siswa')->orderBy('id', 'desc')->get();
         return view('laporankons.index', compact('laporan'));
+    }
+    public function exportExcel()
+    {
+        
+         return Excel::download(new LaporanExport, 'laporan_konseling.xlsx');
     }
 
     /**

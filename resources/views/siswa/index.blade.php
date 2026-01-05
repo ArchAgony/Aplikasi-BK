@@ -164,10 +164,16 @@
         <div class="table-container">
             <div class="table-header">
                 Tabel Data Siswa
-                <button type="button" class="btn btn-light btn-sm float-end rounded-2" data-bs-toggle="modal"
-                    data-bs-target="#modal-tambah-siswa">
-                    <i class="fas fa-plus me-1"></i> Tambah
-                </button>
+                <div class="float-end">
+                    <button type="button" class="btn btn-success btn-sm me-2 rounded-2" data-bs-toggle="modal"
+                        data-bs-target="#modal-import-siswa">
+                        <i class="fas fa-file-import me-1"></i> Import
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm rounded-2" data-bs-toggle="modal"
+                        data-bs-target="#modal-tambah-siswa">
+                        <i class="fas fa-plus me-1"></i> Tambah
+                    </button>
+                </div>
             </div>
             <div class="authors-table p-3">
                 <table id="datatablesSimple" class="table table-hover w-100">
@@ -395,7 +401,29 @@
             </div>
         </div>
     </div>
-
+            <div class="modal fade" id="modal-import-siswa" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title">Import Data Siswa</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/siswa/import" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-3">
+                                    <label class="form-label">Pilih file (Excel/CSV)</label>
+                                    <input type="file" name="file" accept=".xlsx,.xls,.csv" class="form-control" required>
+                                </div>
+                                <div class="modal-footer border-0">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-success">Import</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
     <div class="modal fade" id="modal-tambah-siswa" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

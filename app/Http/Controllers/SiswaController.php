@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\SiswaImport;
 
 class SiswaController extends Controller
 {
@@ -18,6 +20,8 @@ class SiswaController extends Controller
         //     'siswa' => $siswa
         // ]);
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
