@@ -82,12 +82,19 @@
                             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Konfirmasi Password" required>
                         </div>
 
-                        <div class="d-grid">
-                            <button type="submit" class="btn text-white fw-bold">Daftar</button>
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-grid">
+                                    <button type="submit" class="btn text-white fw-bold">Daftar</button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-grid">
+                                    <a href="/" class="btn text-white fw-bold">Kembali</a>
+                                </div>
+                            </div>
                         </div>
                     </form>
-
-                    <p class="mt-3 text-sm">Sudah punya akun? <a href="{{ route('login') }}" class="hv fw-bold">Sign in</a></p>
                 </div>
             </div>
         </div>
