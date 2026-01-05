@@ -12,16 +12,6 @@
             margin-bottom: 0;
         }
 
-        .modal-header {
-            background: linear-gradient(135deg, #e91e63, #f06292);
-            color: white;
-            padding: 15px 20px;
-            font-weight: 600;
-            font-size: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 0;
-        }
-
         #datatablesSimple {
             width: 100% !important;
             background: white;
@@ -132,7 +122,7 @@
         }
 
         .table-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 2rem auto;
             background: white;
             border-radius: 10px;
@@ -162,6 +152,7 @@
                 margin-top: 10px;
             }
         }
+
         .btn-export {
             background: linear-gradient(135deg, #4caf50, #81c784) !important;
             color: white !important;
@@ -202,6 +193,65 @@
             box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4) !important;
             color: white !important;
         }
+
+        /* ✅ CHILD ROW STYLING */
+        .details-control {
+            background: linear-gradient(135deg, #e91e63, #f06292);
+            color: white;
+            cursor: pointer;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(233, 30, 99, 0.3);
+        }
+
+        .details-control:hover {
+            background: linear-gradient(135deg, #c2185b, #e91e63);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(233, 30, 99, 0.4);
+        }
+
+        .details-control.shown {
+            background: linear-gradient(135deg, #c2185b, #e91e63);
+        }
+
+        .child-row-details {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            padding: 20px;
+            border-left: 4px solid #e91e63;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .detail-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #e91e63;
+            margin-bottom: 5px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-content {
+            color: #333;
+            line-height: 1.6;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
     </style>
 
     <div class="container-fluid">
@@ -225,6 +275,7 @@
                 <table id="datatablesSimple" class="table table-hover w-100">
                     <thead class="text-center align-middle">
                         <tr>
+                            <th>Detail</th>
                             <th>No</th>
                             <th>Tanggal</th>
                             <th>Ortu/Tamu</th>
@@ -232,43 +283,46 @@
                             <th>Kelas</th>
                             <th>Kunjungan</th>
                             <th>No.HP</th>
-                            <th>Alamat Tamu</th>
-                            <th>Tindak Lanjut</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $item)
-                            <tr>
+                            <tr data-alamat="{{ $item->alamat }}" 
+                                data-tindak="{{ $item->tindak_lanjut }}">
+                                <td class="text-center align-middle">
+                                    <button class="details-control">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </td>
                                 <td class="text-center align-middle">{{ $key + 1 }}</td>
                                 <td class="text-center align-middle">
-                                    {{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
+                                    {{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}
+                                </td>
                                 <td class="text-center align-middle">{{ $item->nama_tamu }}</td>
                                 <td class="text-center align-middle">
                                     {{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}
                                 </td>
-                                <td class="text-center align-middle">{{ $item->siswa->tingkat ?? '-' }}
-                                    {{ $item->siswa->jurusan ?? '-' }}
+                                <td class="text-center align-middle">
+                                    {{ $item->siswa->tingkat ?? '-' }} {{ $item->siswa->jurusan ?? '-' }}
                                 </td>
                                 <td class="text-center align-middle">Ke-{{ $item->kunjungan_ke }}</td>
                                 <td class="text-center align-middle">{{ $item->no_telp }}</td>
-                                <td class="text-center align-middle">{{ $item->alamat }}</td>
-                                <td class="text-center align-middle">{{ $item->tindak_lanjut }}</td>
                                 <td class="text-center align-middle">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="/tamu/{{ $item->id }}/edit"
-                                                class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></a>
-                                        </div>
-                                        <div class="col">
-                                            <a onclick="confirmDelete({{ $item->id }})"
-                                                class="btn btn-sm btn-outline-danger me-1"><i class="fas fa-trash"></i></a>
-                                            <form id="delete-form-{{ $item->id }}" action="/tamu/{{ $item->id }}"
-                                                method="post" style="display:none;">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                        </div>
+                                    <div class="d-flex justify-content-center gap-1">
+                                        <a href="/tamu/{{ $item->id }}/edit"
+                                            class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a onclick="confirmDelete({{ $item->id }}); return false;"
+                                            class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <form id="delete-form-{{ $item->id }}" action="/tamu/{{ $item->id }}"
+                                            method="post" style="display:none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -281,11 +335,11 @@
 
     <script>
         $(document).ready(function() {
-            $('#datatablesSimple').DataTable({
-                responsive: true,
+            var table = $('#datatablesSimple').DataTable({
+                responsive: false,
                 language: {
                     search: "Cari:",
-                    searchPlaceholder: "Cari siswa...",
+                    searchPlaceholder: "Cari data...",
                     lengthMenu: "Tampilkan _MENU_ data",
                     info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
                     infoEmpty: "Tidak ada data",
@@ -300,7 +354,7 @@
                     }
                 },
                 order: [
-                    [0, 'asc']
+                    [2, 'desc'] // Sort by tanggal
                 ],
                 pageLength: 10,
                 lengthMenu: [
@@ -308,15 +362,65 @@
                     [5, 10, 25, 50, "Semua"]
                 ],
                 columnDefs: [{
-                    className: "text-center",
-                    targets: [0, 2, 4]
+                    orderable: false,
+                    targets: [0, 8] // Detail dan Action columns
                 }]
+            });
+
+            // Format function for child row details
+            function format(alamat, tindak) {
+                return '<div class="child-row-details">' +
+                    '<div class="detail-item">' +
+                    '<div class="detail-label"><i class="fas fa-map-marker-alt me-2"></i>Alamat Tamu</div>' +
+                    '<div class="detail-content">' + (alamat || '-') + '</div>' +
+                    '</div>' +
+                    '<div class="detail-item">' +
+                    '<div class="detail-label"><i class="fas fa-tasks me-2"></i>Tindak Lanjut</div>' +
+                    '<div class="detail-content">' + (tindak || '-') + '</div>' +
+                    '</div>' +
+                    '</div>';
+            }
+
+            // Add event listener for opening and closing details
+            $('#datatablesSimple tbody').on('click', '.details-control', function() {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                var button = $(this);
+
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                    button.removeClass('shown');
+                    button.html('<i class="fas fa-plus-circle"></i>');
+                } else {
+                    // Open this row
+                    var alamat = tr.data('alamat');
+                    var tindak = tr.data('tindak');
+
+                    row.child(format(alamat, tindak)).show();
+                    tr.addClass('shown');
+                    button.addClass('shown');
+                    button.html('<i class="fas fa-minus-circle"></i>');
+                }
             });
         });
 
-        function btnTambah() {
-            console.log('Simpan data siswa');
-            $('#modal-tambah-siswa').modal('hide');
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
         }
     </script>
 @endsection
