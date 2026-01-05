@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function index()
     {
         $jumlahsiswa = Siswa::count();
-        $siswa = Siswa::all();
+        $siswa = Siswa::with('laporanKonselings')->get();
         $totalKasus = LaporanKonseling::count();
         $kasusSedangBerjalan = LaporanKonseling::where('keterangan', 'Sedang Berjalan')
             ->count();

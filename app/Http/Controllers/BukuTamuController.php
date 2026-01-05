@@ -39,18 +39,20 @@ class BukuTamuController extends Controller
     {
         //
         try {
-            $siswaId = $request->siswa_id;
+            $siswaId = $request->nama;
+
             $jumlahKunjunganSebelumnya = BukuTamu::where('siswa_id', $siswaId)->count();
+
             $kunjunganKe = $jumlahKunjunganSebelumnya + 1;
 
             BukuTamu::create([
-                'siswa_id' => $request->nama,
-                'nama_tamu' => $request->ortu,
-                'no_telp' => $request->no,
-                'alamat' => $request->alamat,
+                'siswa_id'     => $siswaId,
+                'nama_tamu'    => $request->ortu,
+                'no_telp'      => $request->no,
+                'alamat'       => $request->alamat,
                 'tindak_lanjut' => $request->tindak,
                 'kunjungan_ke' => $kunjunganKe,
-                'tanggal' => now()->toDateString(),
+                'tanggal'      => now()->toDateString(),
             ]);
 
             return redirect('/tamu')->with('success', 'Data tamu berhasil disimpan');

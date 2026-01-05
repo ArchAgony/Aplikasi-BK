@@ -55,7 +55,7 @@
 
                     <div>
                         <label class="form-label">Nama Siswa</label>
-                        <select name="siswa_id" class="form-select" required>
+                        <select name="siswa_id" id="search-select" class="form-select" required>
                             @foreach ($siswa as $item)
                                 <option value="{{ $item->id }}"
                                     {{ $item->id == $data->siswa_id ? 'selected' : '' }}>

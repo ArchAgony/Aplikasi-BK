@@ -215,8 +215,10 @@
                                         <div class="col">
                                             <a onclick="confirmDelete({{ $item->id }})"
                                                 class="btn btn-sm btn-outline-danger me-1"><i class="fas fa-trash"></i></a>
-                                            <form id="delete-form-{{ $item->id }}"
-                                                action="/tamu/{{ $item->id }}" method="GET" style="display:none;">
+                                            <form id="delete-form-{{ $item->id }}" action="/tamu/{{ $item->id }}"
+                                                method="post" style="display:none;">
+                                                @csrf
+                                                @method('DELETE')
                                             </form>
                                         </div>
                                     </div>
