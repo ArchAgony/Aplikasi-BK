@@ -24,7 +24,7 @@
     <div class="container-fluid">
         <div class="table-container">
             <div class="table-header">
-                Form Pengisian Buku Tamu
+                Form Pengisian Laporan Konseling
             </div>
             <div class="authors-table p-3">
                 <form action="/laporan" method="post">

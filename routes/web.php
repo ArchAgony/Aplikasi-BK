@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get("/tamu/{id}/edit", [BukuTamuController::class, "edit"]);
     Route::post("/tamu/{id}", [BukuTamuController::class, "update"]);
     Route::get("/tamu/{id}", [BukuTamuController::class, "destroy"]);
+    Route::get("/tamu/export/excel", [BukuTamuController::class, "exportExcel"]);
 
     Route::get("/laporan", [LaporanKonselingController::class, "index"]);
     Route::get("/laporan/create", [LaporanKonselingController::class, "create"]);
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get("/laporan/{id}/edit", [LaporanKonselingController::class, "edit"]);
     Route::post("/laporan/{id}", [LaporanKonselingController::class, "update"]);
     Route::get("/laporan/{id}", [LaporanKonselingController::class, "destroy"]);
+    Route::get("/laporan/export/excel", [LaporanKonselingController::class, "exportExcel"]);
 
     Route::get("/kunjungan", [KunjunganRumahController::class, "index"]);
     Route::get('/kunjungan/create', [KunjunganRumahController::class, 'create'])->name('kunjungan.create');

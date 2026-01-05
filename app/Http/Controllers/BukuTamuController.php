@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BukuTamu;
 use App\Models\Siswa;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BukuTmExport;
 
 use Illuminate\Http\Request;
 
@@ -21,6 +23,11 @@ class BukuTamuController extends Controller
         // ]);
         $data = BukuTamu::with('siswa')->get();
         return view('bktamu.index', compact('data'));
+    }
+    
+    public function exportExcel()
+    {
+        return Excel::download(new BukuTmExport, 'buku_tamu.xlsx');
     }
 
     /**
