@@ -350,24 +350,11 @@
 
                     <ul class="dropdown-menu w-100 mb-2">
                         <li>
-                            <a class="dropdown-item" href="">
-                                <i class="bi bi-people me-2"></i>Data Guru
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-danger" href="#"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="bi bi-box-arrow-right me-2"></i>Logout
+                            <a class="dropdown-item" href="/register">
+                                <i class="bi bi-people me-2"></i>Tambah Guru
                             </a>
                         </li>
                     </ul>
-
-                    <form id="logout-form" action="" method="POST" class="d-none">
-                        @csrf
-                    </form>
                 </div>
             </div>
         </nav>

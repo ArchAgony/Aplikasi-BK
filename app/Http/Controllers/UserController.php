@@ -22,15 +22,27 @@ class UserController extends Controller
                 'NIP' => 'required|unique:users,NIP',
                 'email' => 'required|email',
                 'password' => 'required'
+            ], [
+                'nama_guru.unique' => 'Nama guru sudah terdaftar!',
+                'NIP.unique' => 'NIP sudah terdaftar!',
+                'email.unique' => 'Email sudah terdaftar!',
+                'nama_guru.required' => 'Nama guru wajib diisi!',
+                'NIP.required' => 'NIP wajib diisi!',
+                'email.required' => 'Email wajib diisi!',
+                'password.required' => 'Password wajib diisi!',
+                'password.min' => 'Password minimal 6 karakter!'
             ]);
 
             $user = User::create($field);
 
-            return redirect()->route('register.form')->with('success', 'registrasi berhasil!');
-        } catch (\Exception $th) {
-            return response()->json([
-                'message' => $th->getMessage()
-            ]);
+            return redirect('/')->with('success', 'registrasi berhasil!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $errors = $e->errors();
+            $firstError = collect($errors)->flatten()->first();
+
+            return redirect()->back()
+                ->withInput()
+                ->with('error', $firstError);
         }
     }
 

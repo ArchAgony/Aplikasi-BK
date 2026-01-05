@@ -206,7 +206,9 @@
                                     </a>
 
                                     <form id="delete-form-{{ $s->id }}" action="/siswa/{{ $s->id }}"
-                                        method="GET" style="display:none;">
+                                        method="post" style="display:none;">
+                                        @csrf
+                                        @method('DELETE')
                                     </form>
 
                                     <div class="modal fade" id="modal-edit-siswa-{{ $s->id }}" tabindex="-1"
@@ -341,7 +343,7 @@
                                                                 <input type="text" class="form-control"
                                                                     aria-label="Text input with dropdown button"
                                                                     id="customInput" placeholder="masukkan jurusan"
-                                                                    name="alamat" value="{{ $s->alamat }}">
+                                                                    name="alamat" value="{{ $s->alamat }}" required>
 
                                                             </div>
 
@@ -475,7 +477,7 @@
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control"
                                         aria-label="Text input with dropdown button" id="customInput"
-                                        placeholder="Masukkan Alamat" name="alamat">
+                                        placeholder="Masukkan Alamat" name="alamat" required>
                                 </div>
                             </div>
                         </div>

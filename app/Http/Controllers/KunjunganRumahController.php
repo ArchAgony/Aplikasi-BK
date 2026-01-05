@@ -85,14 +85,25 @@ class KunjunganRumahController extends Controller
     {
         //
         try {
-            $data = KunjunganRumah::find($id);
+            $kunjungan = KunjunganRumah::findOrFail($id);
 
-            $data->siswa_id = $request->nama;
-            $data->nama_guru = $request->nama_guru;
-            $data->jabatan = $request->jabatan;
+            // Pastikan hubungan_wali null jika bukan wali
+            $hubunganWali = $request->peran === 'wali'
+                ? $request->hubungan_wali
+                : null;
 
-            $data->save();
-
+            $kunjungan->update([
+                'siswa_id'        => $request->siswa_id,
+                'tanggal'         => $request->tanggal,
+                'peran'           => $request->peran,
+                'hubungan_wali'   => $hubunganWali,
+                'nama'            => $request->nama,
+                'pekerjaan'       => $request->pekerjaan,
+                'alamat'          => $request->alamat,
+                'alasan_tujuan'   => $request->alasan_tujuan,
+                'hasil_wawancara' => $request->hasil_wawancara,
+                'tindak_lanjut'   => $request->tindak_lanjut,
+            ]);
             return redirect('/kunjungan')->with('success', 'Data kunjungan berhasil diupdate');
         } catch (\Exception $th) {
             return response()->json([

@@ -1,22 +1,22 @@
 @extends('master')
 @section('content')
+    <style>
+        #datatablesSimple {
+            width: 100% !important;
+            background: white;
+            border-collapse: collapse;
+        }
 
-<style>
-  #datatablesSimple {
-    width: 100% !important;
-    background: white;
-    border-collapse: collapse;
-  }
-  #datatablesSimple th,
-  #datatablesSimple td {
-    border: none !important;
-  }
+        #datatablesSimple th,
+        #datatablesSimple td {
+            border: none !important;
+        }
 
-  .dataTables_wrapper .dataTables_filter {
-    float: right !important;
-    text-align: right !important;
-    margin-bottom: 10px;
-  }
+        .dataTables_wrapper .dataTables_filter {
+            float: right !important;
+            text-align: right !important;
+            margin-bottom: 10px;
+        }
 
         .dataTables_wrapper .dataTables_filter label {
             display: flex !important;
@@ -40,10 +40,10 @@
             box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
         }
 
-  .dataTables_wrapper .dataTables_length {
-    float: left !important;
-    margin-bottom: 10px;
-  }
+        .dataTables_wrapper .dataTables_length {
+            float: left !important;
+            margin-bottom: 10px;
+        }
 
         .dataTables_wrapper .dataTables_length label {
             display: flex !important;
@@ -60,12 +60,12 @@
             min-width: 70px;
         }
 
-  .dataTables_wrapper .dataTables_info {
-    float: left !important;
-    padding-top: 10px;
-    color: #666;
-    font-size: 14px;
-  }
+        .dataTables_wrapper .dataTables_info {
+            float: left !important;
+            padding-top: 10px;
+            color: #666;
+            font-size: 14px;
+        }
 
         .dataTables_wrapper .dataTables_paginate {
             float: right !important;
@@ -100,11 +100,11 @@
             cursor: not-allowed;
         }
 
-  .dataTables_wrapper::after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+        .dataTables_wrapper::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
 
         .table-container {
             max-width: 1200px;
@@ -115,13 +115,7 @@
             overflow: hidden;
         }
 
-  @media (max-width: 768px) {
-    .dataTables_wrapper .dataTables_filter,
-    .dataTables_wrapper .dataTables_length {
-      float: none !important;
-      text-align: center !important;
-      margin-bottom: 15px;
-    }
+        @media (max-width: 768px) {
 
             .dataTables_wrapper .dataTables_filter,
             .dataTables_wrapper .dataTables_length {
@@ -130,275 +124,285 @@
                 margin-bottom: 15px;
             }
 
-    .dataTables_wrapper .dataTables_info,
-    .dataTables_wrapper .dataTables_paginate {
-      float: none !important;
-      text-align: center !important;
-      margin-top: 10px;
-    }
-  }
-</style>
+            .dataTables_wrapper .dataTables_filter,
+            .dataTables_wrapper .dataTables_length {
+                float: none !important;
+                text-align: center !important;
+                margin-bottom: 15px;
+            }
 
-<div class="container-fluid">
-    <!-- Stats Cards -->
-    <div class="row mb-4">
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card stat-card border-0 shadow-sm">
-                <div class="stat-icon bg-gradient-dark">
-                    <i class="bi bi-people"></i>
-                </div>
-                <div class="card-body">
-                    <div class="text-end">
-                        <p class="text-muted small mb-1">Jumlah Siswa</p>
-                        <h4 class="mb-0">{{ $jumlahsiswa }}</h4>
+            .dataTables_wrapper .dataTables_info,
+            .dataTables_wrapper .dataTables_paginate {
+                float: none !important;
+                text-align: center !important;
+                margin-top: 10px;
+            }
+        }
+    </style>
+
+    <div class="container-fluid">
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card border-0 shadow-sm">
+                    <div class="stat-icon bg-gradient-dark">
+                        <i class="bi bi-people"></i>
                     </div>
+                    <div class="card-body">
+                        <div class="text-end">
+                            <p class="text-muted small mb-1">Jumlah Siswa</p>
+                            <h4 class="mb-0">{{ $jumlahsiswa }}</h4>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0"></div>
                 </div>
-                <div class="card-footer bg-transparent border-0"></div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card border-0 shadow-sm">
+                    <div class="stat-icon bg-gradient-primary">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-end">
+                            <p class="text-muted small mb-1">Jumlah Kasus</p>
+                            <h4 class="mb-0">{{ $totalKasus }}</h4>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0"></div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card border-0 shadow-sm">
+                    <div class="stat-icon bg-gradient-success">
+                        <i class="bi bi-person-plus"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-end">
+                            <p class="text-muted small mb-1">Kasus Tuntas</p>
+                            <h4 class="mb-0">{{ $kasusTuntas }}</h4>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0"></div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card border-0 shadow-sm">
+                    <div class="stat-icon bg-gradient-info">
+                        <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-end">
+                            <p class="text-muted small mb-1">Kasus Sedang Berjalan</p>
+                            <h4 class="mb-0">{{ $kasusSedangBerjalan }}</h4>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0"></div>
+                </div>
             </div>
         </div>
 
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card stat-card border-0 shadow-sm">
-                <div class="stat-icon bg-gradient-primary">
-                    <i class="bi bi-people"></i>
-                </div>
-                <div class="card-body">
-                    <div class="text-end">
-                        <p class="text-muted small mb-1">Jumlah Kasus</p>
-                        <h4 class="mb-0">{{ $totalKasus }}</h4>
+        <!-- Charts Row -->
+        <div class="row mb-4">
+            <div class="col-lg-8 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h6 class="mb-0">Daftar Kasus Berdasarkan Kelas</h6>
                     </div>
-                </div>
-                <div class="card-footer bg-transparent border-0"></div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card stat-card border-0 shadow-sm">
-                <div class="stat-icon bg-gradient-success">
-                    <i class="bi bi-person-plus"></i>
-                </div>
-                <div class="card-body">
-                    <div class="text-end">
-                        <p class="text-muted small mb-1">Kasus Tuntas</p>
-                        <h4 class="mb-0">{{ $kasusTuntas }}</h4>
-                    </div>
-                </div>
-                <div class="card-footer bg-transparent border-0"></div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card stat-card border-0 shadow-sm">
-                <div class="stat-icon bg-gradient-info">
-                    <i class="bi bi-cart"></i>
-                </div>
-                <div class="card-body">
-                    <div class="text-end">
-                        <p class="text-muted small mb-1">Kasus Sedang Berjalan</p>
-                        <h4 class="mb-0">{{ $kasusSedangBerjalan }}</h4>
-                    </div>
-                </div>
-                <div class="card-footer bg-transparent border-0"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Charts Row -->
-    <div class="row mb-4">
-        <div class="col-lg-8 mb-4">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-white border-0">
-                    <h6 class="mb-0">Daftar Kasus Berdasarkan Kelas</h6>
-                </div>
-                <div class="card-body">
-                    <div style="position: relative; height: 300px;">
-                        <canvas id="barChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-white border-0">
-                    <h6 class="mb-0">Jenis Kasus Terbanyak</h6>
-                </div>
-                <div class="card-body p-0">
-                    <div style="position: relative; height: 300px;">
-                        <canvas id="donutChart"></canvas>
+                    <div class="card-body">
+                        <div style="position: relative; height: 300px;">
+                            <canvas id="barChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h6 class="mb-0">Jenis Kasus Terbanyak</h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <div style="position: relative; height: 300px;">
+                            <canvas id="donutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <!-- Table -->
-    <div class="card border-0 shadow-sm">
-        <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
-            <div>
-                <h6 class="mb-1">Daftar Kasus Terbaru</h6>
-                <p class="text-muted small mb-0"></p>
+        <!-- Table -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1">Daftar Kasus Terbaru</h6>
+                    <p class="text-muted small mb-0"></p>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-link text-muted" type="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="dropdown">
-                <button class="btn btn-link text-muted" type="button" data-bs-toggle="dropdown">
-                    <i class="bi bi-three-dots-vertical"></i>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="datatablesHome" class="table table-hover w-100">
-                    <thead class="table-light text-center align-middle">
-                        <tr>
-                            <th class="text-center">No</th>
-                            <th>Nama Siswa</th>
-                            <th>Kelas</th>
-                            <th class="text-center">Kasus</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($siswa as $key => $s)
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="datatablesHome" class="table table-hover w-100">
+                        <thead class="table-light text-center align-middle">
                             <tr>
-                                <td class="text-center">{{ $key + 1 }}</td>
-                                <td class="text-center">{{ $s->nama_siswa }}</td>
-                                <td class="text-center">{{ $s->tingkat }} {{ $s->jurusan }}</td>
-                                <td>{{ $s->kasus }}</td>
+                                <th class="text-center">No</th>
+                                <th>Nama Siswa</th>
+                                <th>Kelas</th>
+                                <th class="text-center">Masalah yang dihadapi</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($siswa as $key => $s)
+                                <tr>
+                                    <td class="text-center">{{ $key + 1 }}</td>
+                                    <td class="text-center">{{ $s->nama_siswa }}</td>
+                                    <td class="text-center">{{ $s->tingkat }} {{ $s->jurusan }}</td>
+                                    <td class="text-center">
+                                        @if ($s->laporanKonselings->count())
+                                            {{ $s->laporanKonselings->pluck('masalah')->implode(', ') }}
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('scripts')
-<script>
-$(document).ready(function() {
-    $('#datatablesHome').DataTable();
-});
-</script>
-
-<script>
-    var chartLabels = {!! json_encode($kasusPerkelas->pluck('kelas')) !!};
-    var chartData = {!! json_encode($kasusPerkelas->pluck('total')) !!};
-
-    var donutLabels = {!! json_encode($kasusPerMasalah->pluck('masalah')) !!};
-    var donutData = {!! json_encode($kasusPerMasalah->pluck('total')) !!};
-
-    // Debug
-    console.log('Chart Labels:', chartLabels);
-    console.log('Chart Data:', chartData);
-
-    // Tunggu DOM ready
-    document.addEventListener('DOMContentLoaded', function() {
-        var canvas = document.getElementById('barChart');
-        
-        if (!canvas) {
-            console.error('Canvas element tidak ditemukan');
-            return;
-        }
-
-        var ctx = canvas.getContext('2d');
-        
-        // Destroy chart lama jika ada
-        if (window.barChartInstance) {
-            window.barChartInstance.destroy();
-        }
-
-        // Buat chart baru
-        window.barChartInstance = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: chartLabels,
-                datasets: [{
-                    label: 'Jumlah Kasus',
-                    data: chartData,
-                    backgroundColor: 'rgba(95, 109, 238, 0.7)',
-                    borderColor: 'rgba(95, 109, 238, 1)',
-                    borderWidth: 2,
-                    borderRadius: 4,
-                    minBarLength: 5  // Minimal tinggi bar 5px
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1,
-                            precision: 0,
-                            callback: function(value) {
-                                if (Number.isInteger(value)) {
-                                    return value;
-                                }
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    }
-                }
-            }
+    <script>
+        $(document).ready(function() {
+            $('#datatablesHome').DataTable();
         });
+    </script>
 
-        // Buat donut chart di canvas #donutChart
-        var donutCanvas = document.getElementById('donutChart');
-        if (donutCanvas) {
-            var donutCtx = donutCanvas.getContext('2d');
+    <script>
+        var chartLabels = {!! json_encode($kasusPerkelas->pluck('kelas')) !!};
+        var chartData = {!! json_encode($kasusPerkelas->pluck('total')) !!};
 
-            if (window.donutChartInstance) {
-                window.donutChartInstance.destroy();
+        var donutLabels = {!! json_encode($kasusPerMasalah->pluck('masalah')) !!};
+        var donutData = {!! json_encode($kasusPerMasalah->pluck('total')) !!};
+
+        console.log('Chart Labels:', chartLabels);
+        console.log('Chart Data:', chartData);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var canvas = document.getElementById('barChart');
+
+            if (!canvas) {
+                console.error('Canvas element tidak ditemukan');
+                return;
             }
 
-            var baseColors = [
-                '#5F6DEE','#FF6384','#36A2EB','#FFCE56','#4BC0C0','#9966FF','#FF9F40'
-            ];
-            var backgroundColors = donutLabels.map(function(_, i) {
-                return baseColors[i % baseColors.length];
-            });
+            var ctx = canvas.getContext('2d');
 
-            window.donutChartInstance = new Chart(donutCtx, {
-                type: 'doughnut',
+            if (window.barChartInstance) {
+                window.barChartInstance.destroy();
+            }
+
+            window.barChartInstance = new Chart(ctx, {
+                type: 'bar',
                 data: {
-                    labels: donutLabels,
+                    labels: chartLabels,
                     datasets: [{
-                        data: donutData,
-                        backgroundColor: backgroundColors,
-                        borderColor: '#fff',
-                        borderWidth: 1
+                        label: 'Jumlah Kasus',
+                        data: chartData,
+                        backgroundColor: 'rgba(95, 109, 238, 0.7)',
+                        borderColor: 'rgba(95, 109, 238, 1)',
+                        borderWidth: 2,
+                        borderRadius: 4,
+                        minBarLength: 5 // Minimal tinggi bar 5px
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'bottom' },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    var label = context.label || '';
-                                    var value = context.parsed || 0;
-                                    return label + ': ' + value;
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1,
+                                precision: 0,
+                                callback: function(value) {
+                                    if (Number.isInteger(value)) {
+                                        return value;
+                                    }
                                 }
                             }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
                         }
                     }
                 }
             });
-        } else {
-            console.warn('Canvas donutChart tidak ditemukan di DOM');
-        }
-    });
-</script>
+
+            var donutCanvas = document.getElementById('donutChart');
+            if (donutCanvas) {
+                var donutCtx = donutCanvas.getContext('2d');
+
+                if (window.donutChartInstance) {
+                    window.donutChartInstance.destroy();
+                }
+
+                var baseColors = [
+                    '#5F6DEE', '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+                ];
+                var backgroundColors = donutLabels.map(function(_, i) {
+                    return baseColors[i % baseColors.length];
+                });
+
+                window.donutChartInstance = new Chart(donutCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: donutLabels,
+                        datasets: [{
+                            data: donutData,
+                            backgroundColor: backgroundColors,
+                            borderColor: '#fff',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        var label = context.label || '';
+                                        var value = context.parsed || 0;
+                                        return label + ': ' + value;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.warn('Canvas donutChart tidak ditemukan di DOM');
+            }
+        });
+    </script>
 @endsection

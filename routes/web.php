@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::post("/tamu/store", [BukuTamuController::class, "store"]);
     Route::get("/tamu/{id}/edit", [BukuTamuController::class, "edit"]);
     Route::post("/tamu/{id}", [BukuTamuController::class, "update"]);
-    Route::get("/tamu/{id}", [BukuTamuController::class, "destroy"]);
+    Route::delete("/tamu/{id}", [BukuTamuController::class, "destroy"]);
     Route::get("/tamu/export/excel", [BukuTamuController::class, "exportExcel"]);
 
     Route::get("/laporan", [LaporanKonselingController::class, "index"]);
@@ -30,14 +30,14 @@ Route::middleware('auth')->group(function () {
     Route::post("/laporan", [LaporanKonselingController::class, "store"]);
     Route::get("/laporan/{id}/edit", [LaporanKonselingController::class, "edit"]);
     Route::post("/laporan/{id}", [LaporanKonselingController::class, "update"]);
-    Route::get("/laporan/{id}", [LaporanKonselingController::class, "destroy"]);
-    Route::get("/laporan/export/excel", [LaporanKonselingController::class, "exportExcel"]);
+    Route::delete("/laporan/{id}", [LaporanKonselingController::class, "destroy"]);
 
     Route::get("/kunjungan", [KunjunganRumahController::class, "index"]);
     Route::get('/kunjungan/create', [KunjunganRumahController::class, 'create'])->name('kunjungan.create');
     Route::post("/kunjungan", [KunjunganRumahController::class, "index"])->name('kunjungan.store');
+    Route::get('/kunjungan/export/excel', [KunjunganRumahController::class, 'exportExcel'])->name('kunjungan.export.excel');
 
-    Route::get('/kunjungan/{id}/delete', [KunjunganRumahController::class, 'destroy'])->name('kunjungan.delete');
+    Route::delete('/kunjungan/{id}/delete', [KunjunganRumahController::class, 'destroy'])->name('kunjungan.destroy');
     Route::get('/kunjungan/{id}/edit', [KunjunganRumahController::class, 'edit'])->name('kunjungan.edit');
     Route::post("/kunjungan/{id}", [KunjunganRumahController::class, "update"])->name('kunjungan.update');
 

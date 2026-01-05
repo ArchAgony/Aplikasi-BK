@@ -31,7 +31,7 @@
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nama Siswa</label>
-                        <select class="form-select" name="nama" required disabled>
+                        <select class="form-select" id="search-select" name="nama" required>
                             <option value="" selected disabled>Nama Siswa</option>
                             @foreach ($siswa as $item)
                                 <option value="{{ $item->id }}" {{ $laporan->siswa_id == $item->id ? 'selected' : '' }}>
@@ -44,17 +44,17 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Masalah</label>
-                                <textarea class="form-control" rows="3" placeholder="Tuliskan masalah..." name="masalah">{{ $laporan->masalah }}</textarea>
+                                <textarea class="form-control" rows="3" placeholder="Tuliskan masalah..." name="masalah" required>{{ $laporan->masalah }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Tindak Lanjut Menuju Hasil</label>
-                                <textarea class="form-control" rows="3" placeholder="Tuliskan tindak lanjut..." name="tindak_lanjut">{{ $laporan->tindak_lanjut }}</textarea>
+                                <textarea class="form-control" rows="3" placeholder="Tuliskan tindak lanjut..." name="tindak_lanjut" required>{{ $laporan->tindak_lanjut }}</textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Penyebab</label>
-                                <textarea class="form-control" rows="3" placeholder="Tuliskan penyebab..." name="penyebab">{{ $laporan->penyebab }}</textarea>
+                                <textarea class="form-control" rows="3" placeholder="Tuliskan penyebab..." name="penyebab" required>{{ $laporan->penyebab }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Keterangan</label>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Penyelesaian</label>
-                        <textarea class="form-control" rows="4" placeholder="Tuliskan penyelesaian..." name="penyelesaian">{{ $laporan->penyelesaian }}</textarea>
+                        <textarea class="form-control" rows="4" placeholder="Tuliskan penyelesaian..." name="penyelesaian" required>{{ $laporan->penyelesaian }}</textarea>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary px-4">Kirim</button>
