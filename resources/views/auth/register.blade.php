@@ -26,21 +26,6 @@
             position: relative;
             z-index: 2;
         }
-        .btn {
-            background-color: #3A91C3;
-            border: none;
-            transition: background-color 0.3s ease ;
-        }
-        .hv {
-            color: #3A91C3;
-            text-decoration: none;
-            transition: color 0.3s ease ;
-        }
-        .btn:hover,
-        .btn:focus {
-            background-color: #2C6E8C;
-            color: #fff;
-        }
     </style>
 </head>
 <body>
@@ -85,12 +70,12 @@
                         <div class="row">
                             <div class="col">
                                 <div class="d-grid">
-                                    <button type="submit" class="btn text-white fw-bold">Daftar</button>
+                                    <button type="submit" class="btn btn-primary text-white fw-bold">Daftar</button>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="d-grid">
-                                    <a href="/" class="btn text-white fw-bold">Kembali</a>
+                                    <a href="/" class="btn btn-danger text-white fw-bold">Kembali</a>
                                 </div>
                             </div>
                         </div>

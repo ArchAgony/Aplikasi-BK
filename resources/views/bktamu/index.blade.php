@@ -258,13 +258,11 @@
         <div class="table-container">
             <div class="table-header">
                 Data Buku Tamu
-                <!-- ✅ TOMBOL EXPORT YANG DIUPDATE -->
                 <a href="/tamu/export/excel">
                     <button type="button" class="btn btn-export btn-sm float-end rounded-2">
                         <i class="fas fa-file-excel me-1"></i> Export Excel
                     </button>
                 </a>
-                <!-- ✅ TOMBOL TAMBAH YANG DIUPDATE -->
                 <a href="/tamu/create">
                     <button type="button" class="btn btn-tambah btn-sm float-end rounded-2">
                         <i class="fas fa-plus me-1"></i> Tambah Tamu
@@ -278,17 +276,18 @@
                             <th>Detail</th>
                             <th>No</th>
                             <th>Tanggal</th>
-                            <th>Ortu/Tamu</th>
                             <th>Nama Siswa</th>
                             <th>Kelas</th>
                             <th>Kunjungan</th>
-                            <th>No.HP</th>
+                            <th>Ortu/Tamu</th>
                             <th>Action</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $item)
-                            <tr data-alamat="{{ $item->alamat }}" data-tindak="{{ $item->tindak_lanjut }}">
+                            <tr data-alamat="{{ $item->alamat }}" data-tindak="{{ $item->tindak_lanjut }}"
+                                data-hp="{{ $item->no_telp }}">
                                 <td class="text-center align-middle">
                                     <button class="details-control">
                                         <i class="fas fa-plus-circle"></i>
@@ -298,7 +297,6 @@
                                 <td class="text-center align-middle">
                                     {{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}
                                 </td>
-                                <td class="text-center align-middle">{{ $item->nama_tamu }}</td>
                                 <td class="text-center align-middle">
                                     {{ $item->siswa->nama_siswa ?? 'Siswa Dihapus' }}
                                 </td>
@@ -306,15 +304,17 @@
                                     {{ $item->siswa->tingkat ?? '-' }} {{ $item->siswa->jurusan ?? '-' }}
                                 </td>
                                 <td class="text-center align-middle">Ke-{{ $item->kunjungan_ke }}</td>
-                                <td class="text-center align-middle">{{ $item->no_telp }}</td>
+                                <td class="text-center align-middle">{{ $item->nama_tamu }}</td>
                                 <td class="text-center align-middle">
                                     <div class="d-flex justify-content-center gap-1">
-                                        <a href="/tamu/{{ $item->id }}/edit" class="btn btn-sm btn-outline-primary">
+                                        <a href="/tamu/{{ $item->id }}/edit" class="btn btn-sm btn-warning">
                                             <i class="fas fa-edit"></i>
+                                            Ubah
                                         </a>
                                         <a onclick="confirmDelete({{ $item->id }}); return false;"
-                                            class="btn btn-sm btn-outline-danger">
+                                            class="btn btn-sm btn-danger">
                                             <i class="fas fa-trash"></i>
+                                            Hapus
                                         </a>
                                         <form id="delete-form-{{ $item->id }}" action="/tamu/{{ $item->id }}"
                                             method="post" style="display:none;">
@@ -323,6 +323,7 @@
                                         </form>
                                     </div>
                                 </td>
+                                <td></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -352,7 +353,7 @@
                     }
                 },
                 order: [
-                    [2, 'desc'] // Sort by tanggal
+                    [2, 'desc']
                 ],
                 pageLength: 10,
                 lengthMenu: [
@@ -361,42 +362,43 @@
                 ],
                 columnDefs: [{
                     orderable: false,
-                    targets: [0, 8] // Detail dan Action columns
+                    targets: [0, 8]
                 }]
             });
 
-            // Format function for child row details
-            function format(alamat, tindak) {
+            function format(alamat, tindak, hp) {
                 return '<div class="child-row-details">' +
-                    '<div class="detail-item">' +
-                    '<div class="detail-label"><i class="fas fa-map-marker-alt me-2"></i>Alamat Tamu</div>' +
-                    '<div class="detail-content">' + (alamat || '-') + '</div>' +
-                    '</div>' +
-                    '<div class="detail-item">' +
-                    '<div class="detail-label"><i class="fas fa-tasks me-2"></i>Tindak Lanjut</div>' +
-                    '<div class="detail-content">' + (tindak || '-') + '</div>' +
-                    '</div>' +
-                    '</div>';
+                '<div class="detail-item">' +
+                '<div class="detail-label"><i class="fas fa-map-marker-alt me-2"></i>No HP</div>' +
+                '<div class="detail-content">' + (hp || '-') + '</div>' +
+                '</div>' +
+                '<div class="detail-item">' +
+                '<div class="detail-label"><i class="fas fa-map-marker-alt me-2"></i>Alamat Tamu</div>' +
+                '<div class="detail-content">' + (alamat || '-') + '</div>' +
+                '</div>' +
+                '<div class="detail-item">' +
+                '<div class="detail-label"><i class="fas fa-tasks me-2"></i>Tindak Lanjut</div>' +
+                '<div class="detail-content">' + (tindak || '-') + '</div>' +
+                '</div>' +
+                '</div>';
             }
 
-            // Add event listener for opening and closing details
             $('#datatablesSimple tbody').on('click', '.details-control', function() {
                 var tr = $(this).closest('tr');
                 var row = table.row(tr);
                 var button = $(this);
 
                 if (row.child.isShown()) {
-                    // This row is already open - close it
                     row.child.hide();
                     tr.removeClass('shown');
                     button.removeClass('shown');
                     button.html('<i class="fas fa-plus-circle"></i>');
                 } else {
-                    // Open this row
                     var alamat = tr.data('alamat');
                     var tindak = tr.data('tindak');
+                    var hp = tr.data('hp');
 
-                    row.child(format(alamat, tindak)).show();
+                    row.child(format(alamat, tindak, hp)).show();
                     tr.addClass('shown');
                     button.addClass('shown');
                     button.html('<i class="fas fa-minus-circle"></i>');

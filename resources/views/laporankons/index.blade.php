@@ -274,7 +274,6 @@
                         <i class="fas fa-file-excel me-1"></i> Export Excel
                     </button>
                 </a>
-                <!-- ✅ TOMBOL TAMBAH YANG DIUPDATE -->
                 <a href="/laporan/create">
                     <button type="button" class="btn btn-tambah btn-sm float-end rounded-2">
                         <i class="fas fa-plus me-1"></i> Tambah Tamu
@@ -319,12 +318,14 @@
                                 <td class="text-center align-middle">
                                     <div class="d-flex justify-content-center gap-1">
                                         <a href="/laporan/{{ $item->id }}/edit"
-                                            class="btn btn-sm btn-outline-primary">
+                                            class="btn btn-sm btn-warning">
                                             <i class="fas fa-edit"></i>
+                                            Ubah
                                         </a>
                                         <a onclick="confirmDelete({{ $item->id }})"
-                                            class="btn btn-sm btn-outline-danger">
+                                            class="btn btn-sm btn-danger">
                                             <i class="fas fa-trash"></i>
+                                            Hapus
                                         </a>
                                         <form id="delete-form-{{ $item->id }}"
                                             action="/laporan/{{ $item->id }}" method="post" style="display:none;">

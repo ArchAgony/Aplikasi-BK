@@ -236,14 +236,16 @@
                                 <td>{{ $s->tingkat }} {{ $s->jurusan }}</td>
                                 <td>{{ $s->alamat }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
+                                    <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal"
                                         data-bs-target="#modal-edit-siswa-{{ $s->id }}">
                                         <i class="fas fa-edit"></i>
+                                        Ubah
                                     </button>
 
                                     <a onclick="confirmDelete({{ $s->id }})"
-                                        class="btn btn-sm btn-outline-danger me-1">
+                                        class="btn btn-sm btn-danger me-1">
                                         <i class="fas fa-trash"></i>
+                                        Hapus
                                     </a>
 
                                     <form id="delete-form-{{ $s->id }}" action="/siswa/{{ $s->id }}"

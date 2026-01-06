@@ -259,16 +259,20 @@
                             <th>Kelas</th>
                             <th>Peran</th>
                             <th>Nama Ortu</th>
-                            <th>Pekerjaan</th>
-                            <th>Alamat</th>
                             <th>Aksi</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $item)
-                            <tr data-alasan="{{ $item->alasan_tujuan }}" 
+                            <tr 
+                                data-pekerjaan="{{ $item->pekerjaan }}" 
+                                data-alamat="{{ $item->alamat }}" 
+                                data-alasan="{{ $item->alasan_tujuan }}" 
                                 data-hasil="{{ $item->hasil_wawancara }}"
-                                data-tindak="{{ $item->tindak_lanjut }}">
+                                data-tindak="{{ $item->tindak_lanjut }}"
+                                >
                                 <td class="text-center align-middle">
                                     <button class="details-control">
                                         <i class="fas fa-plus-circle"></i>
@@ -294,17 +298,17 @@
                                     {{ $item->peran === 'wali' ? $item->hubungan_wali : ucfirst($item->peran) }}
                                 </td>
                                 <td class="text-center align-middle">{{ $item->nama }}</td>
-                                <td class="text-center align-middle">{{ $item->pekerjaan }}</td>
-                                <td class="text-center align-middle">{{ Str::limit($item->alamat, 30) }}</td>
                                 <td class="text-center align-middle">
                                     <div class="d-flex justify-content-center gap-1">
-                                        <a class="btn btn-sm btn-outline-primary"
+                                        <a class="btn btn-sm btn-warning"
                                             href="{{ route('kunjungan.edit', $item->id) }}">
                                             <i class="bi bi-pencil"></i>
+                                            Ubah
                                         </a>
-                                        <a class="btn btn-sm btn-outline-danger"
+                                        <a class="btn btn-sm btn-danger"
                                             onclick="confirmDelete({{ $item->id }}); return false;">
                                             <i class="bi bi-trash"></i>
+                                            Hapus
                                         </a>
                                         <form id="delete-form-{{ $item->id }}"
                                             action="{{ route('kunjungan.destroy', $item->id) }}" method="POST"
@@ -314,6 +318,8 @@
                                         </form>
                                     </div>
                                 </td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -343,7 +349,7 @@
                     }
                 },
                 order: [
-                    [2, 'desc'] // Sort by tanggal column
+                    [2, 'desc'] 
                 ],
                 pageLength: 10,
                 lengthMenu: [
@@ -352,13 +358,20 @@
                 ],
                 columnDefs: [{
                     orderable: false,
-                    targets: [0, 9] // Detail dan Aksi columns
+                    targets: [0, 9] 
                 }]
             });
 
-            // Format function for child row details
-            function format(alasan, hasil, tindak) {
+            function format(pekerjaan, alamat, alasan, hasil, tindak) {
                 return '<div class="child-row-details">' +
+                    '<div class="detail-item">' +
+                    '<div class="detail-label"><i class="fas fa-question-circle me-2"></i>Pekerjaan</div>' +
+                    '<div class="detail-content">' + (pekerjaan || '-') + '</div>' +
+                    '</div>' +
+                    '<div class="detail-item">' +
+                    '<div class="detail-label"><i class="fas fa-question-circle me-2"></i>Alamat    </div>' +
+                    '<div class="detail-content">' + (alamat || '-') + '</div>' +
+                    '</div>' +
                     '<div class="detail-item">' +
                     '<div class="detail-label"><i class="fas fa-question-circle me-2"></i>Alasan/Tujuan Kunjungan</div>' +
                     '<div class="detail-content">' + (alasan || '-') + '</div>' +
@@ -374,25 +387,24 @@
                     '</div>';
             }
 
-            // Add event listener for opening and closing details
             $('#datatablesSimple tbody').on('click', '.details-control', function() {
                 var tr = $(this).closest('tr');
                 var row = table.row(tr);
                 var button = $(this);
 
                 if (row.child.isShown()) {
-                    // This row is already open - close it
                     row.child.hide();
                     tr.removeClass('shown');
                     button.removeClass('shown');
                     button.html('<i class="fas fa-plus-circle"></i>');
                 } else {
-                    // Open this row
+                    var pekerjaan = tr.data('pekerjaan');
+                    var alamat = tr.data('alamat');
                     var alasan = tr.data('alasan');
                     var hasil = tr.data('hasil');
                     var tindak = tr.data('tindak');
 
-                    row.child(format(alasan, hasil, tindak)).show();
+                    row.child(format(pekerjaan, alamat, alasan, hasil, tindak)).show();
                     tr.addClass('shown');
                     button.addClass('shown');
                     button.html('<i class="fas fa-minus-circle"></i>');
