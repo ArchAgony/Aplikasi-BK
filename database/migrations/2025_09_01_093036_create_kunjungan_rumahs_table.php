@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('nama');
             $table->string('pekerjaan');
             $table->string('alamat');
-            $table->string('alasan_tujuan');
-            $table->string('hasil_wawancara');
-            $table->string('tindak_lanjut');
+            $table->string('alasan_tujuan')->nullable();
+            $table->string('hasil_wawancara')->nullable();
+            $table->string('tindak_lanjut')->nullable();
             $table->timestamps();
         });
     }
