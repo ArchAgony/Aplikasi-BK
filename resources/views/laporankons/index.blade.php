@@ -50,7 +50,7 @@
 
         .dataTables_wrapper .dataTables_filter input {
             border-radius: 20px;
-            border: 1px solid #e91e63;
+            border: 1px solid #4cb0de;
             padding: 0.4em 1em;
             width: 250px;
             transition: all 0.3s ease;
@@ -58,8 +58,8 @@
 
         .dataTables_wrapper .dataTables_filter input:focus {
             outline: none;
-            border-color: #e91e63;
-            box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
+            border-color: #4cb0de;
+            box-shadow: 0 0 0 0.2rem rgba(76, 176, 222, 0.25);
         }
 
         /* ✅ FIX LENGTH MENU POSITION */
@@ -78,7 +78,7 @@
 
         .dataTables_length select {
             border-radius: 20px;
-            border: 1px solid #e91e63;
+            border: 1px solid #4cb0de;
             padding: 0.3em 1em;
             min-width: 70px;
         }
@@ -108,15 +108,15 @@
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-            background: #f06292;
+            background: #4cb0de;
             color: white;
-            border-color: #f06292;
+            border-color: #4cb0de;
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #e91e63;
+            background: #4cb0de;
             color: white;
-            border-color: #e91e63;
+            border-color: #4cb0de;
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
@@ -232,6 +232,27 @@
             padding: 20px;
             border-left: 4px solid #4cb0de;
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        /* Custom Scrollbar for child row */
+        .child-row-details::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .child-row-details::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .child-row-details::-webkit-scrollbar-thumb {
+            background: #4cb0de;
+            border-radius: 10px;
+        }
+
+        .child-row-details::-webkit-scrollbar-thumb:hover {
+            background: #3a9cc9;
         }
 
         .detail-item {
@@ -261,13 +282,35 @@
             font-size: 14px;
             white-space: pre-wrap;
             word-wrap: break-word;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        /* Custom Scrollbar for detail content */
+        .detail-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .detail-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .detail-content::-webkit-scrollbar-thumb {
+            background: #4cb0de;
+            border-radius: 10px;
+        }
+
+        .detail-content::-webkit-scrollbar-thumb:hover {
+            background: #3a9cc9;
         }
     </style>
 
     <div class="container-fluid">
         <div class="table-container">
             <div class="table-header">
-                Data Buku Tamu
+                Data Buku Kasus
                 <!-- ✅ TOMBOL EXPORT YANG DIUPDATE -->
                 <a href="/laporan/export/excel">
                     <button type="button" class="btn btn-export btn-sm float-end rounded-2">
@@ -276,7 +319,7 @@
                 </a>
                 <a href="/laporan/create">
                     <button type="button" class="btn btn-tambah btn-sm float-end rounded-2">
-                        <i class="fas fa-plus me-1"></i> Tambah Tamu
+                        <i class="fas fa-plus me-1"></i> Tambah Kasus
                     </button>
                 </a>
             </div>
@@ -318,14 +361,12 @@
                                 <td class="text-center align-middle">
                                     <div class="d-flex justify-content-center gap-1">
                                         <a href="/laporan/{{ $item->id }}/edit"
-                                            class="btn btn-sm btn-warning">
+                                            class="btn btn-sm btn-outline-primary">
                                             <i class="fas fa-edit"></i>
-                                            Ubah
                                         </a>
-                                        <a onclick="confirmDelete({{ $item->id }})"
-                                            class="btn btn-sm btn-danger">
+                                        <a onclick="confirmDelete({{ $item->id }}); return false;"
+                                            class="btn btn-sm btn-outline-danger">
                                             <i class="fas fa-trash"></i>
-                                            Hapus
                                         </a>
                                         <form id="delete-form-{{ $item->id }}"
                                             action="/laporan/{{ $item->id }}" method="post" style="display:none;">
@@ -363,7 +404,7 @@
                     }
                 },
                 order: [
-                    [1, 'asc']
+                    [2, 'desc'] // Sort by tanggal
                 ],
                 pageLength: 10,
                 lengthMenu: [
@@ -381,19 +422,19 @@
                 return '<div class="child-row-details">' +
                     '<div class="detail-item">' +
                     '<div class="detail-label"><i class="fas fa-exclamation-triangle me-2"></i>Masalah</div>' +
-                    '<div class="detail-content">' + masalah + '</div>' +
+                    '<div class="detail-content">' + (masalah || '-') + '</div>' +
                     '</div>' +
                     '<div class="detail-item">' +
                     '<div class="detail-label"><i class="fas fa-search me-2"></i>Penyebab</div>' +
-                    '<div class="detail-content">' + penyebab + '</div>' +
+                    '<div class="detail-content">' + (penyebab || '-') + '</div>' +
                     '</div>' +
                     '<div class="detail-item">' +
                     '<div class="detail-label"><i class="fas fa-clipboard-list me-2"></i>Tindak Lanjut</div>' +
-                    '<div class="detail-content">' + tindak + '</div>' +
+                    '<div class="detail-content">' + (tindak || '-') + '</div>' +
                     '</div>' +
                     '<div class="detail-item">' +
                     '<div class="detail-label"><i class="fas fa-check-circle me-2"></i>Penyelesaian</div>' +
-                    '<div class="detail-content">' + penyelesaian + '</div>' +
+                    '<div class="detail-content">' + (penyelesaian || '-') + '</div>' +
                     '</div>' +
                     '</div>';
             }
@@ -426,9 +467,20 @@
         });
 
         function confirmDelete(id) {
-            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-                document.getElementById('delete-form-' + id).submit();
-            }
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
         }
     </script>
 @endsection
