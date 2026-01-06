@@ -236,15 +236,61 @@
             font-size: 12px;
             font-weight: 500;
         }
+        .btn-export {
+            background: linear-gradient(135deg, #4caf50, #81c784) !important;
+            color: white !important;
+            border: none !important;
+            padding: 8px 16px !important;
+            font-weight: 500 !important;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3) !important;
+            transition: all 0.3s ease !important;
+            border-radius: 20px !important;
+        }
+
+        .btn-export:hover {
+            background: linear-gradient(135deg, #45a049, #75b870) !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4) !important;
+            color: white !important;
+        }
+
+        .btn-export:active {
+            transform: translateY(0) !important;
+        }
+
+        .btn-tambah {
+            background: linear-gradient(135deg, #2196f3, #64b5f6) !important;
+            color: white !important;
+            border: none !important;
+            padding: 8px 16px !important;
+            font-weight: 500 !important;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3) !important;
+            transition: all 0.3s ease !important;
+            border-radius: 20px !important;
+            margin-right: 8px !important;
+        }
+
+        .btn-tambah:hover {
+            background: linear-gradient(135deg, #1976d2, #5c9ed6) !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4) !important;
+            color: white !important;
+        }
     </style>
 
     <div class="container-fluid">
         <div class="table-container">
             <div class="table-header">
-                Laporan Kunjungan Rumah
+                Data Buku Kasus
+                <!-- ✅ TOMBOL EXPORT YANG DIUPDATE -->
+                <a href="/kunjungan/export/excel">
+                    <button type="button" class="btn btn-export btn-sm float-end rounded-2">
+                        <i class="fas fa-file-excel me-1"></i> Export Excel
+                    </button>
+                </a>
                 <a href="/kunjungan/create">
                     <button type="button" class="btn btn-tambah btn-sm float-end rounded-2">
-                        <i class="fas fa-plus me-1"></i> Tambah Kunjungan
+                        <i class="fas fa-plus me-1"></i> Tambah Kasus
                     </button>
                 </a>
             </div>

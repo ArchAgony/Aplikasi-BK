@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get("/laporan/{id}/edit", [LaporanKonselingController::class, "edit"]);
     Route::post("/laporan/{id}", [LaporanKonselingController::class, "update"]);
     Route::delete("/laporan/{id}", [LaporanKonselingController::class, "destroy"]);
+    Route::get("/laporan/export/excel", [LaporanKonselingController::class, "exportExcel"]);
 
     Route::get("/kunjungan", [KunjunganRumahController::class, "index"]);
     Route::get('/kunjungan/create', [KunjunganRumahController::class, 'create'])->name('kunjungan.create');

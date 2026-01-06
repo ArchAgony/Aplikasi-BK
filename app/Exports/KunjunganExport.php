@@ -5,30 +5,37 @@ namespace App\Exports;
 use App\Models\KunjunganRumah;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class KunjunganExport implements FromCollection, WithHeadings
+class KunjunganExport implements FromCollection, WithHeadings, WithMapping
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return KunjunganRumah::with('siswa')->get()->map (function ($item) {
-            return [
-                'id' => $item->id,
-                'nama_siswa' => $item->siswa->nama_siswa,
-                'tanggal' => $item->tanggal,
-                 'peran' => $item->peran,
-                  'hubungan_wali' => $item->hubungan_wali,
-                   'nama' => $item->nama,
-                    'pekerjaan' => $item->pekerjaan,
-                     'alamat' => $item->alamat,
-                      'alasan_tujuan' => $item->alasan_tujuan,
-                       'hasil_wawancara' => $item->hasil_wawancara,
-                        'tindak_lanjut' => $item->tindak_lanjut
-            ];
-        });
+        return KunjunganRumah::with(['siswa' => function($query) {
+            $query->select('id', 'nama_siswa');
+        }])->get();
     }
+
+    public function map($kunjungan): array
+    {
+        return [
+            $kunjungan->id,
+            $kunjungan->siswa ? $kunjungan->siswa->nama_siswa : 'Tidak ada data',
+            $kunjungan->tanggal ? \Carbon\Carbon::parse($kunjungan->tanggal)->format('Y-m-d') : '-',
+            $kunjungan->peran ?? '-',
+            $kunjungan->hubungan_wali ?? '-',
+            $kunjungan->nama ?? '-',
+            $kunjungan->pekerjaan ?? '-',
+             $kunjungan->alamat ?? '-',
+            $kunjungan->alasan_tujuan ?? '-',
+            $kunjungan->hasil_wawancara ?? '-',
+            $kunjungan->tindak_lanjut ?? '-',
+        ];
+    }
+
     public function headings(): array
     {
         return [
@@ -37,10 +44,10 @@ class KunjunganExport implements FromCollection, WithHeadings
             'Tanggal',
             'Peran',
             'Hubungan Wali',
-            'Nama Orang Tua',
+            'Nama',
             'Pekerjaan',
             'Alamat',
-            'Keperluan',
+            'Alasan Tujuan',
             'Hasil Wawancara',
             'Tindak Lanjut',
         ];

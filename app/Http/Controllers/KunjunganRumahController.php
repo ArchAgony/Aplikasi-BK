@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\KunjunganRumah;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\KunjunganExport;
 
 class KunjunganRumahController extends Controller
 {
@@ -19,6 +21,11 @@ class KunjunganRumahController extends Controller
             'bukutamu'
         )->orderBy('id', 'desc')->get();
         return view('kunjungan.index', compact('data'));
+    }
+    public function exportExcel()
+    {
+        
+         return Excel::download(new KunjunganExport, 'kunjungan_rumah.xlsx');
     }
 
     /**
